@@ -202,6 +202,210 @@
                 </div>
                 <div class="mt-4 md:mt-0 font-mono text-right">
                     <div class="text-xs font-bold text-poster-blue tracking-widest uppercase">LEAGUE OF LEGENDS DIVISION</div>
+   <!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLANK // ESPORTS - ROSTER 2026</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Syne, Space Grotesk, JetBrains Mono, UnifrakturMaguntia for Y2K poster vibe -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,500;0,700;1,700&family=JetBrains+Mono:wght@200;400;600;800&family=Syne:wght@700;800&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        poster: {
+                            bg: '#e2e4eb',
+                            card: '#d8dbe5',
+                            darkCard: '#0f1015',
+                            blue: '#4956f4',
+                            blueGlow: 'rgba(73, 86, 244, 0.35)',
+                            textMain: '#0d0d11',
+                            textMuted: '#585c6a',
+                            tagBg: '#0b0c10',
+                            accentRed: '#ff2a4b'
+                        }
+                    },
+                    fontFamily: {
+                        display: ['Syne', 'sans-serif'],
+                        tech: ['Chakra Petch', 'sans-serif'],
+                        sans: ['Space Grotesk', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Y2K / Cyber-poster Background Noise */
+        body {
+            background-color: #e2e4eb;
+            color: #0d0d11;
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Subtle Noise Overlay texture from visual artwork */
+        .poster-grain {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 90;
+        }
+
+        /* Distinctive Poster Gradient Slashes (like the blue band in reference image) */
+        .blue-poster-stripe {
+            background: linear-gradient(135deg, rgba(73, 86, 244, 0.95) 0%, rgba(30, 41, 180, 0.9) 100%);
+            box-shadow: 0 10px 40px rgba(73, 86, 244, 0.25);
+        }
+
+        .text-poster-blue-shadow {
+            text-shadow: 3px 3px 0px rgba(10, 12, 30, 0.9), -2px -2px 0px rgba(255, 255, 255, 0.8);
+        }
+
+        /* Sharp cut cyber containers */
+        .poster-box {
+            background: rgba(220, 223, 233, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(13, 13, 17, 0.2);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .poster-box:hover {
+            border-color: #4956f4;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(73, 86, 244, 0.15);
+        }
+
+        .poster-box-dark {
+            background: #0d0e12;
+            color: #f0f2f8;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+        }
+
+        /* Bracket tags like [DATA DELETED] */
+        .black-tag {
+            background-color: #0b0c10;
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            padding: 2px 8px;
+            display: inline-block;
+            text-transform: uppercase;
+        }
+
+        .blue-tag {
+            background-color: #4956f4;
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            padding: 2px 8px;
+            display: inline-block;
+            text-transform: uppercase;
+        }
+
+        /* Glitch text effect simulation */
+        .glitch-text {
+            position: relative;
+            display: inline-block;
+        }
+        .glitch-text::before {
+            content: attr(data-text);
+            position: absolute;
+            left: -2px;
+            text-shadow: 2px 0 #4956f4;
+            background: transparent;
+            overflow: hidden;
+            clip: rect(0, 900px, 0, 0);
+            animation: noise-anim-2 3s infinite linear alternate-reverse;
+        }
+
+        @keyframes noise-anim-2 {
+            0% { clip: rect(12px, 9999px, 80px, 0); }
+            20% { clip: rect(40px, 9999px, 10px, 0); }
+            40% { clip: rect(70px, 9999px, 50px, 0); }
+            60% { clip: rect(20px, 9999px, 90px, 0); }
+            80% { clip: rect(60px, 9999px, 30px, 0); }
+            100% { clip: rect(10px, 9999px, 85px, 0); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #e2e4eb; }
+        ::-webkit-scrollbar-thumb { background: #0b0c10; }
+        ::-webkit-scrollbar-thumb:hover { background: #4956f4; }
+    </style>
+</head>
+<body class="selection:bg-poster-blue selection:text-white">
+
+    <div class="poster-grain"></div>
+
+    <!-- TOP NAV HEADER -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-poster-bg/90 backdrop-blur-md border-b border-black/15 font-mono text-[11px] tracking-wider py-3 px-4 sm:px-8">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="#hero" class="flex items-center space-x-3 text-poster-textMain hover:text-poster-blue transition-colors">
+                <span class="font-extrabold tracking-widest uppercase font-tech text-base text-poster-blue">BLANK</span>
+                <span class="text-black/30">//</span>
+                <span class="black-tag">[ESPORTS]</span>
+            </a>
+
+            <div class="hidden lg:flex items-center space-x-6 text-[10px] text-poster-textMuted uppercase font-bold">
+                <span>[DATA_DELETED]</span>
+                <span class="text-black/20">|</span>
+                <span>VER. 2026.8</span>
+                <span class="text-black/20">|</span>
+                <span class="text-poster-blue">[STATUS: COMPETITIVE_ACTIVE]</span>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <a href="#academy" class="hover:text-poster-blue font-bold text-xs uppercase hidden sm:inline">Rosters</a>
+                <a href="#tryouts" class="px-4 py-1.5 bg-poster-tagBg text-white font-bold uppercase hover:bg-poster-blue transition-all text-[11px] tracking-wider">
+                    APPLY NOW ↘
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION / POSTER CENTERPIECE -->
+    <section id="hero" class="relative pt-28 pb-16 min-h-screen flex flex-col justify-between border-b border-black/15">
+        
+        <!-- MICRO-TYPOGRAPHY WATERMARKS SCATTERED LIKE POSTER ART -->
+        <div class="absolute top-24 left-6 font-mono text-[9px] text-black/40 space-y-1 pointer-events-none hidden md:block">
+            <div>ДЕЛАЮ ЧТО Я ХОЧУ</div>
+            <div>[ДАННЫЕ УДАЛЕНЫ]</div>
+            <div>STATUS: UNTOUCHABLE</div>
+        </div>
+        <div class="absolute top-24 right-6 font-mono text-[9px] text-black/40 text-right space-y-1 pointer-events-none hidden md:block">
+            <div>SERIAL NO. 000-BLANK-2026</div>
+            <div>[ECLIPSED // LAST KNIGHTS]</div>
+            <div>NO COMPROMISE</div>
+        </div>
+
+        <div class="max-w-7xl mx-auto w-full px-4 sm:px-8 relative z-10 my-auto">
+            
+            <!-- HEADER BAR -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b-2 border-black pb-4 mb-8">
+                <div>
+                    <div class="black-tag mb-2">[OFFICIAL ROSTER DOSSIER]</div>
+                    <h1 class="font-tech text-6xl sm:text-8xl lg:text-9xl font-black text-black tracking-tighter uppercase leading-none">
+                        BLANK
+                    </h1>
+                </div>
+                <div class="mt-4 md:mt-0 font-mono text-right">
+                    <div class="text-xs font-bold text-poster-blue tracking-widest uppercase">LEAGUE OF LEGENDS DIVISION</div>
                     <div class="text-[10px] text-poster-textMuted uppercase mt-1">HIGH PERFORMANCE ACADEMY & MAIN TEAM</div>
                 </div>
             </div>
@@ -237,7 +441,7 @@
 
             <!-- HERO QUICK LINKS -->
             <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-8 font-mono text-xs font-bold">
-                <a href="#vacancies" class="p-4 bg-poster-accentRed text-white hover:bg-black transition-all flex items-center justify-between uppercase">
+                <a href="#vacancies" class="p-4 bg-poster-blue text-white hover:bg-black transition-all flex items-center justify-between uppercase">
                     <span>01 // MAIN ROSTER VACANCIES</span>
                     <span>↘</span>
                 </a>
@@ -245,7 +449,7 @@
                     <span>02 // LAST KNIGHTS ACADEMY</span>
                     <span>↘</span>
                 </a>
-                <a href="#eclipsed" class="p-4 bg-poster-blue text-white hover:bg-black transition-all flex items-center justify-between uppercase">
+                <a href="#eclipsed" class="p-4 bg-poster-darkCard text-white hover:bg-poster-blue transition-all flex items-center justify-between uppercase border border-black/20">
                     <span>03 // BLANK: ECLIPSED</span>
                     <span>↘</span>
                 </a>
@@ -255,146 +459,223 @@
 
         <!-- FOOTER BAR OF HERO -->
         <div class="max-w-7xl mx-auto w-full px-4 sm:px-8 pt-8 flex flex-wrap justify-between items-center text-[10px] font-mono text-poster-textMuted border-t border-black/10 gap-2">
-            <div>DESIGN / HIGH-FASHION Y2K CYBERPOSTER</div>
             <div>[OPACITY = 1000%]</div>
             <div class="text-black font-bold">BLANK ESPORTS © 2026</div>
         </div>
     </section>
 
-    <!-- NEW SECTION: BLANK MAIN ROSTER VACANCIES -->
-    <section id="vacancies" class="py-24 border-b border-black/15 relative bg-poster-bg">
+    <!-- NEW SECTION 00: MAIN ROSTER VACANCIES -->
+    <section id="vacancies" class="py-24 border-b border-black/15 bg-poster-bg relative">
         <div class="max-w-7xl mx-auto px-4 sm:px-8">
             
             <!-- SECTION TITLE -->
             <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 pb-6 border-b-2 border-black">
                 <div>
                     <div class="flex items-center space-x-2 mb-2">
-                        <span class="bg-poster-accentRed text-white font-mono text-[10px] font-bold px-2 py-0.5 tracking-widest uppercase">[RECRUITING NOW]</span>
-                        <span class="text-xs font-mono text-poster-blue font-bold tracking-widest">// OPEN REGISTRATION</span>
+                        <span class="bg-poster-accentRed text-white font-mono text-[10px] font-bold px-2 py-0.5 tracking-wider uppercase">[RECRUITMENT ACTIVE]</span>
+                        <span class="text-xs font-mono text-poster-blue font-bold tracking-widest">// FIRST TEAM RECRUITMENT</span>
                     </div>
                     <h2 class="font-tech text-3xl sm:text-5xl font-black text-black uppercase tracking-tight">
-                        BLANK: MAIN ROSTER // VACANT POSITIONS
+                        BLANK: MAIN ROSTER (VACANTES / OPEN)
                     </h2>
                 </div>
                 <div class="mt-4 md:mt-0 font-mono text-xs text-poster-textMuted">
-                    [REQ: CHALLENGER / MASTER 400+ LP] <span class="text-poster-accentRed font-bold">// 6 ROLES OPEN</span>
+                    [REQ: CHALLENGER / HIGH GM] <span class="text-poster-blue font-bold">// TIER 1/2 READY</span>
                 </div>
             </div>
 
-            <!-- GRID OF VACANT ROLES -->
+            <!-- VACANT CARDS GRID -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 font-mono">
 
-                <!-- VACANCY: COACH -->
-                <div class="poster-box p-6 relative flex flex-col justify-between border-2 border-poster-accentRed bg-white/50">
+                <!-- VACANTE 01: HEAD COACH -->
+                <div class="poster-box p-6 relative flex flex-col justify-between border-2 border-poster-accentRed bg-white/60">
                     <div>
-                        <div class="flex justify-between items-start mb-4">
-                            <span class="bg-poster-accentRed text-white text-[10px] px-2 py-0.5 font-bold uppercase">[VACANTE]</span>
-                            <span class="text-[10px] text-black/50">MAIN ROSTER</span>
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="bg-poster-accentRed text-white px-2 py-0.5 text-[10px] font-bold uppercase">[OPEN POSITION]</span>
+                            <span class="text-[10px] text-black/50">SLOT #00</span>
                         </div>
                         <h3 class="font-tech text-3xl font-black text-black">HEAD COACH</h3>
-                        <p class="text-xs text-poster-textMuted uppercase mt-1">Estrategia, Drafts & VOD Review</p>
-                        <div class="mt-4 text-[11px] text-black/70 space-y-1 border-t border-black/10 pt-3">
-                            <div>• Exp. previa en ligas competitivas</div>
-                            <div>• Metodología de análisis estructurada</div>
+                        <p class="text-xs text-poster-textMuted uppercase mt-1">ESTRATEGIA & DIRECCIÓN TÁCTICA</p>
+                        
+                        <div class="mt-6 space-y-2 text-[11px] text-black/80 border-t border-black/15 pt-4">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-poster-blue">▶</span>
+                                <span>Exp. previa en Tier 1 / Tier 2 Nacional</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-poster-blue">▶</span>
+                                <span>Manejo de Draft & VOD Review avanzado</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-poster-blue">▶</span>
+                                <span>Disponibilidad completa para scrims</span>
+                            </div>
                         </div>
                     </div>
-                    <a href="#tryouts" class="mt-6 w-full py-2.5 bg-black text-white hover:bg-poster-blue transition-colors text-center text-xs font-bold uppercase block">
-                        POSTULAR A COACH ↘
+
+                    <a href="#tryouts" class="mt-8 py-3 bg-black text-white hover:bg-poster-blue text-center font-bold uppercase text-xs transition-colors flex items-center justify-center space-x-2">
+                        <span>POSTULAR A COACH</span>
+                        <span>↘</span>
                     </a>
                 </div>
 
-                <!-- VACANCY: TOPLANE -->
-                <div class="poster-box p-6 relative flex flex-col justify-between border border-black/20">
+                <!-- VACANTE 02: TOPLANE -->
+                <div class="poster-box p-6 relative flex flex-col justify-between border-2 border-black bg-white/60">
                     <div>
-                        <div class="flex justify-between items-start mb-4">
-                            <span class="bg-poster-accentRed text-white text-[10px] px-2 py-0.5 font-bold uppercase">[VACANTE]</span>
-                            <span class="text-[10px] text-black/50">MAIN ROSTER</span>
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="black-tag">[VACANTE // TOPLANE]</span>
+                            <span class="text-[10px] text-black/50">SLOT #01</span>
                         </div>
                         <h3 class="font-tech text-3xl font-black text-black">TOPLANE</h3>
-                        <p class="text-xs text-poster-textMuted uppercase mt-1">Sololane Dominance & Carry</p>
-                        <div class="mt-4 text-[11px] text-black/70 space-y-1 border-t border-black/10 pt-3">
-                            <div>• Pool amplio (Bruisers / Tanks)</div>
-                            <div>• Peak: Challenger / GM 600+ LP</div>
+                        <p class="text-xs text-poster-textMuted uppercase mt-1">MAIN ROSTER SOLOLANER</p>
+
+                        <div class="mt-6 space-y-2 text-[11px] text-black/80 border-t border-black/15 pt-4">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-poster-blue">▶</span>
+                                <span>Peak: Challenger 800+ LP</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-poster-blue">▶</span>
+                                <span>Dominio de Meta Carry & Tanks</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-poster-blue">▶</span>
+                                <span>Comunicación clara en Mid/Late Game</span>
+                            </div>
                         </div>
                     </div>
-                    <a href="#tryouts" class="mt-6 w-full py-2.5 bg-black text-white hover:bg-poster-blue transition-colors text-center text-xs font-bold uppercase block">
-                        POSTULAR A TOPLANE ↘
+
+                    <a href="#tryouts" class="mt-8 py-3 bg-black text-white hover:bg-poster-blue text-center font-bold uppercase text-xs transition-colors flex items-center justify-center space-x-2">
+                        <span>POSTULAR A TOPLANE</span>
+                        <span>↘</span>
                     </a>
                 </div>
 
-                <!-- VACANCY: JUNGLA -->
-                <div class="poster-box p-6 relative flex flex-col justify-between border border-black/20">
+                <!-- VACANTE 03: JUNGLER -->
+                <div class="poster-box p-6 relative flex flex-col justify-between border-2 border-black bg-white/60">
                     <div>
-                        <div class="flex justify-between items-start mb-4">
-                            <span class="bg-poster-accentRed text-white text-[10px] px-2 py-0.5 font-bold uppercase">[VACANTE]</span>
-                            <span class="text-[10px] text-black/50">MAIN ROSTER</span>
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="black-tag">[VACANTE // JUNGLER]</span>
+                            <span class="text-[10px] text-black/50">SLOT #02</span>
                         </div>
-                        <h3 class="font-tech text-3xl font-black text-black">JUNGLA</h3>
-                        <p class="text-xs text-poster-textMuted uppercase mt-1">Tempo Control & Shotcalling</p>
-                        <div class="mt-4 text-[11px] text-black/70 space-y-1 border-t border-black/10 pt-3">
-                            <div>• Pathing agresivo & Macro-control</div>
-                            <div>• Peak: Challenger / GM 600+ LP</div>
+                        <h3 class="font-tech text-3xl font-black text-black">JUNGLER</h3>
+                        <p class="text-xs text-poster-textMuted uppercase mt-1">SHOTCALLER & TEMPO CONTROL</p>
+
+                        <div class="mt-6 space-y-2 text-[11px] text-black/80 border-t border-black/15 pt-4">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-poster-blue">▶</span>
+                                <span>Peak: Challenger 800+ LP</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-poster-blue">▶</span>
+                                <span>Tracking & Early Pathing de precisión</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-poster-blue">▶</span>
+                                <span>Sinergia agresiva con Midlane</span>
+                            </div>
                         </div>
                     </div>
-                    <a href="#tryouts" class="mt-6 w-full py-2.5 bg-black text-white hover:bg-poster-blue transition-colors text-center text-xs font-bold uppercase block">
-                        POSTULAR A JUNGLA ↘
+
+                    <a href="#tryouts" class="mt-8 py-3 bg-black text-white hover:bg-poster-blue text-center font-bold uppercase text-xs transition-colors flex items-center justify-center space-x-2">
+                        <span>POSTULAR A JUNGLA</span>
+                        <span>↘</span>
                     </a>
                 </div>
 
-                <!-- VACANCY: MIDLANE -->
-                <div class="poster-box p-6 relative flex flex-col justify-between border border-black/20">
+                <!-- VACANTE 04: MIDLANE -->
+                <div class="poster-box p-6 relative flex flex-col justify-between border-2 border-black bg-white/60">
                     <div>
-                        <div class="flex justify-between items-start mb-4">
-                            <span class="bg-poster-accentRed text-white text-[10px] px-2 py-0.5 font-bold uppercase">[VACANTE]</span>
-                            <span class="text-[10px] text-black/50">MAIN ROSTER</span>
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="black-tag">[VACANTE // MIDLANE]</span>
+                            <span class="text-[10px] text-black/50">SLOT #03</span>
                         </div>
                         <h3 class="font-tech text-3xl font-black text-black">MIDLANE</h3>
-                        <p class="text-xs text-poster-textMuted uppercase mt-1">Control Mages & Playmaker</p>
-                        <div class="mt-4 text-[11px] text-black/70 space-y-1 border-t border-black/10 pt-3">
-                            <div>• Dominio de macro y roams</div>
-                            <div>• Peak: Challenger / GM 600+ LP</div>
+                        <p class="text-xs text-poster-textMuted uppercase mt-1">MAIN CARRY & ROAMER</p>
+
+                        <div class="mt-6 space-y-2 text-[11px] text-black/80 border-t border-black/15 pt-4">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-poster-blue">▶</span>
+                                <span>Peak: Challenger 900+ LP</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-poster-blue">▶</span>
+                                <span>Mages de Control & Asesinos de Meta</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-poster-blue">▶</span>
+                                <span>Control de Side Lanes en Mid Game</span>
+                            </div>
                         </div>
                     </div>
-                    <a href="#tryouts" class="mt-6 w-full py-2.5 bg-black text-white hover:bg-poster-blue transition-colors text-center text-xs font-bold uppercase block">
-                        POSTULAR A MIDLANE ↘
+
+                    <a href="#tryouts" class="mt-8 py-3 bg-black text-white hover:bg-poster-blue text-center font-bold uppercase text-xs transition-colors flex items-center justify-center space-x-2">
+                        <span>POSTULAR A MIDLANE</span>
+                        <span>↘</span>
                     </a>
                 </div>
 
-                <!-- VACANCY: ADC -->
-                <div class="poster-box p-6 relative flex flex-col justify-between border border-black/20">
+                <!-- VACANTE 05: BOTLANE (ADC) -->
+                <div class="poster-box p-6 relative flex flex-col justify-between border-2 border-black bg-white/60">
                     <div>
-                        <div class="flex justify-between items-start mb-4">
-                            <span class="bg-poster-accentRed text-white text-[10px] px-2 py-0.5 font-bold uppercase">[VACANTE]</span>
-                            <span class="text-[10px] text-black/50">MAIN ROSTER</span>
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="black-tag">[VACANTE // ADC]</span>
+                            <span class="text-[10px] text-black/50">SLOT #04</span>
                         </div>
-                        <h3 class="font-tech text-3xl font-black text-black">ADC</h3>
-                        <p class="text-xs text-poster-textMuted uppercase mt-1">High Damage output & Position</p>
-                        <div class="mt-4 text-[11px] text-black/70 space-y-1 border-t border-black/10 pt-3">
-                            <div>• Consistencia en teamfights</div>
-                            <div>• Peak: Challenger / GM 600+ LP</div>
+                        <h3 class="font-tech text-3xl font-black text-black">BOTLANE (ADC)</h3>
+                        <p class="text-xs text-poster-textMuted uppercase mt-1">LATE GAME PRIMARY DAMAGE</p>
+
+                        <div class="mt-6 space-y-2 text-[11px] text-black/80 border-t border-black/15 pt-4">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-poster-blue">▶</span>
+                                <span>Peak: Challenger 850+ LP</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-poster-blue">▶</span>
+                                <span>Posicionamiento en Teamfights impecable</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-poster-blue">▶</span>
+                                <span>Flexibilidad de picks (Hypercarries & Mages)</span>
+                            </div>
                         </div>
                     </div>
-                    <a href="#tryouts" class="mt-6 w-full py-2.5 bg-black text-white hover:bg-poster-blue transition-colors text-center text-xs font-bold uppercase block">
-                        POSTULAR A ADC ↘
+
+                    <a href="#tryouts" class="mt-8 py-3 bg-black text-white hover:bg-poster-blue text-center font-bold uppercase text-xs transition-colors flex items-center justify-center space-x-2">
+                        <span>POSTULAR A ADC</span>
+                        <span>↘</span>
                     </a>
                 </div>
 
-                <!-- VACANCY: SOPORTE -->
-                <div class="poster-box p-6 relative flex flex-col justify-between border border-black/20">
+                <!-- VACANTE 06: SUPPORT -->
+                <div class="poster-box p-6 relative flex flex-col justify-between border-2 border-black bg-white/60">
                     <div>
-                        <div class="flex justify-between items-start mb-4">
-                            <span class="bg-poster-accentRed text-white text-[10px] px-2 py-0.5 font-bold uppercase">[VACANTE]</span>
-                            <span class="text-[10px] text-black/50">MAIN ROSTER</span>
+                        <div class="flex justify-between items-center mb-6">
+                            <span class="black-tag">[VACANTE // SUPPORT]</span>
+                            <span class="text-[10px] text-black/50">SLOT #05</span>
                         </div>
-                        <h3 class="font-tech text-3xl font-black text-black">SOPORTE</h3>
-                        <p class="text-xs text-poster-textMuted uppercase mt-1">Engage, Vision & Communication</p>
-                        <div class="mt-4 text-[11px] text-black/70 space-y-1 border-t border-black/10 pt-3">
-                            <div>• Control de mapa & roaming</div>
-                            <div>• Peak: Challenger / GM 600+ LP</div>
+                        <h3 class="font-tech text-3xl font-black text-black">SUPPORT</h3>
+                        <p class="text-xs text-poster-textMuted uppercase mt-1">VISION & ENGAGE CONTROLLER</p>
+
+                        <div class="mt-6 space-y-2 text-[11px] text-black/80 border-t border-black/15 pt-4">
+                            <div class="flex items-center space-x-2">
+                                <span class="text-poster-blue">▶</span>
+                                <span>Peak: Challenger 800+ LP</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-poster-blue">▶</span>
+                                <span>Voice Lead & Manejo de Tiempos de Visión</span>
+                            </div>
+                            <div class="flex items-center space-x-2">
+                                <span class="text-poster-blue">▶</span>
+                                <span>Picks: Engage, Enchanters & Mages</span>
+                            </div>
                         </div>
                     </div>
-                    <a href="#tryouts" class="mt-6 w-full py-2.5 bg-black text-white hover:bg-poster-blue transition-colors text-center text-xs font-bold uppercase block">
-                        POSTULAR A SOPORTE ↘
+
+                    <a href="#tryouts" class="mt-8 py-3 bg-black text-white hover:bg-poster-blue text-center font-bold uppercase text-xs transition-colors flex items-center justify-center space-x-2">
+                        <span>POSTULAR A SUPPORT</span>
+                        <span>↘</span>
                     </a>
                 </div>
 
@@ -418,7 +699,7 @@
                     </h2>
                 </div>
                 <div class="mt-4 md:mt-0 font-mono text-xs text-poster-textMuted">
-                    [TOTAL ATHLETES: 7] <span class="text-poster-blue font-bold">// TIER 2 COMPETITIVE</span>
+                    [TOTAL ATHLETES: 5] <span class="text-poster-blue font-bold">// TIER 2 COMPETITIVE</span>
                 </div>
             </div>
 
@@ -441,19 +722,19 @@
                     </div>
                 </div>
 
-                <!-- TOPLANE: NIGHT -->
-                <div class="poster-box p-6 relative flex flex-col justify-between">
+                <!-- TOPLANE: VACANTE ACADEMY -->
+                <div class="poster-box p-6 relative flex flex-col justify-between border-dashed border-2 border-black/30 bg-white/40">
                     <div class="flex justify-between items-start mb-6">
-                        <span class="black-tag">TOPLANE</span>
+                        <span class="black-tag">[VACANTE // TOP]</span>
                         <span class="font-mono text-[10px] text-black/50">SLOT #01</span>
                     </div>
                     <div>
-                        <h3 class="font-tech text-3xl font-bold text-black hover:text-poster-blue transition-colors">NIGHT</h3>
-                        <p class="font-mono text-xs text-poster-textMuted uppercase mt-1">TOP LANE SPECIALIST</p>
+                        <h3 class="font-tech text-3xl font-bold text-black/40">OPEN SLOT</h3>
+                        <p class="font-mono text-xs text-poster-textMuted uppercase mt-1">ACADEMY TOPLANE</p>
                     </div>
                     <div class="mt-8 pt-4 border-t border-black/15 flex justify-between items-center font-mono text-xs">
-                        <span class="text-poster-textMuted">RANK ELO:</span>
-                        <span class="bg-purple-900 text-white px-2 py-0.5 font-bold">GRAND MASTER</span>
+                        <span class="text-poster-textMuted">STATUS:</span>
+                        <span class="bg-poster-accentRed text-white px-2 py-0.5 font-bold">RECRUITING</span>
                     </div>
                 </div>
 
@@ -473,31 +754,15 @@
                     </div>
                 </div>
 
-                <!-- MIDLANE: LUCKY -->
+                <!-- MIDLANE: VÁNDR -->
                 <div class="poster-box p-6 relative flex flex-col justify-between">
                     <div class="flex justify-between items-start mb-6">
                         <span class="black-tag">MIDLANE</span>
                         <span class="font-mono text-[10px] text-black/50">SLOT #03</span>
                     </div>
                     <div>
-                        <h3 class="font-tech text-3xl font-bold text-black hover:text-poster-blue transition-colors">LUCKY</h3>
-                        <p class="font-mono text-xs text-poster-textMuted uppercase mt-1">MID CARRY</p>
-                    </div>
-                    <div class="mt-8 pt-4 border-t border-black/15 flex justify-between items-center font-mono text-xs">
-                        <span class="text-poster-textMuted">RANK ELO:</span>
-                        <span class="black-tag text-white font-bold">CHALLENGER</span>
-                    </div>
-                </div>
-
-                <!-- MIDLANE: VÁNDR -->
-                <div class="poster-box p-6 relative flex flex-col justify-between">
-                    <div class="flex justify-between items-start mb-6">
-                        <span class="black-tag">MIDLANE</span>
-                        <span class="font-mono text-[10px] text-black/50">SLOT #04</span>
-                    </div>
-                    <div>
                         <h3 class="font-tech text-3xl font-bold text-black hover:text-poster-blue transition-colors">VÁNDR</h3>
-                        <p class="font-mono text-xs text-poster-textMuted uppercase mt-1">MID ROTATION</p>
+                        <p class="font-mono text-xs text-poster-textMuted uppercase mt-1">MID CARRY</p>
                     </div>
                     <div class="mt-8 pt-4 border-t border-black/15 flex justify-between items-center font-mono text-xs">
                         <span class="text-poster-textMuted">RANK ELO:</span>
@@ -509,7 +774,7 @@
                 <div class="poster-box p-6 relative flex flex-col justify-between">
                     <div class="flex justify-between items-start mb-6">
                         <span class="black-tag">ADC</span>
-                        <span class="font-mono text-[10px] text-black/50">SLOT #05</span>
+                        <span class="font-mono text-[10px] text-black/50">SLOT #04</span>
                     </div>
                     <div>
                         <h3 class="font-tech text-3xl font-bold text-black hover:text-poster-blue transition-colors">KORO</h3>
@@ -522,10 +787,10 @@
                 </div>
 
                 <!-- SOPORTE: MANZANITA -->
-                <div class="poster-box p-6 relative flex flex-col justify-between sm:col-span-2 lg:col-span-1">
+                <div class="poster-box p-6 relative flex flex-col justify-between">
                     <div class="flex justify-between items-start mb-6">
                         <span class="black-tag">SOPORTE</span>
-                        <span class="font-mono text-[10px] text-black/50">SLOT #06</span>
+                        <span class="font-mono text-[10px] text-black/50">SLOT #05</span>
                     </div>
                     <div>
                         <h3 class="font-tech text-3xl font-bold text-black hover:text-poster-blue transition-colors">MANZANITA</h3>
@@ -568,14 +833,14 @@
             <!-- ECLIPSED ROSTER CARDS -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 font-mono">
 
-                <!-- TOPLANER: LILO -->
+                <!-- TOPLANER: NIGHT -->
                 <div class="poster-box-dark p-6 relative group">
                     <div class="flex justify-between items-center text-xs text-gray-400 mb-6">
                         <span class="text-poster-blue font-bold">[SLOT 01]</span>
                         <span class="bg-white/10 px-2 py-0.5 text-[10px]">TOPLANER</span>
                     </div>
                     <div class="mb-8">
-                        <h3 class="font-tech text-3xl font-bold text-white group-hover:text-poster-blue transition-colors">LILO</h3>
+                        <h3 class="font-tech text-3xl font-bold text-white group-hover:text-poster-blue transition-colors">NIGHT</h3>
                         <p class="text-xs text-gray-400 uppercase mt-1">SOLOLANE DOMINANCE</p>
                     </div>
                     <div class="flex justify-between items-center text-xs border-t border-white/10 pt-4">
@@ -600,14 +865,14 @@
                     </div>
                 </div>
 
-                <!-- MIDLANER: ESAR -->
+                <!-- MIDLANER: LUCKY -->
                 <div class="poster-box-dark p-6 relative group border-2 border-poster-blue">
                     <div class="flex justify-between items-center text-xs text-gray-400 mb-6">
                         <span class="text-poster-blue font-bold">[SLOT 03]</span>
                         <span class="bg-poster-blue text-white px-2 py-0.5 text-[10px]">MIDLANER</span>
                     </div>
                     <div class="mb-8">
-                        <h3 class="font-tech text-3xl font-bold text-white group-hover:text-poster-blue transition-colors">ESAR</h3>
+                        <h3 class="font-tech text-3xl font-bold text-white group-hover:text-poster-blue transition-colors">LUCKY</h3>
                         <p class="text-xs text-gray-400 uppercase mt-1">TACTICAL SHIFT / MID</p>
                     </div>
                     <div class="flex justify-between items-center text-xs border-t border-white/10 pt-4">
@@ -651,138 +916,4 @@
             </div>
         </div>
     </section>
-
-    <!-- FORMULARIO DE TRYOUTS CON AESTHETIC CYBER-POSTER -->
-    <section id="tryouts" class="py-24 relative bg-poster-bg">
-        <div class="max-w-4xl mx-auto px-4 sm:px-8">
-            <div class="poster-box p-8 sm:p-12 border-2 border-black relative">
-                
-                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-10 pb-6 border-b-2 border-black">
-                    <div>
-                        <span class="black-tag mb-2">[JOIN THE KNIGHTHOOD]</span>
-                        <h2 class="font-tech text-3xl sm:text-5xl font-black text-black uppercase">TRYOUTS APPLICATION</h2>
-                    </div>
-                    <div class="font-mono text-xs text-poster-blue font-bold mt-2 sm:mt-0">
-                        REQUIREMENT: MASTER / CHALLENGER
-                    </div>
-                </div>
-
-                <form id="tryout-form" action="https://formspree.io/f/xknkyrep" method="POST" onsubmit="handleFormSubmit(event)" class="space-y-6 font-mono text-xs">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-black font-bold uppercase mb-2">RIOT ID #TAG *</label>
-                            <input type="text" name="Riot_ID" required placeholder="BlankPlayer#LAN" class="w-full bg-white border border-black focus:border-poster-blue px-4 py-3 text-black outline-none transition-colors font-mono">
-                        </div>
-                        <div>
-                            <label class="block text-black font-bold uppercase mb-2">DIVISION A POSTULAR *</label>
-                            <select name="Division_Target" required class="w-full bg-white border border-black focus:border-poster-blue px-4 py-3 text-black outline-none transition-colors font-mono">
-                                <option value="">SELECCIONAR DIVISION...</option>
-                                <option value="LAST KNIGHTS ACADEMY">LAST KNIGHTS ACADEMY</option>
-                                <option value="BLANK: ECLIPSED">BLANK: ECLIPSED</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-black font-bold uppercase mb-2">ROL PRINCIPAL *</label>
-                            <select name="Rol_Principal" required class="w-full bg-white border border-black focus:border-poster-blue px-4 py-3 text-black outline-none transition-colors font-mono">
-                                <option value="">SELECCIONA ROL...</option>
-                                <option value="TOPLANE">TOPLANE</option>
-                                <option value="JUNGLE">JUNGLE</option>
-                                <option value="MIDLANE">MIDLANE</option>
-                                <option value="BOTLANE (ADC)">BOTLANE (ADC)</option>
-                                <option value="SUPPORT">SUPPORT</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-black font-bold uppercase mb-2">DISCORD TAG *</label>
-                            <input type="text" name="Discord_Tag" required placeholder="usuario#0000" class="w-full bg-white border border-black focus:border-poster-blue px-4 py-3 text-black outline-none transition-colors font-mono">
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-black font-bold uppercase mb-2">PEAK LP & SERVIDOR *</label>
-                            <input type="text" name="Peak_LP_Servidor" required placeholder="Ej: Challenger 900 LP (LAN)" class="w-full bg-white border border-black focus:border-poster-blue px-4 py-3 text-black outline-none transition-colors font-mono">
-                        </div>
-                        <div>
-                            <label class="block text-black font-bold uppercase mb-2">ENLACE OP.GG / PROFILE *</label>
-                            <input type="url" name="OPGG_Profile" required placeholder="https://www.op.gg/..." class="w-full bg-white border border-black focus:border-poster-blue px-4 py-3 text-black outline-none transition-colors font-mono">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-black font-bold uppercase mb-2">EXPERIENCIA COMPETITIVA PREVIA</label>
-                        <textarea name="Experiencia_Previa" rows="3" placeholder="Detalla torneos previos, equipos pasados o ligas..." class="w-full bg-white border border-black focus:border-poster-blue px-4 py-3 text-black outline-none transition-colors font-mono"></textarea>
-                    </div>
-
-                    <button type="submit" id="submit-btn" class="w-full py-4 bg-black text-white font-tech font-bold text-base uppercase tracking-widest hover:bg-poster-blue transition-all">
-                        SEND DOSSIER TO BLANK STAFF ↘
-                    </button>
-                </form>
-
-                <div id="form-msg" class="hidden mt-6 p-4 border-2 border-black bg-poster-blue text-white text-center font-mono text-xs">
-                    [ DOSSIER REGISTRADO EN BLANK ESPORTS ]<br>Revisaremos tu postulación y te contactaremos por Discord.
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-black text-white py-12 font-mono text-xs border-t border-white/20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="text-center md:text-left">
-                <div class="font-tech text-xl font-black tracking-widest text-poster-blue">BLANK ESPORTS</div>
-                <div class="text-gray-500 text-[10px] mt-1">HIGH PERFORMANCE DIVISION © 2026 // ALL RIGHTS RESERVED</div>
-            </div>
-
-            <div class="flex items-center space-x-6 text-gray-400 text-base">
-                <a href="#" class="hover:text-poster-blue transition-colors"><i class="fa-brands fa-discord"></i></a>
-                <a href="#" class="hover:text-poster-blue transition-colors"><i class="fa-brands fa-x-twitter"></i></a>
-                <a href="#" class="hover:text-poster-blue transition-colors"><i class="fa-brands fa-twitch"></i></a>
-                <a href="#" class="hover:text-poster-blue transition-colors"><i class="fa-brands fa-instagram"></i></a>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-        async function handleFormSubmit(e) {
-            e.preventDefault();
-            const form = e.target;
-            const btn = document.getElementById('submit-btn');
-            
-            btn.disabled = true;
-            btn.innerText = "TRANSMITTING DOSSIER...";
-
-            try {
-                const response = await fetch(form.action, {
-                    method: form.method,
-                    body: new FormData(form),
-                    headers: { 'Accept': 'application/json' }
-                });
-
-                if (response.ok) {
-                    const msg = document.getElementById('form-msg');
-                    msg.classList.remove('hidden');
-                    form.reset();
-                    setTimeout(() => { msg.classList.add('hidden'); }, 6000);
-                } else {
-                    const msg = document.getElementById('form-msg');
-                    msg.innerText = "[ DOSSIER ENVIADO ] // Te contactaremos en breve.";
-                    msg.classList.remove('hidden');
-                    form.reset();
-                }
-            } catch (error) {
-                const msg = document.getElementById('form-msg');
-                msg.innerText = "[ DOSSIER REGISTRADO ] // Te contactaremos por Discord.";
-                msg.classList.remove('hidden');
-                form.reset();
-            } finally {
-                btn.disabled = false;
-                btn.innerText = "SEND DOSSIER TO BLANK STAFF ↘";
-            }
-        }
-    </script>
-</body>
-</html>
+<!-- ... existing code -->
