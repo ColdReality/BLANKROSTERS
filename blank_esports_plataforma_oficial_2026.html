@@ -1,0 +1,1676 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BLANK // ESPORTS - HUB & ROSTERS 2026</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Syne, Space Grotesk, JetBrains Mono, Chakra Petch -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,500;0,700;1,700&family=JetBrains+Mono:wght@200;400;600;800&family=Syne:wght@700;800&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        poster: {
+                            bg: '#e2e4eb',
+                            card: '#d8dbe5',
+                            darkCard: '#0f1015',
+                            blue: '#4956f4',
+                            blueGlow: 'rgba(73, 86, 244, 0.35)',
+                            textMain: '#0d0d11',
+                            textMuted: '#585c6a',
+                            tagBg: '#0b0c10',
+                            accentRed: '#ff2a4b'
+                        }
+                    },
+                    fontFamily: {
+                        display: ['Syne', 'sans-serif'],
+                        tech: ['Chakra Petch', 'sans-serif'],
+                        sans: ['Space Grotesk', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Y2K / Cyber-poster Background Noise */
+        body {
+            background-color: #e2e4eb;
+            color: #0d0d11;
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Subtle Noise Overlay texture */
+        .poster-grain {
+            position: fixed;
+            top: 0; left: 0; width: 100vw; height: 100vh;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 90;
+        }
+
+        /* Distinctive Poster Gradient Slashes */
+        .blue-poster-stripe {
+            background: linear-gradient(135deg, rgba(73, 86, 244, 0.95) 0%, rgba(30, 41, 180, 0.9) 100%);
+            box-shadow: 0 10px 40px rgba(73, 86, 244, 0.25);
+        }
+
+        /* Sharp cut cyber containers */
+        .poster-box {
+            background: rgba(220, 223, 233, 0.7);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(13, 13, 17, 0.2);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .poster-box:hover {
+            border-color: #4956f4;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(73, 86, 244, 0.15);
+        }
+
+        .poster-box-dark {
+            background: #0d0e12;
+            color: #f0f2f8;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .poster-box-dark:hover {
+            border-color: #4956f4;
+            box-shadow: 0 10px 30px rgba(73, 86, 244, 0.2);
+        }
+
+        /* Bracket tags */
+        .black-tag {
+            background-color: #0b0c10;
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            padding: 2px 8px;
+            display: inline-block;
+            text-transform: uppercase;
+        }
+
+        .blue-tag {
+            background-color: #4956f4;
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            padding: 2px 8px;
+            display: inline-block;
+            text-transform: uppercase;
+        }
+
+        .red-tag {
+            background-color: #ff2a4b;
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.1em;
+            padding: 2px 8px;
+            display: inline-block;
+            text-transform: uppercase;
+        }
+
+        /* Glitch text effect simulation */
+        .glitch-text {
+            position: relative;
+            display: inline-block;
+        }
+        .glitch-text::before {
+            content: attr(data-text);
+            position: absolute;
+            left: -2px;
+            text-shadow: 2px 0 #4956f4;
+            background: transparent;
+            overflow: hidden;
+            clip: rect(0, 900px, 0, 0);
+            animation: noise-anim-2 3s infinite linear alternate-reverse;
+        }
+
+        @keyframes noise-anim-2 {
+            0% { clip: rect(12px, 9999px, 80px, 0); }
+            20% { clip: rect(40px, 9999px, 10px, 0); }
+            40% { clip: rect(70px, 9999px, 50px, 0); }
+            60% { clip: rect(20px, 9999px, 90px, 0); }
+            80% { clip: rect(60px, 9999px, 30px, 0); }
+            100% { clip: rect(10px, 9999px, 85px, 0); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #e2e4eb; }
+        ::-webkit-scrollbar-thumb { background: #0b0c10; }
+        ::-webkit-scrollbar-thumb:hover { background: #4956f4; }
+
+        /* Custom Input styling for dark/poster theme */
+        .poster-input {
+            background-color: #ffffff;
+            border: 2px solid #0b0c10;
+            color: #0d0d11;
+            font-family: 'JetBrains Mono', monospace;
+            padding: 0.75rem 1rem;
+            outline: none;
+            transition: all 0.2s ease;
+            width: 100%;
+        }
+        .poster-input:focus {
+            border-color: #4956f4;
+            box-shadow: 4px 4px 0px #0b0c10;
+        }
+
+        .tab-btn.active {
+            background-color: #4956f4 !important;
+            color: #ffffff !important;
+            border-color: #4956f4 !important;
+        }
+    </style>
+</head>
+<body class="selection:bg-poster-blue selection:text-white">
+
+    <div class="poster-grain"></div>
+
+    <!-- NAVIGATION HEADER UNIFICADO -->
+    <header class="fixed top-0 left-0 w-full z-50 bg-poster-bg/95 backdrop-blur-md border-b border-black/15 font-mono text-[11px] tracking-wider py-3 px-4 sm:px-8">
+        <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
+            
+            <!-- LOGO BRAND -->
+            <a href="#" onclick="switchTab('inicio')" class="flex items-center space-x-3 text-poster-textMain hover:text-poster-blue transition-colors">
+                <span class="font-extrabold tracking-widest uppercase font-tech text-xl text-poster-blue">BLANK</span>
+                <span class="text-black/30">//</span>
+                <span class="black-tag">[HUB 2026]</span>
+            </a>
+
+            <!-- MAIN PAGES TABS -->
+            <nav class="flex items-center space-x-1 sm:space-x-2 font-mono text-xs overflow-x-auto py-1">
+                <button onclick="switchTab('inicio')" id="nav-inicio" class="tab-btn active px-3 py-1.5 border border-black font-bold uppercase transition-all flex items-center space-x-1.5">
+                    <i class="fa-solid fa-house text-[10px]"></i>
+                    <span>Inicio</span>
+                </button>
+                
+                <!-- DROPDOWN OR DIRECT LINK TO ROSTERS -->
+                <a href="#academy" onclick="switchTab('inicio')" class="px-3 py-1.5 bg-black/5 border border-black/30 text-black hover:bg-black hover:text-white font-bold uppercase transition-all flex items-center space-x-1.5">
+                    <i class="fa-solid fa-users text-[10px]"></i>
+                    <span>Rosters</span>
+                </a>
+
+                <button onclick="switchTab('tryouts')" id="nav-tryouts" class="tab-btn px-3 py-1.5 bg-black/5 border border-black/30 text-black hover:bg-black hover:text-white font-bold uppercase transition-all flex items-center space-x-1.5">
+                    <i class="fa-solid fa-id-card text-[10px]"></i>
+                    <span>Tryouts</span>
+                </button>
+
+                <button onclick="switchTab('gallery')" id="nav-gallery" class="tab-btn px-3 py-1.5 bg-black/5 border border-black/30 text-black hover:bg-black hover:text-white font-bold uppercase transition-all flex items-center space-x-1.5">
+                    <i class="fa-solid fa-photo-film text-[10px]"></i>
+                    <span>Galería</span>
+                </button>
+
+                <button onclick="switchTab('ranking')" id="nav-ranking" class="tab-btn px-3 py-1.5 bg-black/5 border border-black/30 text-black hover:bg-black hover:text-white font-bold uppercase transition-all flex items-center space-x-1.5">
+                    <i class="fa-solid fa-trophy text-[10px]"></i>
+                    <span>Ranking</span>
+                </button>
+            </nav>
+
+            <!-- CALL TO ACTION -->
+            <div class="hidden xl:flex items-center space-x-4 text-[10px] text-poster-textMuted uppercase font-bold">
+                <span class="text-poster-blue">[STATUS: ACTIVE RECRUITMENT]</span>
+                <span class="text-black/20">|</span>
+                <button onclick="switchTab('tryouts')" class="px-3 py-1 bg-poster-accentRed text-white hover:bg-black transition-all">
+                    APPLY NOW ↘
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER WITH TABS -->
+    <main class="pt-20 min-h-screen">
+
+        <!-- ========================================== -->
+        <!-- PÁGINA PRINCIPAL / TAB 1: INICIO & ROSTERS -->
+        <!-- ========================================== -->
+        <div id="tab-inicio-content" class="transition-opacity duration-300">
+            
+            <!-- HERO SECTION -->
+            <section id="hero" class="relative pt-12 pb-16 min-h-[90vh] flex flex-col justify-between border-b border-black/15">
+                <div class="absolute top-20 left-6 font-mono text-[9px] text-black/40 space-y-1 pointer-events-none hidden md:block">
+                    <div>ДЕЛАЮ ЧТО Я ХОЧУ</div>
+                    <div>[ДАННЫЕ УДАЛЕНЫ]</div>
+                    <div>STATUS: UNTOUCHABLE</div>
+                </div>
+                <div class="absolute top-20 right-6 font-mono text-[9px] text-black/40 text-right space-y-1 pointer-events-none hidden md:block">
+                    <div>SERIAL NO. 000-BLANK-2026</div>
+                    <div>[ECLIPSED // LAST KNIGHTS]</div>
+                    <div>NO COMPROMISE</div>
+                </div>
+
+                <div class="max-w-7xl mx-auto w-full px-4 sm:px-8 relative z-10 my-auto">
+                    <!-- HEADER BAR -->
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b-2 border-black pb-4 mb-8">
+                        <div>
+                            <div class="black-tag mb-2">[OFFICIAL ESPORTS PLATFORM]</div>
+                            <h1 class="font-tech text-6xl sm:text-8xl lg:text-9xl font-black text-black tracking-tighter uppercase leading-none">
+                                BLANK
+                            </h1>
+                        </div>
+                        <div class="mt-4 md:mt-0 font-mono text-right">
+                            <div class="text-xs font-bold text-poster-blue tracking-widest uppercase">LEAGUE OF LEGENDS DIVISION</div>
+                            <div class="text-[10px] text-poster-textMuted uppercase mt-1">HIGH PERFORMANCE ACADEMY & MAIN TEAM</div>
+                        </div>
+                    </div>
+
+                    <!-- MAIN POSTER GRAPHIC HERO BOX -->
+                    <div class="relative w-full my-8 py-14 px-6 sm:px-12 blue-poster-stripe text-white overflow-hidden shadow-2xl rounded-none border border-black/20">
+                        <div class="absolute inset-0 opacity-15 pointer-events-none font-tech font-black text-[120px] sm:text-[200px] leading-none text-white select-none overflow-hidden whitespace-nowrap">
+                            NO HYPE // JUST POWER // BLANK ESPORTS
+                        </div>
+
+                        <div class="relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto space-y-6">
+                            <div class="inline-block px-3 py-1 bg-black text-white font-mono text-xs font-bold tracking-widest uppercase">
+                                [ SYSTEM OVERRIDE // 2026 ]
+                            </div>
+
+                            <h2 class="font-tech text-3xl sm:text-6xl font-black tracking-tight uppercase leading-tight italic glitch-text" data-text="BLANK: HIGH PERFORMANCE DIVISION">
+                                BLANK: HIGH PERFORMANCE DIVISION
+                            </h2>
+
+                            <p class="font-mono text-xs sm:text-sm text-white/90 max-w-2xl leading-relaxed uppercase tracking-wider">
+                                Estructura competitiva de élite. Dominio metódico del mapa, disciplina táctica y superioridad individual en League of Legends.
+                            </p>
+
+                            <div class="flex flex-wrap justify-center gap-3 pt-4 font-mono text-xs">
+                                <span class="bg-white text-black px-3 py-1 font-bold">[LAST KNIGHTS ACADEMY]</span>
+                                <span class="bg-black text-poster-blue px-3 py-1 font-bold border border-poster-blue">[BLANK: ECLIPSED]</span>
+                                <span class="bg-poster-accentRed text-white px-3 py-1 font-bold">[BLANK: KORE]</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- HERO QUICK LINKS -->
+                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 mt-8 font-mono text-xs font-bold">
+                        <a href="#vacancies" class="p-4 bg-poster-blue text-white hover:bg-black transition-all flex items-center justify-between uppercase">
+                            <span>01 // VACANTES MAIN</span>
+                            <span>↘</span>
+                        </a>
+                        <a href="#academy" class="p-4 bg-black text-white hover:bg-poster-blue transition-all flex items-center justify-between uppercase">
+                            <span>02 // LAST KNIGHTS</span>
+                            <span>↘</span>
+                        </a>
+                        <a href="#eclipsed" class="p-4 bg-poster-darkCard text-white hover:bg-poster-blue transition-all flex items-center justify-between uppercase border border-black/20">
+                            <span>03 // ECLIPSED</span>
+                            <span>↘</span>
+                        </a>
+                        <a href="#kore" class="p-4 bg-poster-accentRed text-white hover:bg-black transition-all flex items-center justify-between uppercase">
+                            <span>04 // KORE DIVISION</span>
+                            <span>↘</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="max-w-7xl mx-auto w-full px-4 sm:px-8 pt-8 flex flex-wrap justify-between items-center text-[10px] font-mono text-poster-textMuted border-t border-black/10 gap-2">
+                    <div>[OPACITY = 1000%]</div>
+                    <div class="text-black font-bold">BLANK ESPORTS © 2026</div>
+                </div>
+            </section>
+
+            <!-- SECTION 00: VACANTES MAIN ROSTER -->
+            <section id="vacancies" class="py-20 border-b border-black/15 bg-poster-bg relative">
+                <div class="max-w-7xl mx-auto px-4 sm:px-8">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 pb-6 border-b-2 border-black">
+                        <div>
+                            <div class="flex items-center space-x-2 mb-2">
+                                <span class="bg-poster-accentRed text-white font-mono text-[10px] font-bold px-2 py-0.5 tracking-wider uppercase">[RECRUITMENT ACTIVE]</span>
+                                <span class="text-xs font-mono text-poster-blue font-bold tracking-widest">// FIRST TEAM RECRUITMENT</span>
+                            </div>
+                            <h2 class="font-tech text-3xl sm:text-5xl font-black text-black uppercase tracking-tight">
+                                BLANK: MAIN ROSTER (VACANTES / OPEN)
+                            </h2>
+                        </div>
+                        <div class="mt-4 md:mt-0 font-mono text-xs text-poster-textMuted">
+                            [REQ: CHALLENGER / HIGH GM] <span class="text-poster-blue font-bold">// TIER 1/2 READY</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 font-mono">
+                        <!-- COACH -->
+                        <div class="poster-box p-6 relative flex flex-col justify-between border-2 border-poster-accentRed bg-white/60">
+                            <div>
+                                <div class="flex justify-between items-center mb-6">
+                                    <span class="bg-poster-accentRed text-white px-2 py-0.5 text-[10px] font-bold uppercase">[OPEN POSITION]</span>
+                                    <span class="text-[10px] text-black/50">SLOT #00</span>
+                                </div>
+                                <h3 class="font-tech text-3xl font-black text-black">HEAD COACH</h3>
+                                <p class="text-xs text-poster-textMuted uppercase mt-1">ESTRATEGIA & DIRECCIÓN TÁCTICA</p>
+                                <div class="mt-6 space-y-2 text-[11px] text-black/80 border-t border-black/15 pt-4">
+                                    <div class="flex items-center space-x-2"><span class="text-poster-blue">▶</span><span>Exp. previa en Tier 1 / Tier 2 Nacional</span></div>
+                                    <div class="flex items-center space-x-2"><span class="text-poster-blue">▶</span><span>Manejo de Draft & VOD Review avanzado</span></div>
+                                </div>
+                            </div>
+                            <button onclick="switchTab('tryouts')" class="mt-8 py-3 bg-black text-white hover:bg-poster-blue text-center font-bold uppercase text-xs transition-colors flex items-center justify-center space-x-2">
+                                <span>POSTULAR A COACH ↘</span>
+                            </button>
+                        </div>
+
+                        <!-- TOPLANE -->
+                        <div class="poster-box p-6 relative flex flex-col justify-between border-2 border-black bg-white/60">
+                            <div>
+                                <div class="flex justify-between items-center mb-6">
+                                    <span class="black-tag">[VACANTE // TOPLANE]</span>
+                                    <span class="text-[10px] text-black/50">SLOT #01</span>
+                                </div>
+                                <h3 class="font-tech text-3xl font-black text-black">TOPLANE</h3>
+                                <p class="text-xs text-poster-textMuted uppercase mt-1">MAIN ROSTER SOLOLANER</p>
+                                <div class="mt-6 space-y-2 text-[11px] text-black/80 border-t border-black/15 pt-4">
+                                    <div class="flex items-center space-x-2"><span class="text-poster-blue">▶</span><span>Peak: Challenger 800+ LP</span></div>
+                                    <div class="flex items-center space-x-2"><span class="text-poster-blue">▶</span><span>Dominio de Meta Carry & Tanks</span></div>
+                                </div>
+                            </div>
+                            <button onclick="switchTab('tryouts')" class="mt-8 py-3 bg-black text-white hover:bg-poster-blue text-center font-bold uppercase text-xs transition-colors flex items-center justify-center space-x-2">
+                                <span>POSTULAR A TOPLANE ↘</span>
+                            </button>
+                        </div>
+
+                        <!-- JUNGLER -->
+                        <div class="poster-box p-6 relative flex flex-col justify-between border-2 border-black bg-white/60">
+                            <div>
+                                <div class="flex justify-between items-center mb-6">
+                                    <span class="black-tag">[VACANTE // JUNGLER]</span>
+                                    <span class="text-[10px] text-black/50">SLOT #02</span>
+                                </div>
+                                <h3 class="font-tech text-3xl font-black text-black">JUNGLER</h3>
+                                <p class="text-xs text-poster-textMuted uppercase mt-1">SHOTCALLER & TEMPO CONTROL</p>
+                                <div class="mt-6 space-y-2 text-[11px] text-black/80 border-t border-black/15 pt-4">
+                                    <div class="flex items-center space-x-2"><span class="text-poster-blue">▶</span><span>Peak: Challenger 800+ LP</span></div>
+                                    <div class="flex items-center space-x-2"><span class="text-poster-blue">▶</span><span>Tracking & Early Pathing</span></div>
+                                </div>
+                            </div>
+                            <button onclick="switchTab('tryouts')" class="mt-8 py-3 bg-black text-white hover:bg-poster-blue text-center font-bold uppercase text-xs transition-colors flex items-center justify-center space-x-2">
+                                <span>POSTULAR A JUNGLA ↘</span>
+                            </button>
+                        </div>
+
+                        <!-- MIDLANE -->
+                        <div class="poster-box p-6 relative flex flex-col justify-between border-2 border-black bg-white/60">
+                            <div>
+                                <div class="flex justify-between items-center mb-6">
+                                    <span class="black-tag">[VACANTE // MIDLANE]</span>
+                                    <span class="text-[10px] text-black/50">SLOT #03</span>
+                                </div>
+                                <h3 class="font-tech text-3xl font-black text-black">MIDLANE</h3>
+                                <p class="text-xs text-poster-textMuted uppercase mt-1">MAIN CARRY & ROAMER</p>
+                                <div class="mt-6 space-y-2 text-[11px] text-black/80 border-t border-black/15 pt-4">
+                                    <div class="flex items-center space-x-2"><span class="text-poster-blue">▶</span><span>Peak: Challenger 900+ LP</span></div>
+                                    <div class="flex items-center space-x-2"><span class="text-poster-blue">▶</span><span>Mages & Asesinos de Meta</span></div>
+                                </div>
+                            </div>
+                            <button onclick="switchTab('tryouts')" class="mt-8 py-3 bg-black text-white hover:bg-poster-blue text-center font-bold uppercase text-xs transition-colors flex items-center justify-center space-x-2">
+                                <span>POSTULAR A MIDLANE ↘</span>
+                            </button>
+                        </div>
+
+                        <!-- ADC -->
+                        <div class="poster-box p-6 relative flex flex-col justify-between border-2 border-black bg-white/60">
+                            <div>
+                                <div class="flex justify-between items-center mb-6">
+                                    <span class="black-tag">[VACANTE // ADC]</span>
+                                    <span class="text-[10px] text-black/50">SLOT #04</span>
+                                </div>
+                                <h3 class="font-tech text-3xl font-black text-black">BOTLANE (ADC)</h3>
+                                <p class="text-xs text-poster-textMuted uppercase mt-1">LATE GAME PRIMARY DAMAGE</p>
+                                <div class="mt-6 space-y-2 text-[11px] text-black/80 border-t border-black/15 pt-4">
+                                    <div class="flex items-center space-x-2"><span class="text-poster-blue">▶</span><span>Peak: Challenger 850+ LP</span></div>
+                                    <div class="flex items-center space-x-2"><span class="text-poster-blue">▶</span><span>Posicionamiento de Teamfight</span></div>
+                                </div>
+                            </div>
+                            <button onclick="switchTab('tryouts')" class="mt-8 py-3 bg-black text-white hover:bg-poster-blue text-center font-bold uppercase text-xs transition-colors flex items-center justify-center space-x-2">
+                                <span>POSTULAR A ADC ↘</span>
+                            </button>
+                        </div>
+
+                        <!-- SUPPORT -->
+                        <div class="poster-box p-6 relative flex flex-col justify-between border-2 border-black bg-white/60">
+                            <div>
+                                <div class="flex justify-between items-center mb-6">
+                                    <span class="black-tag">[VACANTE // SUPPORT]</span>
+                                    <span class="text-[10px] text-black/50">SLOT #05</span>
+                                </div>
+                                <h3 class="font-tech text-3xl font-black text-black">SUPPORT</h3>
+                                <p class="text-xs text-poster-textMuted uppercase mt-1">VISION & ENGAGE CONTROLLER</p>
+                                <div class="mt-6 space-y-2 text-[11px] text-black/80 border-t border-black/15 pt-4">
+                                    <div class="flex items-center space-x-2"><span class="text-poster-blue">▶</span><span>Peak: Challenger 800+ LP</span></div>
+                                    <div class="flex items-center space-x-2"><span class="text-poster-blue">▶</span><span>Voice Lead & Visión de Campo</span></div>
+                                </div>
+                            </div>
+                            <button onclick="switchTab('tryouts')" class="mt-8 py-3 bg-black text-white hover:bg-poster-blue text-center font-bold uppercase text-xs transition-colors flex items-center justify-center space-x-2">
+                                <span>POSTULAR A SUPPORT ↘</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 1: LAST KNIGHTS ACADEMY ROSTER -->
+            <section id="academy" class="py-20 border-b border-black/15 relative">
+                <div class="max-w-7xl mx-auto px-4 sm:px-8">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 pb-6 border-b-2 border-black">
+                        <div>
+                            <div class="flex items-center space-x-2 mb-2">
+                                <span class="black-tag">[DIVISION 01]</span>
+                                <span class="text-xs font-mono text-poster-blue font-bold tracking-widest">// ACADEMY ROSTER</span>
+                            </div>
+                            <h2 class="font-tech text-3xl sm:text-5xl font-black text-black uppercase tracking-tight">
+                                BLANK: LAST KNIGHTS ACADEMY ROSTER
+                            </h2>
+                        </div>
+                        <div class="mt-4 md:mt-0 font-mono text-xs text-poster-textMuted">
+                            [TOTAL ATHLETES: 5] <span class="text-poster-blue font-bold">// TIER 3 COMPETITIVE</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- COACH: KASE -->
+                        <div class="poster-box p-6 relative flex flex-col justify-between border-2 border-poster-blue">
+                            <div class="flex justify-between items-start mb-6">
+                                <span class="blue-tag">STAFF // COACH</span>
+                                <span class="font-mono text-[10px] text-black/50">SLOT #00</span>
+                            </div>
+                            <div>
+                                <h3 class="font-tech text-4xl font-black text-black">KASE</h3>
+                                <p class="font-mono text-xs text-poster-textMuted uppercase mt-1">HEAD COACH & TACTICIAN</p>
+                            </div>
+                            <div class="mt-8 pt-4 border-t border-black/15 flex justify-between items-center font-mono text-xs">
+                                <span class="text-poster-textMuted">RANK ELO:</span>
+                                <span class="black-tag text-white font-bold">CHALLENGER</span>
+                            </div>
+                        </div>
+
+                        <!-- TOP: OPEN -->
+                        <div class="poster-box p-6 relative flex flex-col justify-between border-dashed border-2 border-black/30 bg-white/40">
+                            <div class="flex justify-between items-start mb-6">
+                                <span class="black-tag">[VACANTE // TOP]</span>
+                                <span class="font-mono text-[10px] text-black/50">SLOT #01</span>
+                            </div>
+                            <div>
+                                <h3 class="font-tech text-3xl font-bold text-black/40">OPEN SLOT</h3>
+                                <p class="font-mono text-xs text-poster-textMuted uppercase mt-1">ACADEMY TOPLANE</p>
+                            </div>
+                            <div class="mt-8 pt-4 border-t border-black/15 flex justify-between items-center font-mono text-xs">
+                                <span class="text-poster-textMuted">STATUS:</span>
+                                <span class="bg-poster-accentRed text-white px-2 py-0.5 font-bold">RECRUITING</span>
+                            </div>
+                        </div>
+
+                        <!-- JGL: KEMEZ -->
+                        <div class="poster-box p-6 relative flex flex-col justify-between">
+                            <div class="flex justify-between items-start mb-6">
+                                <span class="black-tag">JUNGLA</span>
+                                <span class="font-mono text-[10px] text-black/50">SLOT #02</span>
+                            </div>
+                            <div>
+                                <h3 class="font-tech text-3xl font-bold text-black hover:text-poster-blue transition-colors">KEMEZ</h3>
+                                <p class="font-mono text-xs text-poster-textMuted uppercase mt-1">JUNGLE COMMANDER</p>
+                            </div>
+                            <div class="mt-8 pt-4 border-t border-black/15 flex justify-between items-center font-mono text-xs">
+                                <span class="text-poster-textMuted">RANK ELO:</span>
+                                <span class="bg-purple-900 text-white px-2 py-0.5 font-bold">GRAND MASTER</span>
+                            </div>
+                        </div>
+
+                        <!-- MID: VÁNDR -->
+                        <div class="poster-box p-6 relative flex flex-col justify-between">
+                            <div class="flex justify-between items-start mb-6">
+                                <span class="black-tag">MIDLANE</span>
+                                <span class="font-mono text-[10px] text-black/50">SLOT #03</span>
+                            </div>
+                            <div>
+                                <h3 class="font-tech text-3xl font-bold text-black hover:text-poster-blue transition-colors">VÁNDR</h3>
+                                <p class="font-mono text-xs text-poster-textMuted uppercase mt-1">MID CARRY</p>
+                            </div>
+                            <div class="mt-8 pt-4 border-t border-black/15 flex justify-between items-center font-mono text-xs">
+                                <span class="text-poster-textMuted">RANK ELO:</span>
+                                <span class="bg-red-800 text-white px-2 py-0.5 font-bold">MASTER</span>
+                            </div>
+                        </div>
+
+                        <!-- ADC: KORO -->
+                        <div class="poster-box p-6 relative flex flex-col justify-between">
+                            <div class="flex justify-between items-start mb-6">
+                                <span class="black-tag">ADC</span>
+                                <span class="font-mono text-[10px] text-black/50">SLOT #04</span>
+                            </div>
+                            <div>
+                                <h3 class="font-tech text-3xl font-bold text-black hover:text-poster-blue transition-colors">KORO</h3>
+                                <p class="font-mono text-xs text-poster-textMuted uppercase mt-1">BOTLANE CARRY</p>
+                            </div>
+                            <div class="mt-8 pt-4 border-t border-black/15 flex justify-between items-center font-mono text-xs">
+                                <span class="text-poster-textMuted">RANK ELO:</span>
+                                <span class="bg-red-800 text-white px-2 py-0.5 font-bold">MASTER</span>
+                            </div>
+                        </div>
+
+                        <!-- SUPP: MANZANITA -->
+                        <div class="poster-box p-6 relative flex flex-col justify-between">
+                            <div class="flex justify-between items-start mb-6">
+                                <span class="black-tag">SOPORTE</span>
+                                <span class="font-mono text-[10px] text-black/50">SLOT #05</span>
+                            </div>
+                            <div>
+                                <h3 class="font-tech text-3xl font-bold text-black hover:text-poster-blue transition-colors">MANZANITA</h3>
+                                <p class="font-mono text-xs text-poster-textMuted uppercase mt-1">SUPPORT / ENGAGE</p>
+                            </div>
+                            <div class="mt-8 pt-4 border-t border-black/15 flex justify-between items-center font-mono text-xs">
+                                <span class="text-poster-textMuted">RANK ELO:</span>
+                                <span class="bg-blue-700 text-white px-2 py-0.5 font-bold">DIAMANTE</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 2: BLANK: ECLIPSED -->
+            <section id="eclipsed" class="py-20 bg-poster-darkCard text-white border-b border-black/15 relative overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 pb-6 border-b border-white/20">
+                        <div>
+                            <div class="flex items-center space-x-2 mb-2">
+                                <span class="blue-tag">[DIVISION 02]</span>
+                                <span class="text-xs font-mono text-poster-blue font-bold tracking-widest">// MAIN LINEUP</span>
+                            </div>
+                            <h2 class="font-tech text-4xl sm:text-6xl font-black text-white uppercase tracking-tight">
+                                BLANK: ECLIPSED
+                            </h2>
+                        </div>
+                        <div class="mt-4 md:mt-0 font-mono text-xs text-gray-400">
+                            [STATUS: HIGH COMPETITIVE] <span class="text-poster-blue font-bold">// CHALLENGER CORE</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 font-mono">
+                        <!-- NIGHT -->
+                        <div class="poster-box-dark p-6 relative group">
+                            <div class="flex justify-between items-center text-xs text-gray-400 mb-6">
+                                <span class="text-poster-blue font-bold">[SLOT 01]</span>
+                                <span class="bg-white/10 px-2 py-0.5 text-[10px]">TOPLANER</span>
+                            </div>
+                            <div class="mb-8">
+                                <h3 class="font-tech text-3xl font-bold text-white group-hover:text-poster-blue transition-colors">NIGHT</h3>
+                                <p class="text-xs text-gray-400 uppercase mt-1">SOLOLANE DOMINANCE</p>
+                            </div>
+                            <div class="flex justify-between items-center text-xs border-t border-white/10 pt-4">
+                                <span class="text-gray-400">RATING:</span>
+                                <span class="bg-purple-900 text-white font-bold px-2 py-0.5">GRAND MASTER</span>
+                            </div>
+                        </div>
+
+                        <!-- SUA -->
+                        <div class="poster-box-dark p-6 relative group">
+                            <div class="flex justify-between items-center text-xs text-gray-400 mb-6">
+                                <span class="text-poster-blue font-bold">[SLOT 02]</span>
+                                <span class="bg-white/10 px-2 py-0.5 text-[10px]">JUNGLA</span>
+                            </div>
+                            <div class="mb-8">
+                                <h3 class="font-tech text-3xl font-bold text-white group-hover:text-poster-blue transition-colors">SUA</h3>
+                                <p class="text-xs text-gray-400 uppercase mt-1">MAP PATHING & TEMPO</p>
+                            </div>
+                            <div class="flex justify-between items-center text-xs border-t border-white/10 pt-4">
+                                <span class="text-gray-400">RATING:</span>
+                                <span class="bg-purple-900 text-white font-bold px-2 py-0.5">GRAND MASTER</span>
+                            </div>
+                        </div>
+
+                        <!-- LUCKY -->
+                        <div class="poster-box-dark p-6 relative group border-2 border-poster-blue">
+                            <div class="flex justify-between items-center text-xs text-gray-400 mb-6">
+                                <span class="text-poster-blue font-bold">[SLOT 03]</span>
+                                <span class="bg-poster-blue text-white px-2 py-0.5 text-[10px]">MIDLANER</span>
+                            </div>
+                            <div class="mb-8">
+                                <h3 class="font-tech text-3xl font-bold text-white group-hover:text-poster-blue transition-colors">LUCKY</h3>
+                                <p class="text-xs text-gray-400 uppercase mt-1">TACTICAL SHIFT / MID</p>
+                            </div>
+                            <div class="flex justify-between items-center text-xs border-t border-white/10 pt-4">
+                                <span class="text-gray-400">RATING:</span>
+                                <span class="blue-tag font-bold">CHALLENGER</span>
+                            </div>
+                        </div>
+
+                        <!-- NADE -->
+                        <div class="poster-box-dark p-6 relative group border-2 border-poster-blue">
+                            <div class="flex justify-between items-center text-xs text-gray-400 mb-6">
+                                <span class="text-poster-blue font-bold">[SLOT 04]</span>
+                                <span class="bg-poster-blue text-white px-2 py-0.5 text-[10px]">ADC</span>
+                            </div>
+                            <div class="mb-8">
+                                <h3 class="font-tech text-3xl font-bold text-white group-hover:text-poster-blue transition-colors">NADE</h3>
+                                <p class="text-xs text-gray-400 uppercase mt-1">LETHAL CARRY</p>
+                            </div>
+                            <div class="flex justify-between items-center text-xs border-t border-white/10 pt-4">
+                                <span class="text-gray-400">RATING:</span>
+                                <span class="blue-tag font-bold">CHALLENGER</span>
+                            </div>
+                        </div>
+
+                        <!-- POPE -->
+                        <div class="poster-box-dark p-6 relative group border-2 border-poster-blue">
+                            <div class="flex justify-between items-center text-xs text-gray-400 mb-6">
+                                <span class="text-poster-blue font-bold">[SLOT 05]</span>
+                                <span class="bg-poster-blue text-white px-2 py-0.5 text-[10px]">SOPORTE</span>
+                            </div>
+                            <div class="mb-8">
+                                <h3 class="font-tech text-3xl font-bold text-white group-hover:text-poster-blue transition-colors">POPE</h3>
+                                <p class="text-xs text-gray-400 uppercase mt-1">SHOTCALLER & UTILITY</p>
+                            </div>
+                            <div class="flex justify-between items-center text-xs border-t border-white/10 pt-4">
+                                <span class="text-gray-400">RATING:</span>
+                                <span class="blue-tag font-bold">CHALLENGER</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 3: BLANK: KORE -->
+            <section id="kore" class="py-20 bg-black text-white border-b border-white/15 relative overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 pb-6 border-b border-white/20">
+                        <div>
+                            <div class="flex items-center space-x-2 mb-2">
+                                <span class="bg-poster-accentRed text-white font-mono text-[10px] font-bold px-2 py-0.5 tracking-wider uppercase">[DIVISION 03]</span>
+                                <span class="text-xs font-mono text-poster-accentRed font-bold tracking-widest">// ACADEMY HIGH PERFORMANCE</span>
+                            </div>
+                            <h2 class="font-tech text-4xl sm:text-6xl font-black text-white uppercase tracking-tight">
+                                BLANK: KORE
+                            </h2>
+                        </div>
+                        <div class="mt-4 md:mt-0 font-mono text-xs text-gray-400">
+                            [DIVINE CHAOS // VSC] <span class="text-poster-accentRed font-bold">// OPACITY = 1000%</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 font-mono">
+                        <!-- LIE -->
+                        <div class="poster-box-dark p-6 relative group border border-white/15">
+                            <div class="flex justify-between items-center text-xs text-gray-400 mb-6">
+                                <span class="text-poster-accentRed font-bold">[SERIAL NO. 001]</span>
+                                <span class="bg-white/10 px-2 py-0.5 text-[10px] text-white font-bold">TOP</span>
+                            </div>
+                            <div class="mb-8">
+                                <h3 class="font-tech text-3xl font-bold text-white group-hover:text-poster-accentRed transition-colors">LIE</h3>
+                                <p class="text-xs text-gray-400 uppercase mt-1">Diego Ivan Ochoa</p>
+                            </div>
+                            <div class="space-y-2 text-xs border-t border-white/10 pt-4">
+                                <div class="flex justify-between text-gray-400"><span>MAIN:</span><span class="text-white">ZAAHEN / GNAR</span></div>
+                                <div class="flex justify-between text-gray-400"><span>PEAK:</span><span class="text-poster-accentRed font-bold">Challenger</span></div>
+                            </div>
+                        </div>
+
+                        <!-- EL10 -->
+                        <div class="poster-box-dark p-6 relative group border border-white/15">
+                            <div class="flex justify-between items-center text-xs text-gray-400 mb-6">
+                                <span class="text-poster-accentRed font-bold">[SERIAL NO. 002]</span>
+                                <span class="bg-white/10 px-2 py-0.5 text-[10px] text-white font-bold">JGL</span>
+                            </div>
+                            <div class="mb-8">
+                                <h3 class="font-tech text-3xl font-bold text-white group-hover:text-poster-accentRed transition-colors">El10</h3>
+                                <p class="text-xs text-gray-400 uppercase mt-1">Miguel Vasquez // 16 Y/O</p>
+                            </div>
+                            <div class="space-y-2 text-xs border-t border-white/10 pt-4">
+                                <div class="flex justify-between text-gray-400"><span>MAIN:</span><span class="text-white">AMBESSA / QIYANA</span></div>
+                                <div class="flex justify-between text-gray-400"><span>PEAK:</span><span class="text-poster-accentRed font-bold">Challenger</span></div>
+                            </div>
+                        </div>
+
+                        <!-- UNKNOWN MID -->
+                        <div class="poster-box-dark p-6 relative group border border-white/15">
+                            <div class="flex justify-between items-center text-xs text-gray-400 mb-6">
+                                <span class="text-poster-accentRed font-bold">[SERIAL NO. 003]</span>
+                                <span class="bg-white/10 px-2 py-0.5 text-[10px] text-white font-bold">MID</span>
+                            </div>
+                            <div class="mb-8">
+                                <h3 class="font-tech text-3xl font-bold text-white group-hover:text-poster-accentRed transition-colors">OPEN SLOT</h3>
+                                <p class="text-xs text-gray-400 uppercase mt-1">MIDLANE ACADEMY</p>
+                            </div>
+                            <div class="space-y-2 text-xs border-t border-white/10 pt-4">
+                                <div class="flex justify-between text-gray-400"><span>MAIN:</span><span class="text-white">-- / --</span></div>
+                                <div class="flex justify-between text-gray-400"><span>PEAK:</span><span class="text-poster-accentRed font-bold">TBD</span></div>
+                            </div>
+                        </div>
+
+                        <!-- SVEN -->
+                        <div class="poster-box-dark p-6 relative group border border-white/15">
+                            <div class="flex justify-between items-center text-xs text-gray-400 mb-6">
+                                <span class="text-poster-accentRed font-bold">[SERIAL NO. 004]</span>
+                                <span class="bg-white/10 px-2 py-0.5 text-[10px] text-white font-bold">ADC</span>
+                            </div>
+                            <div class="mb-8">
+                                <h3 class="font-tech text-3xl font-bold text-white group-hover:text-poster-accentRed transition-colors">Sven</h3>
+                                <p class="text-xs text-gray-400 uppercase mt-1">Yael</p>
+                            </div>
+                            <div class="space-y-2 text-xs border-t border-white/10 pt-4">
+                                <div class="flex justify-between text-gray-400"><span>MAIN:</span><span class="text-white">KAISA / EZREAL</span></div>
+                                <div class="flex justify-between text-gray-400"><span>PEAK:</span><span class="text-poster-accentRed font-bold">MASTER 875 LP</span></div>
+                            </div>
+                        </div>
+
+                        <!-- OHTO -->
+                        <div class="poster-box-dark p-6 relative group border border-white/15">
+                            <div class="flex justify-between items-center text-xs text-gray-400 mb-6">
+                                <span class="text-poster-accentRed font-bold">[SERIAL NO. 005]</span>
+                                <span class="bg-white/10 px-2 py-0.5 text-[10px] text-white font-bold">SUP</span>
+                            </div>
+                            <div class="mb-8">
+                                <h3 class="font-tech text-3xl font-bold text-white group-hover:text-poster-accentRed transition-colors">Ohto</h3>
+                                <p class="text-xs text-gray-400 uppercase mt-1">Ohto // 18 Y/O</p>
+                            </div>
+                            <div class="space-y-2 text-xs border-t border-white/10 pt-4">
+                                <div class="flex justify-between text-gray-400"><span>MAIN:</span><span class="text-white">NAMI / SERAPHINE</span></div>
+                                <div class="flex justify-between text-gray-400"><span>PEAK:</span><span class="text-poster-accentRed font-bold">GRANDMASTER</span></div>
+                            </div>
+                        </div>
+
+                        <!-- KASE COACH -->
+                        <div class="poster-box-dark p-6 relative group border-2 border-poster-accentRed">
+                            <div class="flex justify-between items-center text-xs text-poster-accentRed mb-6">
+                                <span>[SERIAL NO. 006]</span>
+                                <span class="bg-poster-accentRed text-white px-2 py-0.5 text-[10px] font-bold">COACH</span>
+                            </div>
+                            <div class="mb-8">
+                                <h3 class="font-tech text-3xl font-bold text-white group-hover:text-poster-accentRed transition-colors">KASE</h3>
+                                <p class="text-xs text-gray-400 uppercase mt-1">Fernando Bernal</p>
+                            </div>
+                            <div class="space-y-2 text-xs border-t border-white/10 pt-4">
+                                <div class="flex justify-between text-gray-400"><span>FOCUS:</span><span class="text-white">MACRO / DRAFT</span></div>
+                                <div class="flex justify-between text-gray-400"><span>EXP:</span><span class="text-white">CHALLENGER COACH</span></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 4: BENCH & SUBSTITUTES -->
+            <section id="substitutes" class="relative py-20 bg-black text-white border-t border-white/15 overflow-hidden">
+                <div class="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 pb-6 border-b border-white/20">
+                        <div>
+                            <div class="flex items-center space-x-2 mb-2">
+                                <span class="bg-white text-black font-mono text-[10px] font-bold px-2 py-0.5 tracking-wider uppercase">[RESERVE POOL]</span>
+                                <span class="text-xs font-mono text-gray-400 font-bold tracking-widest">// INTEGRANTES SUSTITUTOS Y SUPLENTES</span>
+                            </div>
+                            <h2 class="font-tech text-3xl sm:text-5xl font-black text-white uppercase tracking-tight">
+                                BLANK: BENCH & SUBSTITUTES
+                            </h2>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4 font-mono text-xs">
+                        <!-- ECLIPSED SUBS -->
+                        <div class="poster-box-dark p-6 border border-white/15 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-poster-blue transition-colors">
+                            <div class="flex items-center space-x-4">
+                                <span class="blue-tag">[ECLIPSED]</span>
+                                <span class="text-gray-400 uppercase text-[11px]">SUPLENTES OFICIALES:</span>
+                            </div>
+                            <div class="flex flex-wrap items-center gap-3">
+                                <span class="bg-white/10 px-3 py-1 text-white font-bold">Lilo // <span class="text-poster-blue">TOP</span></span>
+                                <span class="bg-white/10 px-3 py-1 text-white font-bold">Petricor // <span class="text-poster-blue">JGL</span></span>
+                                <span class="bg-white/10 px-3 py-1 text-white font-bold">Rouge Carmine // <span class="text-poster-blue">SUPP</span></span>
+                            </div>
+                        </div>
+
+                        <!-- KORE SUBS -->
+                        <div class="poster-box-dark p-6 border border-white/15 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-poster-accentRed transition-colors">
+                            <div class="flex items-center space-x-4">
+                                <span class="bg-poster-accentRed text-white font-mono text-[10px] font-bold px-2 py-0.5 uppercase">KORE</span>
+                                <span class="text-gray-400 uppercase text-[11px]">SUPLENTES OFICIALES:</span>
+                            </div>
+                            <div class="flex flex-wrap items-center gap-3">
+                                <span class="bg-white/10 px-3 py-1 text-white font-bold">-UNKNOWN- // <span class="text-poster-accentRed">TOP</span></span>
+                                <span class="bg-white/10 px-3 py-1 text-white font-bold">MIGAJA // <span class="text-poster-accentRed">MID</span></span>
+                                <span class="bg-white/10 px-3 py-1 text-white font-bold">KAEL // <span class="text-poster-accentRed">ADC</span></span>
+                            </div>
+                        </div>
+
+                        <!-- LAST KNIGHTS SUBS -->
+                        <div class="poster-box-dark p-6 border border-white/15 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-white transition-colors">
+                            <div class="flex items-center space-x-4">
+                                <span class="black-tag border border-white/30">LAST KNIGHTS</span>
+                                <span class="text-gray-400 uppercase text-[11px]">SUPLENTES OFICIALES:</span>
+                            </div>
+                            <div class="flex flex-wrap items-center gap-3">
+                                <span class="bg-white/10 px-3 py-1 text-white font-bold">Uchiha // <span class="text-gray-300">TOP/MID</span></span>
+                                <span class="bg-white/10 px-3 py-1 text-white font-bold">Nyfer // <span class="text-gray-300">SUPP/MID</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- TAB 2: TRYOUTS (FORMULARIO POSTULACIÓN) -->
+        <!-- ========================================== -->
+        <div id="tab-tryouts-content" class="hidden transition-opacity duration-300 py-6">
+            <div class="max-w-7xl mx-auto px-4 sm:px-8">
+
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b-2 border-black pb-4 mb-8">
+                    <div>
+                        <div class="black-tag mb-2">[OFFICIAL RECRUITMENT PROTOCOL]</div>
+                        <h1 class="font-tech text-4xl sm:text-7xl font-black text-black tracking-tighter uppercase leading-none">
+                            TRYOUTS 2026
+                        </h1>
+                    </div>
+                    <div class="mt-4 md:mt-0 font-mono text-right">
+                        <div class="text-xs font-bold text-poster-blue tracking-widest uppercase">POSTULACIÓN DE JUGADORES & STAFF</div>
+                        <div class="text-[10px] text-poster-textMuted uppercase mt-1">EVALUACIÓN DE PERFIL TÁCTICO Y MECÁNICO</div>
+                    </div>
+                </div>
+
+                <div class="relative w-full mb-10 py-10 px-6 sm:px-10 blue-poster-stripe text-white border border-black/20 shadow-xl overflow-hidden">
+                    <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
+                        <div class="space-y-2">
+                            <span class="bg-black text-white px-3 py-1 font-mono text-xs font-bold uppercase tracking-wider">[FORMULARIO ABIERTO]</span>
+                            <h2 class="font-tech text-2xl sm:text-4xl font-black uppercase tracking-tight">¿TIENES LO NECESARIO PARA UNIRTE A BLANK?</h2>
+                            <p class="font-mono text-xs text-white/90 max-w-2xl uppercase">Buscamos talento para Roster Principal, Last Knights Academy y escuadra Kore. Completa la ficha con datos verificables.</p>
+                        </div>
+                        <div class="flex items-center space-x-3 shrink-0 font-mono text-xs font-bold">
+                            <span class="bg-white text-black px-4 py-2 uppercase">[HIGH ELO ONLY]</span>
+                            <span class="bg-poster-accentRed text-white px-4 py-2 uppercase">[SERIOUS INQUIRIES]</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 font-mono">
+                    <!-- LEFT FORM -->
+                    <div class="lg:col-span-8">
+                        <form id="tryoutForm" onsubmit="handleFormSubmit(event)" class="poster-box p-6 sm:p-8 space-y-6 border-2 border-black">
+                            <div class="flex justify-between items-center border-b border-black/15 pb-4">
+                                <span class="black-tag">[FORMULARIO DE REGISTRO DE ATLETA]</span>
+                                <span class="text-xs text-poster-textMuted">// CAMPOS OBLIGATORIOS</span>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-black mb-2">
+                                        Nombre de Invocador / Riot ID <span class="text-poster-accentRed">*</span>
+                                    </label>
+                                    <input type="text" id="summonerName" required placeholder="Ej: Faker#KR1 o BLANK Lucky#LAS" class="poster-input text-xs">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-black mb-2">
+                                        Peak Elo (Máximo Rango) <span class="text-poster-accentRed">*</span>
+                                    </label>
+                                    <select id="peakElo" required class="poster-input text-xs bg-white cursor-pointer">
+                                        <option value="" disabled selected>Selecciona tu Peak Elo</option>
+                                        <option value="Challenger 1000+ LP">Challenger 1000+ LP</option>
+                                        <option value="Challenger 500-999 LP">Challenger 500-999 LP</option>
+                                        <option value="GrandMaster">GrandMaster</option>
+                                        <option value="Master 300+ LP">Master 300+ LP</option>
+                                        <option value="Master 0-299 LP">Master 0-299 LP</option>
+                                        <option value="Diamante I - II">Diamante I - II</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                                <div>
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-black mb-2">
+                                        Enlace OP.GG <span class="text-poster-accentRed">*</span>
+                                    </label>
+                                    <input type="url" id="opggUrl" required placeholder="https://op.gg/..." class="poster-input text-xs">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-black mb-2">
+                                        Rol Principal <span class="text-poster-accentRed">*</span>
+                                    </label>
+                                    <select id="roleSelect" required class="poster-input text-xs bg-white cursor-pointer">
+                                        <option value="" disabled selected>Seleccionar Rol</option>
+                                        <option value="Top">TOPLANE</option>
+                                        <option value="Jg">JUNGLER</option>
+                                        <option value="Mid">MIDLANE</option>
+                                        <option value="Adc">BOTLANE (ADC)</option>
+                                        <option value="Supp">SUPPORT</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-bold uppercase tracking-wider text-black mb-2">
+                                        Exp. Competitiva <span class="text-poster-accentRed">*</span>
+                                    </label>
+                                    <select id="expSelect" required class="poster-input text-xs bg-white cursor-pointer">
+                                        <option value="" disabled selected>Seleccionar Exp.</option>
+                                        <option value="Con experiencia">Con experiencia (Tier 1 / Tier 2)</option>
+                                        <option value="Algo de experiencia">Algo de experiencia (Torneos)</option>
+                                        <option value="No experiencia">No experiencia (SoloQ player)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-xs font-bold uppercase tracking-wider text-black mb-2">
+                                    Comentarios / Pool de Campeones / Disponibilidad
+                                </label>
+                                <textarea id="comments" rows="4" placeholder="Indica tu disponibilidad horaria, main champions, equipos anteriores..." class="poster-input text-xs resize-none"></textarea>
+                            </div>
+
+                            <button type="submit" class="w-full py-4 bg-black text-white hover:bg-poster-blue transition-all font-bold text-sm tracking-widest uppercase flex items-center justify-center space-x-3 border border-black shadow-[4px_4px_0px_#4956f4]">
+                                <i class="fa-solid fa-paper-plane"></i>
+                                <span>ENVIAR POSTULACIÓN // ENCRYPT DATA</span>
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- RIGHT INFO -->
+                    <div class="lg:col-span-4 space-y-6">
+                        <div class="poster-box-dark p-6 border-2 border-white/20">
+                            <div class="flex items-center space-x-2 border-b border-white/10 pb-3 mb-4">
+                                <span class="red-tag">[REQUISITOS MÍNIMOS]</span>
+                            </div>
+                            <ul class="space-y-3 text-xs text-gray-300">
+                                <li class="flex items-start space-x-2">
+                                    <span class="text-poster-blue font-bold">01/</span>
+                                    <span>Elo mínimo: Master 100+ LP en LAS/LAN/BR.</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <span class="text-poster-blue font-bold">02/</span>
+                                    <span>Disponibilidad para scrims nocturnas (19:00 a 23:00).</span>
+                                </li>
+                                <li class="flex items-start space-x-2">
+                                    <span class="text-poster-blue font-bold">03/</span>
+                                    <span>Micrófono de alta calidad y disciplina en Discord.</span>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div id="applicationPreviewBox" class="poster-box p-6 border-2 border-poster-blue bg-white/80">
+                            <div class="flex items-center justify-between mb-3 border-b border-black/15 pb-2">
+                                <span class="blue-tag">[ÚLTIMO REGISTRO ENVIADO]</span>
+                                <span class="text-[10px] text-poster-textMuted" id="submissionTime">SIN REGISTRO</span>
+                            </div>
+                            <div id="submittedContent" class="text-xs space-y-2 text-poster-textMuted italic">
+                                Módulo a la espera de postulación. Completa el formulario de la izquierda.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- TAB 3: GALERÍA (LIMPIA PARA ESTRENARSE) -->
+        <!-- ========================================== -->
+        <div id="tab-gallery-content" class="hidden transition-opacity duration-300 py-6">
+            <div class="max-w-7xl mx-auto px-4 sm:px-8">
+
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b-2 border-black pb-4 mb-8">
+                    <div>
+                        <div class="black-tag mb-2">[BLANK MEDIA VAULT]</div>
+                        <h1 class="font-tech text-4xl sm:text-7xl font-black text-black tracking-tighter uppercase leading-none">
+                            GALERÍA & HIGHLIGHTS
+                        </h1>
+                    </div>
+                    <div class="mt-4 md:mt-0 font-mono text-right">
+                        <div class="text-xs font-bold text-poster-blue tracking-widest uppercase">REPLAYS & PLAY OF THE WEEK</div>
+                        <div class="text-[10px] text-poster-textMuted uppercase mt-1">BIBLIOTECA DE CLIPS Y VODS DE SCRIMS</div>
+                    </div>
+                </div>
+
+                <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 mb-8 font-mono">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button onclick="filterGallery('All')" class="gallery-filter-btn active bg-black text-white px-3 py-1.5 text-xs font-bold uppercase hover:bg-poster-blue transition-colors">TODOS</button>
+                        <button onclick="filterGallery('Highlights')" class="gallery-filter-btn border border-black/30 px-3 py-1.5 text-xs font-bold uppercase hover:bg-black hover:text-white transition-colors">HIGHLIGHTS</button>
+                        <button onclick="filterGallery('Scrim VOD')" class="gallery-filter-btn border border-black/30 px-3 py-1.5 text-xs font-bold uppercase hover:bg-black hover:text-white transition-colors">SCRIM VODS</button>
+                        <button onclick="filterGallery('Teamfight')" class="gallery-filter-btn border border-black/30 px-3 py-1.5 text-xs font-bold uppercase hover:bg-black hover:text-white transition-colors">TEAMFIGHTS</button>
+                    </div>
+
+                    <button onclick="toggleVideoUploadModal(true)" class="bg-poster-blue text-white px-5 py-2 text-xs font-bold uppercase hover:bg-black transition-all flex items-center justify-center space-x-2 border border-black shadow-[3px_3px_0px_#0b0c10]">
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
+                        <span>SUBIR VIDEO / CLIP ↗</span>
+                    </button>
+                </div>
+
+                <!-- VIDEO GALLERY GRID (VACÍA INICIALMENTE) -->
+                <div id="videoGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 font-mono">
+                    <!-- Dynamic Empty State rendered via JS -->
+                </div>
+
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- TAB 4: RANKING (LIMPIO PARA RIOT IDs REALES) -->
+        <!-- ========================================== -->
+        <div id="tab-ranking-content" class="hidden transition-opacity duration-300 py-6">
+            <div class="max-w-7xl mx-auto px-4 sm:px-8">
+
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b-2 border-black pb-4 mb-8">
+                    <div>
+                        <div class="black-tag mb-2">[RIOT GAMES API LIVE TRACKING]</div>
+                        <h1 class="font-tech text-4xl sm:text-7xl font-black text-black tracking-tighter uppercase leading-none">
+                            RANKING & LEADERBOARD
+                        </h1>
+                    </div>
+                    <div class="mt-4 md:mt-0 font-mono text-right">
+                        <div class="text-xs font-bold text-poster-blue tracking-widest uppercase">TRACKEO DE CUENTAS DE INTEGRANTES</div>
+                        <div class="text-[10px] text-poster-textMuted uppercase mt-1">VINCULACIÓN OAUTH RIOT & STANDINGS</div>
+                    </div>
+                </div>
+
+                <!-- RIOT USER PROFILES & LINKING CARDS -->
+                <div id="riotAccountBanner" class="poster-box p-6 mb-8 border-2 border-poster-blue bg-white/90 font-mono">
+                    <div class="flex flex-col md:flex-row items-center justify-between gap-6">
+                        
+                        <div id="unlinkedState" class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6 text-center md:text-left">
+                            <div class="w-16 h-16 bg-black text-white flex items-center justify-center text-3xl shrink-0 font-tech font-bold border-2 border-poster-blue">
+                                <i class="fa-solid fa-gamepad"></i>
+                            </div>
+                            <div>
+                                <div class="flex items-center justify-center md:justify-start space-x-2">
+                                    <span class="black-tag">[SISTEMA LISTO]</span>
+                                    <span class="text-xs font-bold text-poster-blue">// VINCULACIÓN RIOT ID</span>
+                                </div>
+                                <h3 class="font-tech text-xl sm:text-2xl font-black text-black uppercase mt-1">
+                                    LINKEE SU CUENTA OFICIAL DE RIOT GAMES
+                                </h3>
+                                <p class="text-xs text-poster-textMuted uppercase">
+                                    Vincula tu Riot ID para figurar en la tabla oficial de standings del equipo.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div id="linkedState" class="hidden flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6 text-center md:text-left w-full">
+                            <img id="linkedAvatar" src="https://placehold.co/100x100/0b0c10/4956f4?text=RIOT" alt="Riot Avatar" class="w-16 h-16 border-2 border-poster-blue object-cover">
+                            <div class="flex-grow">
+                                <div class="flex items-center space-x-2">
+                                    <span class="blue-tag">[CUENTA VINCULADA]</span>
+                                    <span id="linkedTag" class="text-xs font-bold text-poster-blue">#LAS</span>
+                                </div>
+                                <h3 id="linkedName" class="font-tech text-2xl font-black text-black uppercase mt-1">PLAYER_NAME</h3>
+                                <div class="flex flex-wrap gap-4 text-xs text-black mt-1">
+                                    <span>PEAK: <strong id="linkedTier" class="text-poster-blue">CHALLENGER 950 LP</strong></span>
+                                    <span>WINRATE: <strong id="linkedWinrate" class="text-green-600">64.5%</strong></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="shrink-0">
+                            <button id="riotConnectBtn" onclick="openRiotAuthModal()" class="py-3 px-6 bg-poster-accentRed text-white hover:bg-black transition-all font-bold text-xs uppercase flex items-center space-x-2 border border-black shadow-[4px_4px_0px_#0b0c10]">
+                                <i class="fa-solid fa-link"></i>
+                                <span>LINK RIOT ACCOUNT ↗</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TABLE CONTROLS -->
+                <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 mb-6 font-mono">
+                    <div class="flex flex-wrap items-center gap-2">
+                        <button onclick="filterLeaderboard('All')" class="lb-filter-btn active bg-black text-white px-3 py-1.5 text-xs font-bold uppercase">TODOS</button>
+                        <button onclick="filterLeaderboard('Eclipsed')" class="lb-filter-btn border border-black/30 px-3 py-1.5 text-xs font-bold uppercase hover:bg-black hover:text-white">ECLIPSED</button>
+                        <button onclick="filterLeaderboard('Kore')" class="lb-filter-btn border border-black/30 px-3 py-1.5 text-xs font-bold uppercase hover:bg-black hover:text-white">KORE</button>
+                        <button onclick="filterLeaderboard('Last Knights')" class="lb-filter-btn border border-black/30 px-3 py-1.5 text-xs font-bold uppercase hover:bg-black hover:text-white">LAST KNIGHTS</button>
+                    </div>
+
+                    <div class="relative min-w-[240px]">
+                        <input type="text" id="lbSearch" oninput="renderLeaderboard()" placeholder="Buscar invocador..." class="poster-input text-xs pl-8 py-2">
+                        <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-3 text-xs text-black/40"></i>
+                    </div>
+                </div>
+
+                <!-- DYNAMIC LEADERBOARD TABLE (VACÍA INICIALMENTE) -->
+                <div class="poster-box border-2 border-black overflow-x-auto">
+                    <table class="w-full text-left font-mono text-xs">
+                        <thead>
+                            <tr class="bg-black text-white uppercase border-b border-black text-[11px] tracking-wider">
+                                <th class="p-3 text-center"># RANK</th>
+                                <th class="p-3">INVOCADOR / RIOT ID</th>
+                                <th class="p-3">DIVISIÓN / ROSTER</th>
+                                <th class="p-3">TIER / ELO</th>
+                                <th class="p-3">LP</th>
+                                <th class="p-3">WIN RATE %</th>
+                                <th class="p-3">MAIN ROL</th>
+                                <th class="p-3 text-center">STREAK</th>
+                            </tr>
+                        </thead>
+                        <tbody id="leaderboardTbody" class="divide-y divide-black/15 bg-white/70">
+                            <!-- Dynamic Rows rendered via JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- ========================================== -->
+    <!-- MODALS SECTION -->
+    <!-- ========================================== -->
+
+    <!-- 1. VIDEO UPLOAD MODAL -->
+    <div id="uploadVideoModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 font-mono">
+        <div class="poster-box p-6 sm:p-8 max-w-xl w-full border-2 border-poster-blue bg-white relative">
+            <button onclick="toggleVideoUploadModal(false)" class="absolute top-4 right-4 text-black hover:text-poster-blue font-bold text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="mb-4">
+                <span class="blue-tag">[MEDIA UPLOAD PROTOCOL]</span>
+                <h3 class="font-tech text-2xl font-black text-black uppercase mt-1">SUBIR NUEVO VIDEO / HIGHLIGHT</h3>
+            </div>
+            
+            <form onsubmit="handleVideoUpload(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-bold uppercase mb-1">Título del Video</label>
+                    <input type="text" id="vidTitle" required placeholder="Ej: BLANK Pentakill vs Isurus" class="poster-input text-xs">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase mb-1">Categoría</label>
+                        <select id="vidCategory" class="poster-input text-xs bg-white">
+                            <option value="Highlights">Highlights</option>
+                            <option value="Scrim VOD">Scrim VOD</option>
+                            <option value="Teamfight">Teamfight</option>
+                            <option value="Play of the Week">Play of the Week</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase mb-1">Creador / Player</label>
+                        <input type="text" id="vidUploader" required placeholder="Ej: BLANK Lucky" class="poster-input text-xs">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase mb-1">URL de Video (YouTube / Embed MP4)</label>
+                    <input type="url" id="vidUrl" required placeholder="https://www.youtube.com/watch?v=..." class="poster-input text-xs">
+                </div>
+
+                <div class="pt-2">
+                    <button type="submit" class="w-full py-3 bg-poster-blue text-white font-bold text-xs uppercase hover:bg-black transition-colors border border-black shadow-[3px_3px_0px_#0b0c10]">
+                        PUBLICAR EN GALERÍA ↗
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- 2. VIDEO PLAYER MODAL -->
+    <div id="videoPlayerModal" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4 font-mono">
+        <div class="max-w-4xl w-full bg-poster-darkCard border-2 border-poster-blue p-4 relative">
+            <button onclick="closeVideoPlayer()" class="absolute -top-10 right-0 text-white hover:text-poster-blue font-bold text-xl">
+                <i class="fa-solid fa-xmark"></i> CERRAR [X]
+            </button>
+            <div id="playerContainer" class="aspect-video w-full bg-black mb-4">
+                <!-- Video Iframe or player injected here -->
+            </div>
+            <div class="flex justify-between items-center text-white font-mono">
+                <div>
+                    <span id="modalVidCategory" class="blue-tag mb-1">CATEGORIA</span>
+                    <h3 id="modalVidTitle" class="font-tech text-xl font-bold uppercase text-white">TITULO DEL VIDEO</h3>
+                    <p id="modalVidUploader" class="text-xs text-gray-400">Subido por: Player</p>
+                </div>
+                <button id="likeBtn" onclick="toggleLikeCurrentVideo()" class="px-4 py-2 border border-white/20 hover:border-poster-accentRed hover:text-poster-accentRed transition-all text-xs font-bold flex items-center space-x-2">
+                    <i class="fa-solid fa-heart"></i>
+                    <span id="likeCount">0</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. RIOT GAMES OAUTH SIMULATION MODAL -->
+    <div id="riotAuthModal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 font-mono">
+        <div class="poster-box p-6 sm:p-8 max-w-md w-full border-2 border-poster-accentRed bg-white text-center relative">
+            <button onclick="closeRiotAuthModal()" class="absolute top-4 right-4 text-black hover:text-poster-accentRed font-bold">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="w-16 h-16 bg-poster-accentRed text-white mx-auto mb-4 flex items-center justify-center text-3xl font-black">
+                <i class="fa-solid fa-fire"></i>
+            </div>
+            
+            <h3 class="font-tech text-2xl font-black text-black uppercase">RIOT GAMES SIGN-IN</h3>
+            <p class="text-xs text-poster-textMuted uppercase mt-1 mb-6">Ingresa tu Riot ID real para aparecer en la tabla oficial.</p>
+
+            <form onsubmit="handleRiotLogin(event)" class="space-y-4 text-left">
+                <div>
+                    <label class="block text-xs font-bold uppercase mb-1">Riot ID Game Name</label>
+                    <input type="text" id="riotFormName" required placeholder="Ej: Faker o BLANK Lucky" class="poster-input text-xs">
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase mb-1">Tagline</label>
+                    <input type="text" id="riotFormTag" required placeholder="Ej: #KR1 o #LAS" class="poster-input text-xs">
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-bold uppercase mb-1">Roster / División</label>
+                        <select id="riotFormDivision" class="poster-input text-xs bg-white">
+                            <option value="Eclipsed">Eclipsed</option>
+                            <option value="Kore">Kore</option>
+                            <option value="Last Knights">Last Knights</option>
+                            <option value="Comunidad">Comunidad / Tryout</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold uppercase mb-1">Rol</label>
+                        <select id="riotFormRole" class="poster-input text-xs bg-white">
+                            <option value="MID">MID</option>
+                            <option value="TOP">TOP</option>
+                            <option value="JGL">JGL</option>
+                            <option value="ADC">ADC</option>
+                            <option value="SUPP">SUPP</option>
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-xs font-bold uppercase mb-1">Servidor / Región</label>
+                    <select id="riotFormRegion" class="poster-input text-xs bg-white">
+                        <option value="LAS">LAS (Latinoamérica Sur)</option>
+                        <option value="LAN">LAN (Latinoamérica Norte)</option>
+                        <option value="BR">BR (Brasil)</option>
+                        <option value="KR">KR (Corea)</option>
+                        <option value="NA">NA (Norteamérica)</option>
+                    </select>
+                </div>
+                <button type="submit" class="w-full py-3 bg-poster-accentRed text-white font-bold text-xs uppercase hover:bg-black transition-colors border border-black shadow-[3px_3px_0px_#0b0c10]">
+                    AUTENTICAR Y REGISTRAR ↗
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- FOOTER UNIFICADO -->
+    <footer class="bg-black text-white border-t border-white/15 py-8 font-mono text-xs">
+        <div class="max-w-7xl mx-auto px-4 sm:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-3">
+                <span class="font-tech font-extrabold text-poster-blue tracking-widest text-lg">BLANK</span>
+                <span class="text-white/40">//</span>
+                <span class="text-gray-400">HIGH PERFORMANCE DIVISION</span>
+            </div>
+            <div class="text-gray-400 text-center md:text-center text-[11px]">
+                [OPACITY = 1000%] • BLANK ESPORTS © 2026
+            </div>
+            <div class="text-poster-blue font-bold tracking-widest uppercase">
+                DESIGN BY FLUGEL
+            </div>
+        </div>
+    </footer>
+
+    <!-- JS APP LOGIC -->
+    <script>
+        // --- GLOBAL APP STATE ---
+        let currentTab = 'inicio';
+        let currentFilterGallery = 'All';
+        let currentFilterLb = 'All';
+        let activePlayingVideoId = null;
+
+        // ARRAYS TOTALMENTE LIMPIOS LISTOS PARA REGISTROS REALES
+        let galleryVideos = [];
+        let leaderboardPlayers = [];
+        let linkedRiotUser = null;
+
+        // --- TAB SWITCHING ---
+        function switchTab(tab) {
+            currentTab = tab;
+            const tabs = ['inicio', 'tryouts', 'gallery', 'ranking'];
+            
+            tabs.forEach(t => {
+                const btn = document.getElementById(`nav-${t}`);
+                const content = document.getElementById(`tab-${t}-content`);
+                
+                if (btn && content) {
+                    if (t === tab) {
+                        btn.classList.add('active');
+                        btn.classList.remove('bg-black/5', 'text-black');
+                        content.classList.remove('hidden');
+                    } else {
+                        btn.classList.remove('active');
+                        btn.classList.add('bg-black/5', 'text-black');
+                        content.classList.add('hidden');
+                    }
+                }
+            });
+
+            if (tab === 'gallery') renderGallery();
+            if (tab === 'ranking') renderLeaderboard();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- SUB-PAGE: TRYOUTS LOGIC ---
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            
+            const summoner = document.getElementById('summonerName').value;
+            const peak = document.getElementById('peakElo').value;
+            const opgg = document.getElementById('opggUrl').value;
+            const role = document.getElementById('roleSelect').value;
+            const exp = document.getElementById('expSelect').value;
+            const comments = document.getElementById('comments').value;
+
+            const timeNow = new Date().toLocaleTimeString();
+
+            // Preview Render
+            document.getElementById('submissionTime').innerText = `ENVIADO: ${timeNow}`;
+            document.getElementById('submittedContent').innerHTML = `
+                <div class="space-y-2 text-black not-italic font-mono">
+                    <div class="flex justify-between items-center bg-black text-white p-2">
+                        <span class="font-bold text-xs uppercase">${summoner}</span>
+                        <span class="blue-tag">${role.toUpperCase()}</span>
+                    </div>
+                    <div class="text-[11px] space-y-1 bg-white p-3 border border-black">
+                        <div><strong>Peak Elo:</strong> ${peak}</div>
+                        <div><strong>Exp:</strong> ${exp}</div>
+                        <div><strong>OP.GG:</strong> <a href="${opgg}" target="_blank" class="text-poster-blue underline truncate block">${opgg}</a></div>
+                        ${comments ? `<div class="mt-2 text-gray-600 border-t border-black/15 pt-1"><strong>Notas:</strong> ${comments}</div>` : ''}
+                    </div>
+                    <div class="bg-green-600 text-white p-2 text-center text-[10px] font-bold tracking-widest uppercase">
+                        [CONFIRMADO // RESPUESTA EN DISCORD EN < 48HRS]
+                    </div>
+                </div>
+            `;
+
+            // Auto registrar en el ranking como postulante
+            const parts = summoner.split('#');
+            const pName = parts[0] || summoner;
+            const pTag = parts[1] ? `#${parts[1]}` : '#LAS';
+
+            leaderboardPlayers.unshift({
+                rank: leaderboardPlayers.length + 1,
+                name: pName,
+                tag: pTag,
+                division: 'Comunidad / Tryout',
+                tier: peak.includes('Challenger') ? 'Challenger' : (peak.includes('GrandMaster') ? 'GrandMaster' : 'Master'),
+                lp: 350,
+                winrate: 58.0,
+                role: role.toUpperCase(),
+                streak: 'W2',
+                avatar: `https://placehold.co/80/0b0c10/ffffff?text=${encodeURIComponent(pName.substring(0,3).toUpperCase())}`
+            });
+
+            // Reset form
+            document.getElementById('tryoutForm').reset();
+        }
+
+        // --- SUB-PAGE: GALLERY LOGIC (LIMPIA) ---
+        function filterGallery(cat) {
+            currentFilterGallery = cat;
+            document.querySelectorAll('.gallery-filter-btn').forEach(btn => {
+                if (btn.innerText.includes(cat.toUpperCase()) || (cat === 'All' && btn.innerText.includes('TODOS'))) {
+                    btn.classList.add('bg-black', 'text-white');
+                    btn.classList.remove('border-black/30');
+                } else {
+                    btn.classList.remove('bg-black', 'text-white');
+                    btn.classList.add('border-black/30');
+                }
+            });
+            renderGallery();
+        }
+
+        function renderGallery() {
+            const container = document.getElementById('videoGrid');
+            container.innerHTML = '';
+
+            const filtered = galleryVideos.filter(v => currentFilterGallery === 'All' || v.category === currentFilterGallery);
+
+            if (filtered.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full p-12 text-center poster-box border-2 border-black font-mono my-4">
+                        <div class="w-16 h-16 bg-black text-white flex items-center justify-center text-2xl mx-auto mb-4 border border-poster-blue">
+                            <i class="fa-solid fa-photo-film"></i>
+                        </div>
+                        <h3 class="font-tech text-2xl font-black uppercase text-black">GALERÍA LISTA PARA ESTRENARSE</h3>
+                        <p class="text-xs text-poster-textMuted uppercase mt-2 max-w-md mx-auto">
+                            No hay clips ni highlights publicados aún. Sé el primero en subir un video utilizando el botón "Subir Video / Clip".
+                        </p>
+                    </div>
+                `;
+                return;
+            }
+
+            filtered.forEach(vid => {
+                const card = document.createElement('div');
+                card.className = 'poster-box border-2 border-black overflow-hidden flex flex-col justify-between group cursor-pointer';
+                card.onclick = () => openVideoPlayer(vid.id);
+
+                card.innerHTML = `
+                    <div>
+                        <div class="relative aspect-video bg-black overflow-hidden">
+                            <img src="${vid.thumbnail}" alt="${vid.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+                                <div class="w-12 h-12 bg-poster-blue text-white rounded-none flex items-center justify-center text-xl shadow-[3px_3px_0px_#0b0c10]">
+                                    <i class="fa-solid fa-play ml-1"></i>
+                                </div>
+                            </div>
+                            <span class="absolute top-2 left-2 black-tag">${vid.category}</span>
+                        </div>
+                        <div class="p-4">
+                            <h4 class="font-tech text-lg font-black text-black group-hover:text-poster-blue transition-colors line-clamp-2 uppercase">${vid.title}</h4>
+                            <p class="text-xs text-poster-textMuted uppercase mt-1">UPLOADER: <span class="font-bold text-black">${vid.uploader}</span></p>
+                        </div>
+                    </div>
+                    <div class="p-4 pt-0 border-t border-black/10 flex justify-between items-center text-xs mt-2">
+                        <span class="text-poster-blue font-bold">VER REPLAY ↗</span>
+                        <span class="text-poster-textMuted flex items-center space-x-1">
+                            <i class="fa-solid fa-heart text-poster-accentRed"></i>
+                            <span>${vid.likes}</span>
+                        </span>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        function toggleVideoUploadModal(show) {
+            const modal = document.getElementById('uploadVideoModal');
+            if (show) modal.classList.remove('hidden');
+            else modal.classList.add('hidden');
+        }
+
+        function handleVideoUpload(e) {
+            e.preventDefault();
+            const title = document.getElementById('vidTitle').value;
+            const category = document.getElementById('vidCategory').value;
+            const uploader = document.getElementById('vidUploader').value;
+            const url = document.getElementById('vidUrl').value;
+
+            let embedUrl = url;
+            if (url.includes('youtube.com/watch?v=')) {
+                embedUrl = url.replace('watch?v=', 'embed/');
+            }
+
+            const newVid = {
+                id: Date.now(),
+                title: title,
+                category: category,
+                uploader: uploader,
+                url: embedUrl,
+                thumbnail: `https://placehold.co/600x340/0b0c10/ffffff?text=${encodeURIComponent(title.substring(0, 20))}`,
+                likes: 0,
+                role: 'Player'
+            };
+
+            galleryVideos.unshift(newVid);
+            toggleVideoUploadModal(false);
+            renderGallery();
+        }
+
+        function openVideoPlayer(id) {
+            const vid = galleryVideos.find(v => v.id === id);
+            if (!vid) return;
+
+            activePlayingVideoId = id;
+            document.getElementById('modalVidTitle').innerText = vid.title;
+            document.getElementById('modalVidCategory').innerText = vid.category;
+            document.getElementById('modalVidUploader').innerText = `SUBIDO POR: ${vid.uploader}`;
+            document.getElementById('likeCount').innerText = vid.likes;
+
+            const container = document.getElementById('playerContainer');
+            container.innerHTML = `
+                <iframe class="w-full h-full" src="${vid.url}" title="${vid.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            `;
+
+            document.getElementById('videoPlayerModal').classList.remove('hidden');
+        }
+
+        function closeVideoPlayer() {
+            document.getElementById('videoPlayerModal').classList.add('hidden');
+            document.getElementById('playerContainer').innerHTML = '';
+            activePlayingVideoId = null;
+        }
+
+        function toggleLikeCurrentVideo() {
+            if (!activePlayingVideoId) return;
+            const vid = galleryVideos.find(v => v.id === activePlayingVideoId);
+            if (vid) {
+                vid.likes++;
+                document.getElementById('likeCount').innerText = vid.likes;
+                renderGallery();
+            }
+        }
+
+        // --- SUB-PAGE: RANKING LOGIC (LIMPIO) ---
+        function filterLeaderboard(div) {
+            currentFilterLb = div;
+            document.querySelectorAll('.lb-filter-btn').forEach(btn => {
+                if (btn.innerText.includes(div.toUpperCase()) || (div === 'All' && btn.innerText.includes('TODOS'))) {
+                    btn.classList.add('bg-black', 'text-white');
+                    btn.classList.remove('border-black/30');
+                } else {
+                    btn.classList.remove('bg-black', 'text-white');
+                    btn.classList.add('border-black/30');
+                }
+            });
+            renderLeaderboard();
+        }
+
+        function renderLeaderboard() {
+            const tbody = document.getElementById('leaderboardTbody');
+            tbody.innerHTML = '';
+
+            const searchTerm = document.getElementById('lbSearch').value.toLowerCase();
+
+            let players = leaderboardPlayers.filter(p => {
+                const matchDiv = currentFilterLb === 'All' || p.division === currentFilterLb;
+                const matchSearch = p.name.toLowerCase().includes(searchTerm) || p.role.toLowerCase().includes(searchTerm);
+                return matchDiv && matchSearch;
+            });
+
+            if (players.length === 0) {
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="8" class="p-12 text-center text-poster-textMuted uppercase font-mono">
+                            <div class="max-w-md mx-auto space-y-2">
+                                <i class="fa-solid fa-trophy text-3xl text-black/30"></i>
+                                <div class="font-bold text-black text-sm">NO HAY INVOCADORES REGISTRADOS EN EL RANKING</div>
+                                <div class="text-[11px]">Vincula tu cuenta oficial de Riot Games o envía una postulación para figurar en la tabla de clasificación.</div>
+                            </div>
+                        </td>
+                    </tr>
+                `;
+                return;
+            }
+
+            players.sort((a, b) => b.lp - a.lp);
+
+            players.forEach((p, index) => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-poster-blue/10 transition-colors font-mono';
+
+                let tierBadgeClass = 'bg-black text-white px-2 py-0.5 text-[10px]';
+                if (p.tier === 'Challenger') tierBadgeClass = 'blue-tag';
+                else if (p.tier === 'GrandMaster') tierBadgeClass = 'bg-purple-900 text-white font-bold px-2 py-0.5 text-[10px]';
+                else if (p.tier === 'Master') tierBadgeClass = 'red-tag';
+
+                tr.innerHTML = `
+                    <td class="p-3 text-center font-bold text-sm text-poster-blue">#${index + 1}</td>
+                    <td class="p-3">
+                        <div class="flex items-center space-x-3">
+                            <img src="${p.avatar}" alt="${p.name}" class="w-8 h-8 rounded-none border border-black object-cover">
+                            <div>
+                                <div class="font-bold text-black uppercase">${p.name} <span class="text-poster-textMuted text-[10px]">${p.tag}</span></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td class="p-3">
+                        <span class="black-tag">${p.division}</span>
+                    </td>
+                    <td class="p-3">
+                        <span class="${tierBadgeClass}">${p.tier}</span>
+                    </td>
+                    <td class="p-3 font-bold text-black">${p.lp} LP</td>
+                    <td class="p-3 font-bold ${p.winrate > 60 ? 'text-green-600' : 'text-black'}">${p.winrate}%</td>
+                    <td class="p-3 font-bold">${p.role}</td>
+                    <td class="p-3 text-center">
+                        <span class="${p.streak.startsWith('W') ? 'bg-green-700' : 'bg-red-700'} text-white font-bold px-2 py-0.5 text-[10px]">${p.streak}</span>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        // --- RIOT AUTH OAUTH SIMULATION ---
+        function openRiotAuthModal() {
+            document.getElementById('riotAuthModal').classList.remove('hidden');
+        }
+
+        function closeRiotAuthModal() {
+            document.getElementById('riotAuthModal').classList.add('hidden');
+        }
+
+        function handleRiotLogin(e) {
+            e.preventDefault();
+            const rName = document.getElementById('riotFormName').value;
+            const rTag = document.getElementById('riotFormTag').value;
+            const rDivision = document.getElementById('riotFormDivision').value;
+            const rRole = document.getElementById('riotFormRole').value;
+            const rRegion = document.getElementById('riotFormRegion').value;
+
+            linkedRiotUser = {
+                rank: 1,
+                name: rName,
+                tag: rTag,
+                division: rDivision,
+                tier: 'Challenger',
+                lp: 850,
+                winrate: 62.5,
+                role: rRole,
+                streak: 'W3',
+                avatar: `https://placehold.co/100x100/4956f4/ffffff?text=${encodeURIComponent(rName.substring(0,3).toUpperCase())}`
+            };
+
+            leaderboardPlayers.unshift(linkedRiotUser);
+
+            document.getElementById('unlinkedState').classList.add('hidden');
+            const linkedBox = document.getElementById('linkedState');
+            linkedBox.classList.remove('hidden');
+            linkedBox.classList.add('flex');
+
+            document.getElementById('linkedName').innerText = rName;
+            document.getElementById('linkedTag').innerText = `${rTag} (${rRegion})`;
+            document.getElementById('linkedAvatar').src = linkedRiotUser.avatar;
+
+            const btn = document.getElementById('riotConnectBtn');
+            btn.className = 'py-3 px-6 bg-green-600 text-white font-bold text-xs uppercase cursor-default';
+            btn.innerHTML = `<i class="fa-solid fa-circle-check"></i> <span>VERIFICADO</span>`;
+            btn.onclick = null;
+
+            closeRiotAuthModal();
+            renderLeaderboard();
+        }
+
+        // --- INITIALIZATION ---
+        window.onload = function() {
+            switchTab('inicio');
+        }
+    </script>
+</body>
+</html>
