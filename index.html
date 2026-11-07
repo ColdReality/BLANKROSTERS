@@ -283,6 +283,44 @@
             transform: scale(1.04);
         }
 
+        /* Celestial Astrolabe & Counter-Rotating Orbit Animations */
+        @keyframes spinClockwise {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes spinCounterClockwise {
+            from { transform: rotate(360deg); }
+            to { transform: rotate(0deg); }
+        }
+
+        @keyframes pulseCoreGlow {
+            0%, 100% { filter: drop-shadow(0 0 14px rgba(200, 178, 142, 0.35)); transform: scale(1); }
+            50% { filter: drop-shadow(0 0 26px rgba(158, 42, 53, 0.65)); transform: scale(1.04); }
+        }
+
+        .orbit-outer-rays {
+            animation: spinClockwise 70s linear infinite;
+        }
+
+        .orbit-Squads-ring {
+            animation: spinCounterClockwise 38s linear infinite;
+        }
+
+        /* Counter-rotate each badge clockwise so the logos always stay upright while orbiting counter-clockwise */
+        .orbit-badge-upright {
+            animation: spinClockwise 38s linear infinite;
+        }
+
+        .astrolabe-container:hover .orbit-Squads-ring,
+        .astrolabe-container:hover .orbit-badge-upright {
+            animation-play-state: paused;
+        }
+
+        .blank-core-emblem {
+            animation: pulseCoreGlow 6s ease-in-out infinite;
+        }
+
         /* Tags */
         .grimoire-tag {
             background-color: #c8b28e;
@@ -375,10 +413,13 @@
     <header class="fixed top-0 left-0 w-full z-50 backdrop-blur-md font-mono text-[11px] tracking-wider py-3 px-4 sm:px-8">
         <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
             
-            <!-- LOGO BRAND WITH DIAMOND NUMERAL -->
+            <!-- LOGO BRAND WITH BLANK OFFICIAL EMBLEM -->
             <a href="#" onclick="switchTab('inicio'); return false;" class="flex items-center space-x-3 group">
-                <div class="w-7 h-7 border border-grimoire-gold rotate-45 flex items-center justify-center group-hover:bg-grimoire-crimson transition-colors">
-                    <span class="-rotate-45 text-[10px] font-serifDisplay font-bold text-grimoire-gold">XVII</span>
+                <div class="w-9 h-9 border border-grimoire-gold/70 bg-black/80 p-1 flex items-center justify-center group-hover:border-grimoire-crimsonBright transition-colors">
+                    <img src="https://i.imgur.com/LttFTzt.png" 
+                         onerror="this.src='https://placehold.co/80x80/070709/c8b28e?text=B'" 
+                         alt="BLANK Logo" 
+                         class="w-full h-full object-contain">
                 </div>
                 <span class="font-serifDisplay font-black tracking-widest uppercase text-xl sm:text-2xl">BLANK</span>
                 <span class="opacity-40">//</span>
@@ -467,7 +508,7 @@
                     <!-- ASYMMETRIC POSTER COMPOSITION ("THE SWING" + "DESTINY AND TEARS" + "ELUSIVE") -->
                     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
 
-                        <!-- LEFT COLUMN: NEOCLASSICAL ART COLLAGE & CELESTIAL MEDALLION (5 COLS) -->
+                        <!-- LEFT COLUMN: CELESTIAL ASTROLABE MEDALLION WITH COUNTER-ROTATING LOGOS (5 COLS) -->
                         <div class="lg:col-span-5 tarot-card p-6 flex flex-col justify-between relative overflow-hidden group">
                             
                             <!-- Corner Four-Point Stars -->
@@ -479,11 +520,12 @@
                                 <span>✦</span>
                             </div>
 
-                            <!-- Central Classical Painting Vignette with Sunburst Rays SVG -->
-                            <div class="relative my-auto py-6 flex items-center justify-center">
-                                <!-- Radial Sunburst Rays SVG (from "Destiny and Tears") -->
-                                <svg class="absolute w-72 h-72 sm:w-80 sm:h-80 text-grimoire-gold/30 animate-[spin_90s_linear_infinite]" viewBox="0 0 200 200" fill="none">
-                                    <g stroke="currentColor" stroke-width="0.6">
+                            <!-- Central Astrolabe Medallion: Outer Rays (CW) + Division Logos (CCW) + BLANK Core -->
+                            <div class="relative my-auto py-8 flex items-center justify-center astrolabe-container">
+                                
+                                <!-- 1. Outer Radial Sunburst Rays SVG (Rotates Clockwise) -->
+                                <svg class="absolute w-72 h-72 sm:w-80 sm:h-80 text-grimoire-gold/35 orbit-outer-rays pointer-events-none" viewBox="0 0 200 200" fill="none">
+                                    <g stroke="currentColor" stroke-width="0.65">
                                         <line x1="100" y1="0" x2="100" y2="200" />
                                         <line x1="0" y1="100" x2="200" y2="100" />
                                         <line x1="29" y1="29" x2="171" y2="171" />
@@ -492,33 +534,93 @@
                                         <line x1="8" y1="62" x2="192" y2="138" />
                                         <line x1="138" y1="8" x2="62" y2="192" />
                                         <line x1="8" y1="138" x2="192" y2="62" />
+                                        <line x1="80" y1="2" x2="120" y2="198" stroke-opacity="0.45" />
+                                        <line x1="2" y1="80" x2="198" y2="120" stroke-opacity="0.45" />
                                     </g>
-                                    <circle cx="100" cy="100" r="68" stroke="currentColor" stroke-width="0.75" stroke-dasharray="3 3"/>
-                                    <circle cx="100" cy="100" r="56" stroke="currentColor" stroke-width="1"/>
+                                    <circle cx="100" cy="100" r="88" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2 4"/>
+                                    <circle cx="100" cy="100" r="72" stroke="currentColor" stroke-width="0.75" stroke-dasharray="4 3"/>
+                                    <circle cx="100" cy="100" r="54" stroke="currentColor" stroke-width="0.9"/>
                                 </svg>
 
-                                <!-- Circular Masked Classical Artwork -->
-                                <div class="relative w-56 h-56 sm:w-64 sm:h-64 rounded-full overflow-hidden border-2 border-grimoire-gold/80 shadow-2xl z-10">
-                                    <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=900&q=80" 
-                                         onerror="this.src='https://placehold.co/600x600/120e0d/c8b28e?text=BLANK+XVII'"
-                                         alt="Baroque Classical Art" 
-                                         class="w-full h-full object-cover classical-painting">
-                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30"></div>
+                                <!-- 2. Center Background Medallion with BLANK Main Organization Logo -->
+                                <div class="relative w-52 h-52 sm:w-60 sm:h-60 rounded-full overflow-hidden border-2 border-grimoire-gold/80 bg-gradient-to-b from-[#141010] via-[#09080b] to-[#1c0d10] shadow-[0_0_50px_rgba(0,0,0,0.9)] flex items-center justify-center z-10">
+                                    <!-- Subtle watermarked large BLANK logo in deep background -->
+                                    <img src="https://i.imgur.com/LttFTzt.png" 
+                                         onerror="this.src='https://placehold.co/300x300/070709/c8b28e?text=BLANK'"
+                                         alt="BLANK Background Watermark" 
+                                         class="absolute w-44 h-44 object-contain opacity-15 scale-125 pointer-events-none select-none">
+                                    
+                                    <!-- Inner sacred geometry ring -->
+                                    <div class="absolute inset-4 rounded-full border border-grimoire-gold/25 pointer-events-none"></div>
+                                    <div class="absolute inset-9 rounded-full border border-dashed border-grimoire-crimsonBright/35 pointer-events-none"></div>
+
+                                    <!-- Main BLANK Organization Emblem in the Center -->
+                                    <div class="relative z-10 flex flex-col items-center justify-center p-4">
+                                        <img src="https://i.imgur.com/LttFTzt.png" 
+                                             onerror="this.src='https://placehold.co/200x200/070709/c8b28e?text=BLANK'"
+                                             alt="BLANK Organization Logo" 
+                                             class="w-24 h-24 sm:w-28 sm:h-28 object-contain blank-core-emblem">
+                                        <span class="mt-1 font-mono text-[9px] tracking-[0.3em] text-grimoire-gold/80 uppercase">BLANK // CORE</span>
+                                    </div>
+                                </div>
+
+                                <!-- 3. Counter-Rotating Orbital Ring with the 3 Academy/Squad Logos (Rotates Counter-Clockwise) -->
+                                <div class="absolute w-64 h-64 sm:w-72 sm:h-72 rounded-full orbit-Squads-ring z-20 pointer-events-none">
+                                    
+                                    <!-- ORBIT NODE 1 (0 deg - Top): LAST KNIGHTS -->
+                                    <div class="absolute -top-6 left-1/2 -translate-x-1/2 pointer-events-auto">
+                                        <button onclick="openRosterSection('academy')" title="Ver Roster: BLANK Last Knights" class="orbit-badge-upright group/node relative w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#0b0a0e] border-2 border-grimoire-gold shadow-[0_0_20px_rgba(200,178,142,0.35)] hover:border-white hover:scale-110 transition-all flex items-center justify-center p-2">
+                                            <img src="https://i.imgur.com/ZZnZJIj.png" 
+                                                 onerror="this.src='https://placehold.co/80x80/0b0a0e/c8b28e?text=LK'"
+                                                 alt="Last Knights Logo" 
+                                                 class="w-full h-full object-contain">
+                                            <span class="absolute -bottom-5 left-1/2 -translate-x-1/2 px-1.5 py-0.5 bg-black/90 border border-grimoire-gold/50 text-[8px] font-mono text-grimoire-gold whitespace-nowrap uppercase tracking-wider opacity-90 group-hover/node:opacity-100">
+                                                LAST KNIGHTS
+                                            </span>
+                                        </button>
+                                    </div>
+
+                                    <!-- ORBIT NODE 2 (120 deg - Bottom Right): BLANK KORE -->
+                                    <div class="absolute bottom-2 -right-3 pointer-events-auto">
+                                        <button onclick="openRosterSection('kore')" title="Ver Roster: BLANK Kore" class="orbit-badge-upright group/node relative w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#140b0d] border-2 border-grimoire-crimsonBright shadow-[0_0_20px_rgba(158,42,53,0.45)] hover:border-grimoire-gold hover:scale-110 transition-all flex items-center justify-center p-2">
+                                            <img src="https://i.imgur.com/YFawQNN.png" 
+                                                 onerror="this.src='https://placehold.co/80x80/140b0d/e6dfd5?text=KORE'"
+                                                 alt="Kore Logo" 
+                                                 class="w-full h-full object-contain">
+                                            <span class="absolute -bottom-5 left-1/2 -translate-x-1/2 px-1.5 py-0.5 bg-grimoire-crimson/95 border border-grimoire-gold/50 text-[8px] font-mono text-grimoire-parchment whitespace-nowrap uppercase tracking-wider opacity-90 group-hover/node:opacity-100">
+                                                KORE
+                                            </span>
+                                        </button>
+                                    </div>
+
+                                    <!-- ORBIT NODE 3 (240 deg - Bottom Left): BLANK ECLIPSED -->
+                                    <div class="absolute bottom-2 -left-3 pointer-events-auto">
+                                        <button onclick="openRosterSection('eclipsed')" title="Ver Roster: BLANK Eclipsed" class="orbit-badge-upright group/node relative w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-[#0b0a0e] border-2 border-grimoire-gold shadow-[0_0_20px_rgba(200,178,142,0.35)] hover:border-white hover:scale-110 transition-all flex items-center justify-center p-2">
+                                            <img src="https://i.imgur.com/hvbE3zN.png" 
+                                                 onerror="this.src='https://placehold.co/80x80/0b0a0e/c8b28e?text=ECL'"
+                                                 alt="Eclipsed Logo" 
+                                                 class="w-full h-full object-contain">
+                                            <span class="absolute -bottom-5 left-1/2 -translate-x-1/2 px-1.5 py-0.5 bg-black/90 border border-grimoire-gold/50 text-[8px] font-mono text-grimoire-gold whitespace-nowrap uppercase tracking-wider opacity-90 group-hover/node:opacity-100">
+                                                ECLIPSED
+                                            </span>
+                                        </button>
+                                    </div>
+
                                 </div>
 
                                 <!-- Hanging Celestial Starburst (like "Elusive" left panel) -->
-                                <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center">
-                                    <div class="w-px h-8 bg-grimoire-gold/80"></div>
+                                <div class="absolute -bottom-3 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center pointer-events-none">
+                                    <div class="w-px h-7 bg-grimoire-gold/80"></div>
                                     <span class="text-grimoire-gold text-2xl leading-none">✴</span>
                                 </div>
                             </div>
 
                             <!-- Micro-Editorial Mythological Quote (from "Destiny and Tears") -->
                             <div class="mt-6 pt-4 border-t border-grimoire-gold/25 flex justify-between items-end font-mono text-[10px] opacity-80">
-                                <div class="max-w-[230px] leading-relaxed">
-                                    "The greatest slayers of monsters, divine Corinthian heroes of competitive dominance."
+                                <div class="max-w-[240px] leading-relaxed">
+                                    "Three orbital divisions revolving around the core of competitive dominance."
                                 </div>
-                                <span class="text-grimoire-gold font-bold">[ARCANA // I]</span>
+                                <span class="text-grimoire-gold font-bold">[ASTRA // XVII]</span>
                             </div>
                         </div>
 
@@ -782,14 +884,22 @@
             <section id="academy" class="py-12 relative reveal-block active">
                 <div class="max-w-7xl mx-auto px-4 sm:px-8">
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 pb-4 border-b border-grimoire-gold/30">
-                        <div>
-                            <div class="flex items-center space-x-2 mb-2">
-                                <span class="obsidian-tag">[ARCANA I // DIVISION 01]</span>
-                                <span class="text-xs font-mono text-grimoire-gold tracking-widest">// ACADEMY ROSTER</span>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-black/80 border border-grimoire-gold p-2 flex items-center justify-center shrink-0">
+                                <img src="https://i.imgur.com/ZZnZJIj.png" 
+                                     onerror="this.src='https://placehold.co/80x80/070709/c8b28e?text=LK'" 
+                                     alt="Last Knights Logo" 
+                                     class="w-full h-full object-contain">
                             </div>
-                            <h2 class="font-serifDisplay text-3xl sm:text-5xl font-black uppercase">
-                                BLANK: LAST KNIGHTS ACADEMY ROSTER
-                            </h2>
+                            <div>
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <span class="obsidian-tag">[ARCANA I // DIVISION 01]</span>
+                                    <span class="text-xs font-mono text-grimoire-gold tracking-widest">// ACADEMY ROSTER</span>
+                                </div>
+                                <h2 class="font-serifDisplay text-3xl sm:text-5xl font-black uppercase">
+                                    BLANK: LAST KNIGHTS ACADEMY ROSTER
+                                </h2>
+                            </div>
                         </div>
                         <div class="mt-4 md:mt-0 font-mono text-xs opacity-75">
                             [5 TITULARES + HEAD COACH] <span class="text-grimoire-gold font-bold">// TIER 3 COMPETITIVE</span>
@@ -912,14 +1022,22 @@
             <section id="eclipsed" class="py-12 relative reveal-block">
                 <div class="max-w-7xl mx-auto px-4 sm:px-8">
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 pb-4 border-b border-grimoire-gold/30">
-                        <div>
-                            <div class="flex items-center space-x-2 mb-2">
-                                <span class="grimoire-tag">[ARCANA II // DIVISION 02]</span>
-                                <span class="text-xs font-mono text-grimoire-gold tracking-widest">// MAIN LINEUP</span>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-black/80 border border-grimoire-gold p-2 flex items-center justify-center shrink-0">
+                                <img src="https://i.imgur.com/hvbE3zN.png" 
+                                     onerror="this.src='https://placehold.co/80x80/070709/c8b28e?text=ECL'" 
+                                     alt="Eclipsed Logo" 
+                                     class="w-full h-full object-contain">
                             </div>
-                            <h2 class="font-serifDisplay text-3xl sm:text-5xl font-black uppercase">
-                                BLANK: ECLIPSED
-                            </h2>
+                            <div>
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <span class="grimoire-tag">[ARCANA II // DIVISION 02]</span>
+                                    <span class="text-xs font-mono text-grimoire-gold tracking-widest">// MAIN LINEUP</span>
+                                </div>
+                                <h2 class="font-serifDisplay text-3xl sm:text-5xl font-black uppercase">
+                                    BLANK: ECLIPSED
+                                </h2>
+                            </div>
                         </div>
                         <div class="mt-4 md:mt-0 font-mono text-xs opacity-75">
                             [STATUS: HIGH COMPETITIVE] <span class="text-grimoire-gold font-bold">// CHALLENGER CORE</span>
@@ -1026,14 +1144,22 @@
             <section id="kore" class="py-12 relative reveal-block">
                 <div class="max-w-7xl mx-auto px-4 sm:px-8">
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 pb-4 border-b border-grimoire-gold/30">
-                        <div>
-                            <div class="flex items-center space-x-2 mb-2">
-                                <span class="crimson-tag">[ARCANA III // DIVISION 03]</span>
-                                <span class="text-xs font-mono text-grimoire-gold tracking-widest">// ACADEMY HIGH PERFORMANCE</span>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-black/80 border border-grimoire-crimsonBright p-2 flex items-center justify-center shrink-0">
+                                <img src="https://i.imgur.com/YFawQNN.png" 
+                                     onerror="this.src='https://placehold.co/80x80/140b0d/e6dfd5?text=KORE'" 
+                                     alt="Kore Logo" 
+                                     class="w-full h-full object-contain">
                             </div>
-                            <h2 class="font-serifDisplay text-3xl sm:text-5xl font-black uppercase">
-                                BLANK: KORE
-                            </h2>
+                            <div>
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <span class="crimson-tag">[ARCANA III // DIVISION 03]</span>
+                                    <span class="text-xs font-mono text-grimoire-gold tracking-widest">// ACADEMY HIGH PERFORMANCE</span>
+                                </div>
+                                <h2 class="font-serifDisplay text-3xl sm:text-5xl font-black uppercase">
+                                    BLANK: KORE
+                                </h2>
+                            </div>
                         </div>
                         <div class="mt-4 md:mt-0 font-mono text-xs opacity-75">
                             [DIVINE CHAOS // VSC] <span class="text-grimoire-gold font-bold">// OPACITY = 1000%</span>
