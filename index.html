@@ -8,33 +8,35 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts: Syne, Space Grotesk, JetBrains Mono, Chakra Petch -->
+    <!-- Google Fonts: Bodoni Moda, Tenor Sans, Syne, Cormorant Garamond, JetBrains Mono -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,500;0,700;1,700&family=JetBrains+Mono:wght@200;400;600;800&family=Syne:wght@700;800&family=Space+Grotesk:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,500..900;1,6..96,500..900&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=JetBrains+Mono:wght@200;400;600;800&family=Syne:wght@700;800&family=Tenor+Sans&display=swap" rel="stylesheet">
 
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        poster: {
-                            bg: '#e2e4eb',
-                            card: '#d8dbe5',
-                            darkBg: '#090a0d',
-                            darkCard: '#0f1015',
-                            blue: '#4956f4',
-                            blueGlow: 'rgba(73, 86, 244, 0.35)',
-                            textMain: '#0d0d11',
-                            textMuted: '#585c6a',
-                            tagBg: '#0b0c10',
-                            accentRed: '#ff2a4b'
+                        grimoire: {
+                            obsidian: '#070709',
+                            umber: '#120e0d',
+                            card: '#141110',
+                            crimson: '#6b1d24',
+                            crimsonBright: '#9e2a35',
+                            gold: '#c8b28e',
+                            goldMuted: '#8c7a62',
+                            parchment: '#e6dfd5',
+                            taupe: '#a89882',
+                            lightBg: '#ebe5dc',
+                            lightCard: '#e0d8cc'
                         }
                     },
                     fontFamily: {
-                        display: ['Syne', 'sans-serif'],
-                        tech: ['Chakra Petch', 'sans-serif'],
-                        sans: ['Space Grotesk', 'sans-serif'],
+                        serifDisplay: ['var(--font-title)', 'serif'],
+                        tenor: ['Tenor Sans', 'sans-serif'],
+                        editorial: ['Cormorant Garamond', 'serif'],
+                        brutalist: ['Syne', 'sans-serif'],
                         mono: ['JetBrains Mono', 'monospace']
                     }
                 }
@@ -43,240 +45,311 @@
     </script>
 
     <style>
-        /* Base styles */
+        /* =========================================================
+           BAROQUE / TAROT / NEOCLASSICAL EDITORIAL POSTER SYSTEM
+           ========================================================= */
+        :root {
+            --bg-primary: #070709;
+            --bg-secondary: #110e0d;
+            --bg-card: rgba(20, 16, 15, 0.88);
+            --text-main: #e6dfd5;
+            --text-muted: #9e8f7c;
+            --border-ornate: rgba(200, 178, 142, 0.35);
+            --border-strong: #c8b28e;
+            --accent-crimson: #6b1d24;
+            --accent-gold: #c8b28e;
+            --font-title: 'Bodoni Moda', serif;
+            --title-tracking: -0.02em;
+        }
+
+        body.font-mode-tenor {
+            --font-title: 'Tenor Sans', sans-serif;
+            --title-tracking: 0.08em;
+        }
+
+        body.font-mode-syne {
+            --font-title: 'Syne', sans-serif;
+            --title-tracking: -0.03em;
+        }
+
+        .font-serifDisplay {
+            font-family: var(--font-title);
+            letter-spacing: var(--title-tracking);
+            font-optical-sizing: auto;
+        }
+
+        body.light-theme {
+            --bg-primary: #e8e1d5;
+            --bg-secondary: #ded5c7;
+            --bg-card: rgba(244, 239, 230, 0.92);
+            --text-main: #0d0c0b;
+            --text-muted: #594f43;
+            --border-ornate: rgba(13, 12, 11, 0.3);
+            --border-strong: #0d0c0b;
+            --accent-crimson: #7a1c24;
+            --accent-gold: #78603c;
+        }
+
         body {
-            background-color: #e2e4eb;
-            color: #0d0d11;
-            font-family: 'Space Grotesk', sans-serif;
+            background-color: var(--bg-primary);
+            color: var(--text-main);
+            font-family: 'Cormorant Garamond', serif;
             overflow-x: hidden;
             position: relative;
-            transition: background-color 0.3s ease, color 0.3s ease;
+            transition: background-color 0.4s ease, color 0.4s ease;
         }
 
-        /* DARK MODE STYLES */
-        body.dark-theme {
-            background-color: #090a0d !important;
-            color: #f0f2f8 !important;
-        }
-
-        body.dark-theme header {
-            background-color: rgba(9, 10, 13, 0.95) !important;
-            border-color: rgba(255, 255, 255, 0.15) !important;
-        }
-
-        body.dark-theme .header-text-main {
-            color: #ffffff !important;
-        }
-
-        body.dark-theme .header-divider {
-            color: rgba(255, 255, 255, 0.4) !important;
-        }
-
-        body.dark-theme .poster-box {
-            background: rgba(15, 16, 21, 0.85) !important;
-            border-color: rgba(255, 255, 255, 0.15) !important;
-            color: #ffffff !important;
-        }
-
-        body.dark-theme .poster-box h2,
-        body.dark-theme .poster-box h3,
-        body.dark-theme .poster-box h4 {
-            color: #ffffff !important;
-        }
-
-        body.dark-theme .poster-box p {
-            color: #a0a5b5 !important;
-        }
-
-        body.dark-theme .section-title-main {
-            color: #ffffff !important;
-        }
-
-        body.dark-theme .section-border-main {
-            border-color: #ffffff !important;
-        }
-
-        body.dark-theme .tab-nav-btn {
-            background-color: rgba(255, 255, 255, 0.08) !important;
-            color: #ffffff !important;
-            border-color: rgba(255, 255, 255, 0.25) !important;
-        }
-
-        body.dark-theme .tab-nav-btn:hover {
-            background-color: #4956f4 !important;
-            color: #ffffff !important;
-            border-color: #4956f4 !important;
-        }
-
-        body.dark-theme .tab-nav-btn.active {
-            background-color: #4956f4 !important;
-            color: #ffffff !important;
-            border-color: #4956f4 !important;
-        }
-
-        body.dark-theme .poster-input {
-            background-color: #12141c !important;
-            border-color: rgba(255, 255, 255, 0.2) !important;
-            color: #ffffff !important;
-        }
-
-        body.dark-theme .poster-input:focus {
-            border-color: #4956f4 !important;
-            box-shadow: 4px 4px 0px #ffffff !important;
-        }
-
-        body.dark-theme .tag-invert {
-            background-color: #ffffff !important;
-            color: #0b0c10 !important;
-        }
-
-        body.dark-theme .hero-sub-text {
-            color: rgba(255, 255, 255, 0.6) !important;
-        }
-
-        body.dark-theme table {
-            color: #ffffff !important;
-        }
-
-        body.dark-theme tbody {
-            background-color: rgba(15, 16, 21, 0.9) !important;
-        }
-
-        /* Grain Noise */
-        .poster-grain {
+        /* Stardust & Baroque Grain Overlay (like "Destiny and Tears" poster) */
+        .stardust-canvas {
             position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+            inset: 0;
             pointer-events: none;
-            z-index: 90;
+            z-index: 80;
+            background-image: 
+                radial-gradient(rgba(230, 223, 213, 0.18) 1px, transparent 0),
+                radial-gradient(rgba(200, 178, 142, 0.12) 1px, transparent 0),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+            background-size: 50px 50px, 90px 90px, 180px 180px;
+            background-position: 0 0, 25px 25px, 0 0;
         }
 
-        /* Banner & Visual Cuts */
-        .blue-poster-stripe {
-            background: linear-gradient(135deg, rgba(73, 86, 244, 0.95) 0%, rgba(30, 41, 180, 0.9) 100%);
-            box-shadow: 0 10px 40px rgba(73, 86, 244, 0.25);
+        body.light-theme .stardust-canvas {
+            background-image: 
+                radial-gradient(rgba(13, 12, 11, 0.1) 1px, transparent 0),
+                url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E");
         }
 
-        .hextech-divider-blue {
-            height: 4px;
-            background: linear-gradient(90deg, #4956f4 0%, #ff2a4b 50%, #4956f4 100%);
+        /* Header Styling in Dark & Light Modes */
+        header {
+            background-color: rgba(7, 7, 9, 0.94);
+            border-bottom: 1px solid var(--border-ornate);
+            transition: all 0.35s ease;
+        }
+
+        body.light-theme header {
+            background-color: rgba(232, 225, 213, 0.96);
+            border-bottom: 1px solid rgba(13, 12, 11, 0.25);
+        }
+
+        /* Navigation Buttons */
+        .tab-nav-btn {
+            border: 1px solid var(--border-ornate);
+            color: var(--text-main);
+            background: transparent;
+            transition: all 0.25s ease;
+        }
+
+        .tab-nav-btn:hover {
+            border-color: var(--border-strong);
+            background-color: rgba(200, 178, 142, 0.15);
+        }
+
+        .tab-nav-btn.active {
+            background-color: #c8b28e !important;
+            color: #070709 !important;
+            border-color: #c8b28e !important;
+        }
+
+        body.light-theme .tab-nav-btn.active {
+            background-color: #0d0c0b !important;
+            color: #e8e1d5 !important;
+            border-color: #0d0c0b !important;
+        }
+
+        /* Tarot / Elusive Card Frame with Chamfered/Ornate Corners */
+        .tarot-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-ornate);
+            position: relative;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.55);
+        }
+
+        body.light-theme .tarot-card {
+            box-shadow: 0 10px 25px rgba(13, 12, 11, 0.08);
+        }
+
+        /* Inner Hairline Frame like "ELUSIVE" */
+        .tarot-card::before {
+            content: '';
+            position: absolute;
+            inset: 5px;
+            border: 1px solid rgba(200, 178, 142, 0.16);
+            pointer-events: none;
+            transition: border-color 0.35s ease;
+        }
+
+        body.light-theme .tarot-card::before {
+            border-color: rgba(13, 12, 11, 0.15);
+        }
+
+        .tarot-card:hover {
+            border-color: var(--border-strong);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 45px rgba(107, 29, 36, 0.28);
+        }
+
+        .tarot-card:hover::before {
+            border-color: rgba(200, 178, 142, 0.45);
+        }
+
+        /* Crimson Baroque Card Variant */
+        .tarot-card-crimson {
+            background: linear-gradient(160deg, rgba(28, 12, 14, 0.95) 0%, rgba(12, 9, 10, 0.98) 100%);
+            border: 1px solid rgba(158, 42, 53, 0.55);
+            color: #e6dfd5;
+            position: relative;
+            transition: all 0.35s ease;
+        }
+
+        .tarot-card-crimson::before {
+            content: '';
+            position: absolute;
+            inset: 5px;
+            border: 1px solid rgba(200, 178, 142, 0.22);
+            pointer-events: none;
+        }
+
+        .tarot-card-crimson:hover {
+            border-color: #c8b28e;
+            transform: translateY(-4px);
+            box-shadow: 0 20px 45px rgba(158, 42, 53, 0.3);
+        }
+
+        /* Vertical Editorial Text (like "history of antique paintings" in ref 1) */
+        .vertical-editorial {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            letter-spacing: 0.22em;
+        }
+
+        /* Framed Banner like "ELUSIVE" title box */
+        .elusive-banner-frame {
+            border-top: 1px solid var(--border-strong);
+            border-bottom: 1px solid var(--border-strong);
+            position: relative;
+            padding: 1rem 0;
+        }
+        .elusive-banner-frame::before,
+        .elusive-banner-frame::after {
+            content: '✦';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--bg-primary);
+            padding: 0 12px;
+            color: var(--accent-gold);
+            font-size: 12px;
+            line-height: 1;
+        }
+        .elusive-banner-frame::before { top: -7px; }
+        .elusive-banner-frame::after { bottom: -7px; }
+
+        /* Dark Celestial & Tarot Section Divider (Replaces the old neon divider) */
+        .celestial-divider {
+            position: relative;
+            padding: 3.5rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            user-select: none;
+        }
+
+        .celestial-divider .hairline-double {
             width: 100%;
+            height: 5px;
+            border-top: 1px solid var(--border-ornate);
+            border-bottom: 1px solid rgba(200, 178, 142, 0.15);
         }
 
-        .poster-box {
-            background: rgba(220, 223, 233, 0.7);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(13, 13, 17, 0.2);
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+        .celestial-divider .center-medallion {
+            position: absolute;
+            background-color: var(--bg-primary);
+            padding: 0 1.75rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--accent-gold);
         }
 
-        .poster-box:hover {
-            border-color: #4956f4;
-            transform: translateY(-3px);
-            box-shadow: 0 12px 30px rgba(73, 86, 244, 0.15);
+        /* Classical Painting Chiaroscuro Filter */
+        .classical-painting {
+            filter: sepia(35%) contrast(115%) brightness(82%);
+            transition: filter 0.6s ease, transform 0.7s ease;
         }
-
-        .poster-box-dark {
-            background: #0d0e12;
-            color: #f0f2f8;
-            border: 1px solid rgba(255, 255, 255, 0.15);
-            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .poster-box-dark:hover {
-            border-color: #4956f4;
-            box-shadow: 0 10px 30px rgba(73, 86, 244, 0.2);
+        .group:hover .classical-painting {
+            filter: sepia(15%) contrast(120%) brightness(95%);
+            transform: scale(1.04);
         }
 
         /* Tags */
-        .black-tag {
-            background-color: #0b0c10;
-            color: #ffffff;
+        .grimoire-tag {
+            background-color: #c8b28e;
+            color: #070709;
             font-family: 'JetBrains Mono', monospace;
             font-size: 10px;
-            letter-spacing: 0.1em;
-            padding: 2px 8px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            padding: 2px 9px;
             display: inline-block;
             text-transform: uppercase;
         }
 
-        .blue-tag {
-            background-color: #4956f4;
-            color: #ffffff;
+        .crimson-tag {
+            background-color: #6b1d24;
+            color: #e6dfd5;
+            border: 1px solid rgba(200, 178, 142, 0.4);
             font-family: 'JetBrains Mono', monospace;
             font-size: 10px;
-            letter-spacing: 0.1em;
-            padding: 2px 8px;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            padding: 2px 9px;
             display: inline-block;
             text-transform: uppercase;
         }
 
-        .red-tag {
-            background-color: #ff2a4b;
-            color: #ffffff;
+        .obsidian-tag {
+            background-color: #0d0c0b;
+            color: #c8b28e;
+            border: 1px solid rgba(200, 178, 142, 0.35);
             font-family: 'JetBrains Mono', monospace;
             font-size: 10px;
-            letter-spacing: 0.1em;
-            padding: 2px 8px;
+            letter-spacing: 0.14em;
+            padding: 2px 9px;
             display: inline-block;
             text-transform: uppercase;
         }
 
-        /* Glitch text effect */
-        .glitch-text {
-            position: relative;
-            display: inline-block;
-        }
-        .glitch-text::before {
-            content: attr(data-text);
-            position: absolute;
-            left: -2px;
-            text-shadow: 2px 0 #4956f4;
-            background: transparent;
-            overflow: hidden;
-            clip: rect(0, 900px, 0, 0);
-            animation: noise-anim-2 3s infinite linear alternate-reverse;
-        }
-
-        @keyframes noise-anim-2 {
-            0% { clip: rect(12px, 9999px, 80px, 0); }
-            20% { clip: rect(40px, 9999px, 10px, 0); }
-            40% { clip: rect(70px, 9999px, 50px, 0); }
-            60% { clip: rect(20px, 9999px, 90px, 0); }
-            80% { clip: rect(60px, 9999px, 30px, 0); }
-            100% { clip: rect(10px, 9999px, 85px, 0); }
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #e2e4eb; }
-        body.dark-theme ::-webkit-scrollbar-track { background: #090a0d; }
-        ::-webkit-scrollbar-thumb { background: #0b0c10; }
-        body.dark-theme ::-webkit-scrollbar-thumb { background: #4956f4; }
-        ::-webkit-scrollbar-thumb:hover { background: #ff2a4b; }
-
-        /* Form Inputs */
-        .poster-input {
-            background-color: #ffffff;
-            border: 2px solid #0b0c10;
-            color: #0d0d11;
+        /* Inputs */
+        .grimoire-input {
+            background-color: rgba(10, 9, 12, 0.85);
+            border: 1px solid var(--border-ornate);
+            color: var(--text-main);
             font-family: 'JetBrains Mono', monospace;
             padding: 0.75rem 1rem;
             outline: none;
-            transition: all 0.2s ease;
+            transition: all 0.25s ease;
             width: 100%;
         }
-        .poster-input:focus {
-            border-color: #4956f4;
-            box-shadow: 4px 4px 0px #0b0c10;
+
+        body.light-theme .grimoire-input {
+            background-color: #ffffff;
+            border-color: rgba(13, 12, 11, 0.4);
+            color: #0d0c0b;
         }
 
-        /* Scroll Reveal Animation Utility */
+        .grimoire-input:focus {
+            border-color: #c8b28e;
+            box-shadow: 0 0 0 1px #c8b28e, 4px 4px 0px rgba(107, 29, 36, 0.6);
+        }
+
+        /* Scroll Reveal Animation */
         .reveal-block {
             opacity: 0;
             transform: translateY(24px);
-            filter: blur(6px);
-            transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1), filter 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            filter: blur(4px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .reveal-block.active {
@@ -284,555 +357,852 @@
             transform: translateY(0);
             filter: blur(0);
         }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #070709; }
+        ::-webkit-scrollbar-thumb { background: #6b1d24; border: 1px solid #c8b28e; }
     </style>
 </head>
-<body class="selection:bg-poster-blue selection:text-white">
+<body class="selection:bg-grimoire-crimson selection:text-grimoire-parchment">
 
-    <div class="poster-grain"></div>
+    <!-- Stardust & Subtle Antique Grain Overlay -->
+    <div class="stardust-canvas"></div>
 
-    <!-- NAVIGATION HEADER DYNAMIC THEMED -->
-    <header class="fixed top-0 left-0 w-full z-50 bg-poster-bg/95 backdrop-blur-md border-b border-black/15 font-mono text-[11px] tracking-wider py-3 px-4 sm:px-8 transition-colors duration-300">
+    <!-- ========================================================= -->
+    <!-- NAVIGATION HEADER (BAROQUE / EDITORIAL SERIAL BAR)        -->
+    <!-- ========================================================= -->
+    <header class="fixed top-0 left-0 w-full z-50 backdrop-blur-md font-mono text-[11px] tracking-wider py-3 px-4 sm:px-8">
         <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-3">
             
-            <!-- LOGO BRAND -->
-            <a href="#" onclick="switchTab('inicio')" class="flex items-center space-x-3 header-text-main text-poster-textMain hover:text-poster-blue transition-colors">
-                <span class="font-extrabold tracking-widest uppercase font-tech text-2xl text-poster-blue">BLANK</span>
-                <span class="header-divider text-black/30">//</span>
-                <span class="black-tag tag-invert">[HUB 2026]</span>
+            <!-- LOGO BRAND WITH DIAMOND NUMERAL -->
+            <a href="#" onclick="switchTab('inicio'); return false;" class="flex items-center space-x-3 group">
+                <div class="w-7 h-7 border border-grimoire-gold rotate-45 flex items-center justify-center group-hover:bg-grimoire-crimson transition-colors">
+                    <span class="-rotate-45 text-[10px] font-serifDisplay font-bold text-grimoire-gold">XVII</span>
+                </div>
+                <span class="font-serifDisplay font-black tracking-widest uppercase text-xl sm:text-2xl">BLANK</span>
+                <span class="opacity-40">//</span>
+                <span class="obsidian-tag">[GRIMOIRE 2026]</span>
             </a>
 
-            <!-- MAIN PAGES TABS (CON VACANTES INDEPENDIENTE) -->
-            <nav class="flex items-center space-x-1 sm:space-x-2 font-mono text-xs overflow-x-auto py-1">
-                <button onclick="switchTab('inicio')" id="nav-inicio" class="tab-nav-btn active px-3 py-1.5 border border-black text-black font-bold uppercase transition-all flex items-center space-x-1.5">
-                    <i class="fa-solid fa-house text-[10px]"></i>
-                    <span>Inicio</span>
+            <!-- 6 INDEPENDENT NAVIGATION TABS -->
+            <nav class="flex items-center space-x-1 sm:space-x-1.5 font-mono text-[11px] overflow-x-auto py-1">
+                <button onclick="switchTab('inicio')" id="nav-inicio" class="tab-nav-btn active px-3 py-1.5 font-bold uppercase flex items-center space-x-1.5">
+                    <span>✦ Inicio</span>
                 </button>
 
-                <button onclick="switchTab('vacancies')" id="nav-vacancies" class="tab-nav-btn px-3 py-1.5 bg-black/5 border border-black/30 text-black hover:bg-black hover:text-white font-bold uppercase transition-all flex items-center space-x-1.5">
-                    <i class="fa-solid fa-briefcase text-[10px]"></i>
+                <button onclick="switchTab('rosters')" id="nav-rosters" class="tab-nav-btn px-3 py-1.5 font-bold uppercase flex items-center space-x-1.5">
+                    <span>Rosters</span>
+                </button>
+
+                <button onclick="switchTab('vacancies')" id="nav-vacancies" class="tab-nav-btn px-3 py-1.5 font-bold uppercase flex items-center space-x-1.5">
                     <span>Vacantes</span>
                 </button>
-                
-                <a href="#academy" onclick="switchTab('inicio')" class="tab-nav-btn px-3 py-1.5 bg-black/5 border border-black/30 text-black hover:bg-black hover:text-white font-bold uppercase transition-all flex items-center space-x-1.5">
-                    <i class="fa-solid fa-users text-[10px]"></i>
-                    <span>Rosters</span>
-                </a>
 
-                <button onclick="switchTab('tryouts')" id="nav-tryouts" class="tab-nav-btn px-3 py-1.5 bg-black/5 border border-black/30 text-black hover:bg-black hover:text-white font-bold uppercase transition-all flex items-center space-x-1.5">
-                    <i class="fa-solid fa-id-card text-[10px]"></i>
+                <button onclick="switchTab('tryouts')" id="nav-tryouts" class="tab-nav-btn px-3 py-1.5 font-bold uppercase flex items-center space-x-1.5">
                     <span>Tryouts</span>
                 </button>
 
-                <button onclick="switchTab('gallery')" id="nav-gallery" class="tab-nav-btn px-3 py-1.5 bg-black/5 border border-black/30 text-black hover:bg-black hover:text-white font-bold uppercase transition-all flex items-center space-x-1.5">
-                    <i class="fa-solid fa-photo-film text-[10px]"></i>
+                <button onclick="switchTab('gallery')" id="nav-gallery" class="tab-nav-btn px-3 py-1.5 font-bold uppercase flex items-center space-x-1.5">
                     <span>Galería</span>
                 </button>
 
-                <button onclick="switchTab('ranking')" id="nav-ranking" class="tab-nav-btn px-3 py-1.5 bg-black/5 border border-black/30 text-black hover:bg-black hover:text-white font-bold uppercase transition-all flex items-center space-x-1.5">
-                    <i class="fa-solid fa-trophy text-[10px]"></i>
+                <button onclick="switchTab('ranking')" id="nav-ranking" class="tab-nav-btn px-3 py-1.5 font-bold uppercase flex items-center space-x-1.5">
                     <span>Ranking</span>
                 </button>
             </nav>
 
-            <!-- CALL TO ACTION & DARK/LIGHT TOGGLE -->
-            <div class="flex items-center space-x-3 text-[10px] uppercase font-bold">
-                <!-- THEME TOGGLE BUTTON -->
-                <button onclick="toggleTheme()" id="themeToggleBtn" title="Alternar Modo Claro / Oscuro" class="px-3 py-1.5 bg-black text-white hover:bg-poster-blue transition-all flex items-center space-x-2 border border-black">
-                    <i id="themeIcon" class="fa-solid fa-moon"></i>
-                    <span id="themeText">NIGHT MODE</span>
+            <!-- FONT SELECTOR, THEME TOGGLE & CTA -->
+            <div class="flex items-center space-x-2 text-[10px] uppercase font-bold">
+                <!-- Selector de Tipografía para Títulos -->
+                <button onclick="cycleTitleFont()" id="fontToggleBtn" title="Cambiar Tipografía de Títulos (Bodoni Editorial / Tenor Neoclásica / Syne Brutalist)" class="px-2.5 py-1.5 border border-grimoire-gold/60 hover:bg-grimoire-gold hover:text-black transition-all flex items-center space-x-1.5">
+                    <i class="fa-solid fa-font text-grimoire-gold"></i>
+                    <span id="fontModeLabel">FONT: BODONI</span>
                 </button>
 
-                <div class="hidden xl:flex items-center space-x-3">
-                    <span class="header-divider text-black/20">|</span>
-                    <button onclick="switchTab('tryouts')" class="px-3 py-1.5 bg-poster-accentRed text-white hover:bg-black transition-all">
-                        APPLY NOW ↘
-                    </button>
-                </div>
+                <button onclick="toggleTheme()" id="themeToggleBtn" title="Alternar Modo Oscuro / Pergamino" class="px-3 py-1.5 border border-grimoire-gold/60 hover:bg-grimoire-gold hover:text-black transition-all flex items-center space-x-2">
+                    <i id="themeIcon" class="fa-solid fa-sun text-grimoire-gold"></i>
+                    <span id="themeText">PERGAMINO</span>
+                </button>
+
+                <button onclick="switchTab('tryouts')" class="hidden sm:inline-block px-3.5 py-1.5 bg-grimoire-crimson text-grimoire-parchment border border-grimoire-gold/50 hover:bg-grimoire-gold hover:text-black transition-all">
+                    POSTULAR ↘
+                </button>
             </div>
         </div>
     </header>
 
-    <!-- MAIN CONTAINER WITH TABS -->
-    <main class="pt-20 min-h-screen">
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="pt-20 min-h-screen relative z-10">
 
-        <!-- ========================================== -->
-        <!-- PÁGINA PRINCIPAL / TAB 1: INICIO & ROSTERS -->
-        <!-- ========================================== -->
+        <!-- ========================================================= -->
+        <!-- TAB 1: INICIO (NEOCLASSICAL POSTER HERO + NOTICIAS)       -->
+        <!-- ========================================================= -->
         <div id="tab-inicio-content" class="transition-opacity duration-300">
             
-            <!-- HERO SECTION -->
-            <section id="hero" class="relative pt-12 pb-16 min-h-[85vh] flex flex-col justify-between border-b section-border-main border-black/15">
-                <div class="absolute top-20 left-6 font-mono text-[9px] hero-sub-text text-black/40 space-y-1 pointer-events-none hidden md:block">
-                    <div>ДЕЛАЮ ЧТО Я ХОЧУ</div>
-                    <div>[ДАННЫЕ УДАЛЕНЫ]</div>
-                    <div>STATUS: UNTOUCHABLE</div>
-                </div>
-                <div class="absolute top-20 right-6 font-mono text-[9px] hero-sub-text text-black/40 text-right space-y-1 pointer-events-none hidden md:block">
-                    <div>SERIAL NO. 000-BLANK-2026</div>
-                    <div>[ECLIPSED // LAST KNIGHTS]</div>
-                    <div>NO COMPROMISE</div>
-                </div>
+            <!-- BAROQUE / CELESTIAL HERO POSTER -->
+            <section id="hero" class="relative pt-8 pb-14">
+                <div class="max-w-7xl mx-auto px-4 sm:px-8">
 
-                <div class="max-w-7xl mx-auto w-full px-4 sm:px-8 relative z-10 my-auto">
-                    <!-- HEADER BAR -->
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b-2 section-border-main border-black pb-4 mb-8">
-                        <div>
-                            <div class="black-tag tag-invert mb-2">[OFFICIAL ESPORTS PLATFORM]</div>
-                            <h1 class="font-tech text-6xl sm:text-8xl lg:text-9xl font-black section-title-main text-black tracking-tighter uppercase leading-none">
-                                BLANK
-                            </h1>
+                    <!-- TOP EDITORIAL METADATA BAR (Inspired by "G.RAFF + 13/50 + 112323" & 5 Stars) -->
+                    <div class="flex flex-wrap items-center justify-between border-t border-b border-grimoire-gold/40 py-2.5 mb-8 font-mono text-xs tracking-widest">
+                        <div class="flex items-center space-x-3">
+                            <span class="italic font-editorial text-base tracking-normal">B.LANK</span>
+                            <span>+</span>
+                            <span class="px-2.5 py-0.5 bg-grimoire-gold text-black font-bold rounded-full text-[11px]">17/50</span>
+                            <span>+</span>
+                            <span class="opacity-80">202607</span>
                         </div>
-                        <div class="mt-4 md:mt-0 font-mono text-right">
-                            <div class="text-xs font-bold text-poster-blue tracking-widest uppercase">LEAGUE OF LEGENDS DIVISION</div>
-                            <div class="text-[10px] hero-sub-text text-poster-textMuted uppercase mt-1">HIGH PERFORMANCE ACADEMY & MAIN TEAM</div>
+
+                        <!-- 5 Brutalist Stars from "The Limits of Love" reference -->
+                        <div class="hidden md:flex items-center space-x-4 text-grimoire-gold text-sm tracking-[0.4em]">
+                            <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
+                        </div>
+
+                        <div class="text-[10px] uppercase tracking-widest opacity-75">
+                            [HIGH PERFORMANCE DIVISION // LOL]
                         </div>
                     </div>
 
-                    <!-- MAIN POSTER GRAPHIC HERO BOX -->
-                    <div class="relative w-full my-8 py-14 px-6 sm:px-12 blue-poster-stripe text-white overflow-hidden shadow-2xl rounded-none border border-black/20 reveal-block active">
-                        <div class="absolute inset-0 opacity-15 pointer-events-none font-tech font-black text-[120px] sm:text-[200px] leading-none text-white select-none overflow-hidden whitespace-nowrap">
-                            NO HYPE // JUST POWER // BLANK ESPORTS
-                        </div>
+                    <!-- ASYMMETRIC POSTER COMPOSITION ("THE SWING" + "DESTINY AND TEARS" + "ELUSIVE") -->
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
 
-                        <div class="relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto space-y-6">
-                            <div class="inline-block px-3 py-1 bg-black text-white font-mono text-xs font-bold tracking-widest uppercase">
-                                [ SYSTEM OVERRIDE // 2026 ]
+                        <!-- LEFT COLUMN: NEOCLASSICAL ART COLLAGE & CELESTIAL MEDALLION (5 COLS) -->
+                        <div class="lg:col-span-5 tarot-card p-6 flex flex-col justify-between relative overflow-hidden group">
+                            
+                            <!-- Corner Four-Point Stars -->
+                            <div class="flex justify-between items-center text-grimoire-gold/70 text-xs mb-4">
+                                <span>✦</span>
+                                <div class="w-8 h-8 bg-grimoire-crimson border border-grimoire-gold/60 rotate-45 flex items-center justify-center">
+                                    <span class="-rotate-45 font-editorial font-bold text-sm text-grimoire-parchment">17</span>
+                                </div>
+                                <span>✦</span>
                             </div>
 
-                            <h2 class="font-tech text-3xl sm:text-6xl font-black tracking-tight uppercase leading-tight italic glitch-text" data-text="BLANK: HIGH PERFORMANCE DIVISION">
-                                BLANK: HIGH PERFORMANCE DIVISION
-                            </h2>
+                            <!-- Central Classical Painting Vignette with Sunburst Rays SVG -->
+                            <div class="relative my-auto py-6 flex items-center justify-center">
+                                <!-- Radial Sunburst Rays SVG (from "Destiny and Tears") -->
+                                <svg class="absolute w-72 h-72 sm:w-80 sm:h-80 text-grimoire-gold/30 animate-[spin_90s_linear_infinite]" viewBox="0 0 200 200" fill="none">
+                                    <g stroke="currentColor" stroke-width="0.6">
+                                        <line x1="100" y1="0" x2="100" y2="200" />
+                                        <line x1="0" y1="100" x2="200" y2="100" />
+                                        <line x1="29" y1="29" x2="171" y2="171" />
+                                        <line x1="171" y1="29" x2="29" y2="171" />
+                                        <line x1="62" y1="8" x2="138" y2="192" />
+                                        <line x1="8" y1="62" x2="192" y2="138" />
+                                        <line x1="138" y1="8" x2="62" y2="192" />
+                                        <line x1="8" y1="138" x2="192" y2="62" />
+                                    </g>
+                                    <circle cx="100" cy="100" r="68" stroke="currentColor" stroke-width="0.75" stroke-dasharray="3 3"/>
+                                    <circle cx="100" cy="100" r="56" stroke="currentColor" stroke-width="1"/>
+                                </svg>
 
-                            <p class="font-mono text-xs sm:text-sm text-white/90 max-w-2xl leading-relaxed uppercase tracking-wider">
-                                Estructura competitiva de élite. Dominio metódico del mapa, disciplina táctica y superioridad individual en League of Legends.
-                            </p>
+                                <!-- Circular Masked Classical Artwork -->
+                                <div class="relative w-56 h-56 sm:w-64 sm:h-64 rounded-full overflow-hidden border-2 border-grimoire-gold/80 shadow-2xl z-10">
+                                    <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=900&q=80" 
+                                         onerror="this.src='https://placehold.co/600x600/120e0d/c8b28e?text=BLANK+XVII'"
+                                         alt="Baroque Classical Art" 
+                                         class="w-full h-full object-cover classical-painting">
+                                    <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30"></div>
+                                </div>
 
-                            <div class="flex flex-wrap justify-center gap-3 pt-4 font-mono text-xs">
-                                <span class="bg-white text-black px-3 py-1 font-bold">[LAST KNIGHTS ACADEMY]</span>
-                                <span class="bg-black text-poster-blue px-3 py-1 font-bold border border-poster-blue">[BLANK: ECLIPSED]</span>
-                                <span class="bg-poster-accentRed text-white px-3 py-1 font-bold">[BLANK: KORE]</span>
+                                <!-- Hanging Celestial Starburst (like "Elusive" left panel) -->
+                                <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center">
+                                    <div class="w-px h-8 bg-grimoire-gold/80"></div>
+                                    <span class="text-grimoire-gold text-2xl leading-none">✴</span>
+                                </div>
+                            </div>
+
+                            <!-- Micro-Editorial Mythological Quote (from "Destiny and Tears") -->
+                            <div class="mt-6 pt-4 border-t border-grimoire-gold/25 flex justify-between items-end font-mono text-[10px] opacity-80">
+                                <div class="max-w-[230px] leading-relaxed">
+                                    "The greatest slayers of monsters, divine Corinthian heroes of competitive dominance."
+                                </div>
+                                <span class="text-grimoire-gold font-bold">[ARCANA // I]</span>
                             </div>
                         </div>
+
+                        <!-- RIGHT COLUMN: MONUMENTAL TYPOGRAPHY & ELUSIVE FRAME (7 COLS) -->
+                        <div class="lg:col-span-7 tarot-card p-6 sm:p-10 flex flex-col justify-between relative">
+                            
+                            <!-- Top Row of 4 Eight-Pointed Stars & Vertical Sidebar Text -->
+                            <div class="flex justify-between items-start gap-4 border-b border-grimoire-gold/30 pb-6">
+                                <div class="space-y-2">
+                                    <span class="crimson-tag">[DOMINIO COMPETITIVO // LOL]</span>
+                                    <p class="font-mono text-[10px] uppercase tracking-widest opacity-70">
+                                        DISCIPLINA TÁCTICA • CONTROL DE TEMPO • EJECUCIÓN ABSOLUTA
+                                    </p>
+                                </div>
+                                <div class="flex items-center space-x-3 text-grimoire-gold text-xl">
+                                    <span>✴</span><span>✴</span><span>✴</span><span>✴</span>
+                                </div>
+                            </div>
+
+                            <!-- Center "THE LIMITS OF LOVE / ELUSIVE" Monumental Title Block -->
+                            <div class="my-8">
+                                <div class="text-xs font-mono uppercase tracking-[0.35em] text-grimoire-gold mb-2">
+                                    JEAN-HONORÉ // PROTOCOLO DE ÉLITE
+                                </div>
+
+                                <div class="elusive-banner-frame my-3 text-center">
+                                    <h1 class="font-serifDisplay text-5xl sm:text-7xl lg:text-8xl font-bold uppercase leading-none">
+                                        BLANK
+                                    </h1>
+                                </div>
+
+                                <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mt-4">
+                                    <h2 class="font-tenor uppercase tracking-[0.22em] text-lg sm:text-2xl text-grimoire-gold">
+                                        DESTINY AND TEARS
+                                    </h2>
+                                    <span class="font-mono text-[11px] uppercase tracking-widest opacity-75">
+                                        [ ECLIPSED • LAST KNIGHTS • KORE ]
+                                    </span>
+                                </div>
+
+                                <p class="mt-5 font-editorial text-lg sm:text-xl leading-relaxed opacity-90 max-w-2xl">
+                                    En la búsqueda de lo intangible, empuñamos la estrategia como arte clásico. Tres divisiones de alto rendimiento forjadas bajo el rigor competitivo de League of Legends.
+                                </p>
+                            </div>
+
+                            <!-- Squad Tags & Wireframe Globe Motifs -->
+                            <div class="pt-5 border-t border-grimoire-gold/30 flex flex-wrap items-center justify-between gap-3 font-mono text-xs">
+                                <div class="flex flex-wrap gap-2">
+                                    <button onclick="openRosterSection('academy')" class="px-3 py-1.5 border border-grimoire-gold/60 hover:bg-grimoire-gold hover:text-black transition-all uppercase font-bold">
+                                        ✦ LAST KNIGHTS
+                                    </button>
+                                    <button onclick="openRosterSection('eclipsed')" class="px-3 py-1.5 border border-grimoire-gold/60 hover:bg-grimoire-gold hover:text-black transition-all uppercase font-bold">
+                                        ✦ ECLIPSED
+                                    </button>
+                                    <button onclick="openRosterSection('kore')" class="px-3 py-1.5 bg-grimoire-crimson text-grimoire-parchment border border-grimoire-gold/40 hover:bg-grimoire-gold hover:text-black transition-all uppercase font-bold">
+                                        ✦ KORE
+                                    </button>
+                                </div>
+                                <div class="flex items-center space-x-2 text-grimoire-gold text-xs">
+                                    <i class="fa-solid fa-globe opacity-75"></i>
+                                    <span class="text-[10px] tracking-widest">OPACITY = 1000%</span>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
 
-                    <!-- HERO QUICK LINKS -->
-                    <div class="grid grid-cols-1 sm:grid-cols-4 gap-4 mt-8 font-mono text-xs font-bold">
-                        <button onclick="switchTab('vacancies')" class="p-4 bg-poster-blue text-white hover:bg-black transition-all flex items-center justify-between uppercase">
-                            <span>01 // VACANTES MAIN</span>
-                            <span>↘</span>
+                    <!-- QUICK ACCESS BUTTONS FOR TEAMS & VACANCIES (4 TAROT PILLS) -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8 font-mono text-xs">
+                        <button onclick="switchTab('vacancies')" class="tarot-card p-5 text-left flex items-center justify-between group">
+                            <div>
+                                <div class="text-[10px] text-grimoire-gold tracking-widest">ARCANA I // OPEN</div>
+                                <div class="font-serifDisplay text-base font-bold mt-1 group-hover:text-grimoire-gold transition-colors">VACANTES MAIN</div>
+                            </div>
+                            <span class="text-lg text-grimoire-gold group-hover:translate-x-1 transition-transform">↘</span>
                         </button>
-                        <a href="#academy" class="p-4 bg-black text-white hover:bg-poster-blue transition-all flex items-center justify-between uppercase">
-                            <span>02 // LAST KNIGHTS</span>
-                            <span>↘</span>
-                        </a>
-                        <a href="#eclipsed" class="p-4 bg-poster-darkCard text-white hover:bg-poster-blue transition-all flex items-center justify-between uppercase border border-black/20">
-                            <span>03 // ECLIPSED</span>
-                            <span>↘</span>
-                        </a>
-                        <a href="#kore" class="p-4 bg-poster-accentRed text-white hover:bg-black transition-all flex items-center justify-between uppercase">
-                            <span>04 // KORE DIVISION</span>
-                            <span>↘</span>
-                        </a>
-                    </div>
-                </div>
 
-                <div class="max-w-7xl mx-auto w-full px-4 sm:px-8 pt-8 flex flex-wrap justify-between items-center text-[10px] font-mono hero-sub-text text-poster-textMuted border-t border-black/10 gap-2">
-                    <div>[OPACITY = 1000%]</div>
-                    <div class="font-bold section-title-main">BLANK ESPORTS © 2026</div>
+                        <button onclick="openRosterSection('academy')" class="tarot-card p-5 text-left flex items-center justify-between group">
+                            <div>
+                                <div class="text-[10px] text-grimoire-gold tracking-widest">ARCANA II // SQUAD</div>
+                                <div class="font-serifDisplay text-base font-bold mt-1 group-hover:text-grimoire-gold transition-colors">LAST KNIGHTS</div>
+                            </div>
+                            <span class="text-lg text-grimoire-gold group-hover:translate-x-1 transition-transform">↘</span>
+                        </button>
+
+                        <button onclick="openRosterSection('eclipsed')" class="tarot-card p-5 text-left flex items-center justify-between group">
+                            <div>
+                                <div class="text-[10px] text-grimoire-gold tracking-widest">ARCANA III // SQUAD</div>
+                                <div class="font-serifDisplay text-base font-bold mt-1 group-hover:text-grimoire-gold transition-colors">ECLIPSED</div>
+                            </div>
+                            <span class="text-lg text-grimoire-gold group-hover:translate-x-1 transition-transform">↘</span>
+                        </button>
+
+                        <button onclick="openRosterSection('kore')" class="tarot-card-crimson p-5 text-left flex items-center justify-between group">
+                            <div>
+                                <div class="text-[10px] text-grimoire-gold tracking-widest">ARCANA IV // SQUAD</div>
+                                <div class="font-serifDisplay text-base font-bold mt-1 group-hover:text-grimoire-gold transition-colors">KORE DIVISION</div>
+                            </div>
+                            <span class="text-lg text-grimoire-gold group-hover:translate-x-1 transition-transform">↘</span>
+                        </button>
+                    </div>
+
                 </div>
             </section>
 
-            <div class="hextech-divider-blue"></div>
+            <!-- DARK CELESTIAL / TAROT ORNAMENTAL DIVIDER -->
+            <div class="celestial-divider max-w-7xl mx-auto px-4 sm:px-8">
+                <div class="hairline-double"></div>
+                <div class="center-medallion font-mono text-xs tracking-[0.3em]">
+                    <span>✦</span>
+                    <span class="text-[10px] uppercase">CHRONICLES &amp; DECREES</span>
+                    <span>✴</span>
+                    <span class="text-[10px] uppercase">XVII</span>
+                    <span>✦</span>
+                </div>
+            </div>
 
-            <!-- SECTION 1: LAST KNIGHTS ACADEMY ROSTER -->
-            <section id="academy" class="py-20 border-b section-border-main border-black/15 relative reveal-block">
+            <!-- ========================================================= -->
+            <!-- APARTADO DE NOTICIAS Y AVISOS (DEBAJO DE LOS BOTONES)     -->
+            <!-- ========================================================= -->
+            <section id="noticias-avisos" class="pb-20 pt-4 relative reveal-block active">
                 <div class="max-w-7xl mx-auto px-4 sm:px-8">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 pb-6 border-b-2 section-border-main border-black">
+                    
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 pb-4 border-b border-grimoire-gold/40">
                         <div>
                             <div class="flex items-center space-x-2 mb-2">
-                                <span class="black-tag tag-invert">[DIVISION 01]</span>
-                                <span class="text-xs font-mono text-poster-blue font-bold tracking-widest">// ACADEMY ROSTER</span>
+                                <span class="crimson-tag">[BOLETÍN OFICIAL // GRIMOIRE]</span>
+                                <span class="text-xs font-mono text-grimoire-gold tracking-widest">// CRÓNICAS DE LA ORDEN</span>
                             </div>
-                            <h2 class="font-tech text-3xl sm:text-5xl font-black section-title-main text-black uppercase tracking-tight">
+                            <h2 class="font-serifDisplay text-3xl sm:text-5xl font-black uppercase tracking-tight">
+                                NOTICIAS Y AVISOS
+                            </h2>
+                        </div>
+                        <div class="mt-4 md:mt-0 font-mono text-xs opacity-75">
+                            [EDICIÓN XI // 2026] <span class="text-grimoire-gold font-bold">★ ★ ★ ★ ★</span>
+                        </div>
+                    </div>
+
+                    <!-- NEWS TAROT CARDS GRID -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        
+                        <!-- NOTICIA 1: CAMBIOS OFICIALES EN LAST KNIGHTS -->
+                        <article class="tarot-card p-7 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-center mb-5 font-mono text-[10px]">
+                                    <span class="grimoire-tag">[DECRETO I // ROSTER]</span>
+                                    <span class="text-grimoire-gold">✦ NOV 2026</span>
+                                </div>
+                                <h3 class="font-serifDisplay text-xl sm:text-2xl font-bold uppercase leading-snug mb-3">
+                                    ASCENSO DE UCHIHA Y DEBUT DE MIFULAFU EN LAST KNIGHTS
+                                </h3>
+                                <p class="font-editorial text-lg leading-relaxed opacity-90 mb-5">
+                                    La cámara táctica de <strong>Last Knights Academy</strong> oficializa su nueva alineación titular: <strong>Uchiha</strong> asciende de suplente a <strong>Toplaner Titular</strong> (Diamante) e incorporamos a <strong>Mifulafu</strong> como nuevo <strong>Jungla Titular</strong> (Diamante).
+                                </p>
+                                <div class="p-3.5 bg-black/40 border border-grimoire-gold/30 font-mono text-[11px] space-y-1.5 mb-6">
+                                    <div><span class="text-grimoire-gold font-bold">✦ TOP TITULAR:</span> Uchiha (Diamante)</div>
+                                    <div><span class="text-grimoire-gold font-bold">✦ JGL TITULAR:</span> Mifulafu (Diamante)</div>
+                                    <div><span class="text-grimoire-crimsonBright font-bold">✦ SUPLENTES:</span> Kemez pasa a reserva junto a Nyfer</div>
+                                </div>
+                            </div>
+                            <button onclick="openRosterSection('academy')" class="w-full py-3 border border-grimoire-gold/60 hover:bg-grimoire-gold hover:text-black transition-all font-mono text-xs font-bold uppercase">
+                                INSPECCIONAR LAST KNIGHTS ↗
+                            </button>
+                        </article>
+
+                        <!-- NOTICIA 2: VACANTES MAIN ROSTER -->
+                        <article class="tarot-card-crimson p-7 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-center mb-5 font-mono text-[10px]">
+                                    <span class="crimson-tag">[DECRETO II // RECLUTAMIENTO]</span>
+                                    <span class="text-grimoire-gold">✴ PRIORIDAD</span>
+                                </div>
+                                <h3 class="font-serifDisplay text-xl sm:text-2xl font-bold uppercase leading-snug mb-3">
+                                    APERTURA DE VACANTES: BLANK MAIN ROSTER
+                                </h3>
+                                <p class="font-editorial text-lg leading-relaxed opacity-90 mb-5">
+                                    Buscamos a los cinco estandartes principales y al estratega en jefe (<strong>Head Coach</strong>) para nuestra primera división. Se exige rango <strong>Challenger / High GrandMaster</strong> y disciplina absoluta en bloques de entrenamiento.
+                                </p>
+                                <div class="p-3.5 bg-black/40 border border-grimoire-gold/30 font-mono text-[11px] space-y-1.5 mb-6">
+                                    <div><span class="text-grimoire-gold font-bold">✦ RANGO:</span> Challenger 800+ LP / GM</div>
+                                    <div><span class="text-grimoire-gold font-bold">✦ PLAZAS:</span> Coach, Top, Jgl, Mid, ADC, Supp</div>
+                                    <div><span class="text-grimoire-gold font-bold">✦ PROTOCOLO:</span> Pruebas vía Tryouts 2026</div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3 font-mono text-xs">
+                                <button onclick="switchTab('vacancies')" class="py-3 border border-grimoire-gold/60 hover:bg-grimoire-gold hover:text-black transition-all font-bold uppercase">
+                                    VACANTES
+                                </button>
+                                <button onclick="switchTab('tryouts')" class="py-3 bg-grimoire-gold text-black hover:bg-white transition-all font-bold uppercase">
+                                    POSTULAR ↘
+                                </button>
+                            </div>
+                        </article>
+
+                        <!-- NOTICIA 3: ARCHIVO DE REPLAYS Y RANKING -->
+                        <article class="tarot-card p-7 flex flex-col justify-between">
+                            <div>
+                                <div class="flex justify-between items-center mb-5 font-mono text-[10px]">
+                                    <span class="obsidian-tag">[DECRETO III // ARCHIVOS]</span>
+                                    <span class="text-grimoire-gold">✦ SISTEMA ACTIVO</span>
+                                </div>
+                                <h3 class="font-serifDisplay text-xl sm:text-2xl font-bold uppercase leading-snug mb-3">
+                                    CLASIFICACIÓN RIOT ID Y BÓVEDA DE REPLAYS
+                                </h3>
+                                <p class="font-editorial text-lg leading-relaxed opacity-90 mb-5">
+                                    Los miembros de <strong>Eclipsed</strong>, <strong>Kore</strong> y <strong>Last Knights</strong> ya pueden enlazar su perfil competitivo de Riot Games para figurar en el Leaderboard oficial y preservar sus mejores jugadas en la Galería.
+                                </p>
+                                <div class="p-3.5 bg-black/40 border border-grimoire-gold/30 font-mono text-[11px] space-y-1.5 mb-6">
+                                    <div><span class="text-grimoire-gold font-bold">✦ RANKING:</span> Registro directo de LP y Winrate</div>
+                                    <div><span class="text-grimoire-gold font-bold">✦ GALERÍA:</span> Highlights, VODs y Teamfights</div>
+                                    <div><span class="text-grimoire-gold font-bold">✦ ESTÉTICA:</span> Modo Obsidiana / Pergamino</div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-2 gap-3 font-mono text-xs">
+                                <button onclick="switchTab('ranking')" class="py-3 border border-grimoire-gold/60 hover:bg-grimoire-gold hover:text-black transition-all font-bold uppercase">
+                                    RANKING
+                                </button>
+                                <button onclick="switchTab('gallery')" class="py-3 border border-grimoire-gold/60 hover:bg-grimoire-gold hover:text-black transition-all font-bold uppercase">
+                                    GALERÍA
+                                </button>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ========================================================= -->
+        <!-- TAB 2: ROSTERS (DEDICATED PAGE WITH DARK CELESTIAL CUTS)  -->
+        <!-- ========================================================= -->
+        <div id="tab-rosters-content" class="hidden transition-opacity duration-300">
+            
+            <!-- ROSTERS HEADER -->
+            <section class="pt-8 pb-10">
+                <div class="max-w-7xl mx-auto px-4 sm:px-8">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-grimoire-gold/40 pb-6 mb-8">
+                        <div>
+                            <div class="grimoire-tag mb-2">[ORDEN DE COMBATE // SQUADS 2026]</div>
+                            <h1 class="font-serifDisplay text-4xl sm:text-6xl font-black uppercase tracking-tight">
+                                ROSTERS OFICIALES
+                            </h1>
+                        </div>
+                        <div class="mt-4 md:mt-0 font-mono text-right text-xs">
+                            <div class="text-grimoire-gold font-bold tracking-widest">★ ★ ★ ★ ★</div>
+                            <div class="text-[10px] opacity-75 uppercase mt-1">LAST KNIGHTS • ECLIPSED • KORE • BENCH</div>
+                        </div>
+                    </div>
+
+                    <!-- QUICK NAVIGATION PILLS -->
+                    <div class="flex flex-wrap gap-3 font-mono text-xs">
+                        <a href="#academy" class="px-4 py-2 border border-grimoire-gold/60 hover:bg-grimoire-gold hover:text-black transition-all font-bold uppercase">I // LAST KNIGHTS ACADEMY</a>
+                        <a href="#eclipsed" class="px-4 py-2 border border-grimoire-gold/60 hover:bg-grimoire-gold hover:text-black transition-all font-bold uppercase">II // BLANK: ECLIPSED</a>
+                        <a href="#kore" class="px-4 py-2 bg-grimoire-crimson text-grimoire-parchment border border-grimoire-gold/40 hover:bg-grimoire-gold hover:text-black transition-all font-bold uppercase">III // BLANK: KORE</a>
+                        <a href="#substitutes" class="px-4 py-2 border border-grimoire-gold/40 hover:bg-grimoire-gold hover:text-black transition-all font-bold uppercase">IV // BENCH &amp; SUPLENTES</a>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 1: LAST KNIGHTS ACADEMY ROSTER -->
+            <section id="academy" class="py-12 relative reveal-block active">
+                <div class="max-w-7xl mx-auto px-4 sm:px-8">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 pb-4 border-b border-grimoire-gold/30">
+                        <div>
+                            <div class="flex items-center space-x-2 mb-2">
+                                <span class="obsidian-tag">[ARCANA I // DIVISION 01]</span>
+                                <span class="text-xs font-mono text-grimoire-gold tracking-widest">// ACADEMY ROSTER</span>
+                            </div>
+                            <h2 class="font-serifDisplay text-3xl sm:text-5xl font-black uppercase">
                                 BLANK: LAST KNIGHTS ACADEMY ROSTER
                             </h2>
                         </div>
-                        <div class="mt-4 md:mt-0 font-mono text-xs hero-sub-text text-poster-textMuted">
-                            [TOTAL ATHLETES: 5] <span class="text-poster-blue font-bold">// TIER 3 COMPETITIVE</span>
+                        <div class="mt-4 md:mt-0 font-mono text-xs opacity-75">
+                            [5 TITULARES + HEAD COACH] <span class="text-grimoire-gold font-bold">// TIER 3 COMPETITIVE</span>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                         <!-- COACH: KASE -->
-                        <div class="poster-box p-6 relative flex flex-col justify-between border-2 border-poster-blue">
-                            <div class="flex justify-between items-start mb-6">
-                                <span class="blue-tag">STAFF // COACH</span>
-                                <span class="font-mono text-[10px] text-black/50">SLOT #00</span>
+                        <div class="tarot-card-crimson p-6 flex flex-col justify-between">
+                            <div class="flex justify-between items-start mb-6 font-mono text-xs">
+                                <span class="grimoire-tag">STAFF // COACH</span>
+                                <span class="text-grimoire-gold">◇ 00 ◇</span>
                             </div>
                             <div>
-                                <h3 class="font-tech text-4xl font-black">KASE</h3>
-                                <p class="font-mono text-xs uppercase mt-1 opacity-70">HEAD COACH & TACTICIAN</p>
+                                <h3 class="font-serifDisplay text-3xl font-bold">KASE</h3>
+                                <p class="font-mono text-xs uppercase mt-1 opacity-75">HEAD COACH &amp; TACTICIAN</p>
                             </div>
-                            <div class="mt-8 pt-4 border-t border-black/15 flex justify-between items-center font-mono text-xs">
-                                <span class="opacity-70">RANK ELO:</span>
-                                <span class="black-tag tag-invert text-white font-bold">CHALLENGER</span>
+                            <div class="mt-8 pt-4 border-t border-grimoire-gold/25 flex justify-between items-center font-mono text-xs">
+                                <span class="opacity-75">RANK ELO:</span>
+                                <span class="grimoire-tag">CHALLENGER</span>
                             </div>
                         </div>
 
-                        <!-- TOP: UCHIHA (TITULAR) -->
-                        <div class="poster-box p-6 relative flex flex-col justify-between border-2 border-black">
-                            <div class="flex justify-between items-start mb-6">
-                                <span class="black-tag tag-invert">TOPLANE</span>
-                                <span class="font-mono text-[10px] text-black/50">SLOT #01</span>
+                        <!-- TOP: UCHIHA (TITULAR - DIAMANTE) -->
+                        <div class="tarot-card p-6 flex flex-col justify-between">
+                            <div class="flex justify-between items-start mb-6 font-mono text-xs">
+                                <span class="obsidian-tag">TOPLANE</span>
+                                <span class="text-grimoire-gold">◇ 01 ◇</span>
                             </div>
                             <div>
-                                <h3 class="font-tech text-3xl font-bold hover:text-poster-blue transition-colors">UCHIHA</h3>
-                                <p class="font-mono text-xs uppercase mt-1 opacity-70">TITULAR TOPLANER</p>
+                                <h3 class="font-serifDisplay text-3xl font-bold">UCHIHA</h3>
+                                <p class="font-mono text-xs uppercase mt-1 opacity-75">SOLOLANE COMMANDER</p>
                             </div>
-                            <div class="mt-8 pt-4 border-t border-black/15 flex justify-between items-center font-mono text-xs">
-                                <span class="opacity-70">RANK ELO:</span>
-                                <span class="bg-blue-700 text-white px-2 py-0.5 font-bold">DIAMANTE</span>
+                            <div class="mt-8 pt-4 border-t border-grimoire-gold/25 flex justify-between items-center font-mono text-xs">
+                                <span class="opacity-75">RANK ELO:</span>
+                                <span class="obsidian-tag text-grimoire-gold font-bold">DIAMANTE</span>
                             </div>
                         </div>
 
-                        <!-- JGL: MIFULAFU (NUEVO INTEGRANTE TITULAR) -->
-                        <div class="poster-box p-6 relative flex flex-col justify-between border-2 border-poster-blue">
-                            <div class="flex justify-between items-start mb-6">
-                                <span class="blue-tag">JUNGLA // NEW</span>
-                                <span class="font-mono text-[10px] text-black/50">SLOT #02</span>
+                        <!-- JGL: MIFULAFU (TITULAR - DIAMANTE) -->
+                        <div class="tarot-card p-6 flex flex-col justify-between">
+                            <div class="flex justify-between items-start mb-6 font-mono text-xs">
+                                <span class="obsidian-tag">JUNGLA</span>
+                                <span class="text-grimoire-gold">◇ 02 ◇</span>
                             </div>
                             <div>
-                                <h3 class="font-tech text-3xl font-bold hover:text-poster-blue transition-colors">MIFULAFU</h3>
-                                <p class="font-mono text-xs uppercase mt-1 opacity-70">TITULAR JUNGLER</p>
+                                <h3 class="font-serifDisplay text-3xl font-bold">MIFULAFU</h3>
+                                <p class="font-mono text-xs uppercase mt-1 opacity-75">JUNGLE COMMANDER</p>
                             </div>
-                            <div class="mt-8 pt-4 border-t border-black/15 flex justify-between items-center font-mono text-xs">
-                                <span class="opacity-70">RANK ELO:</span>
-                                <span class="bg-blue-700 text-white px-2 py-0.5 font-bold">DIAMANTE</span>
+                            <div class="mt-8 pt-4 border-t border-grimoire-gold/25 flex justify-between items-center font-mono text-xs">
+                                <span class="opacity-75">RANK ELO:</span>
+                                <span class="obsidian-tag text-grimoire-gold font-bold">DIAMANTE</span>
                             </div>
                         </div>
 
                         <!-- MID: VÁNDR -->
-                        <div class="poster-box p-6 relative flex flex-col justify-between">
-                            <div class="flex justify-between items-start mb-6">
-                                <span class="black-tag tag-invert">MIDLANE</span>
-                                <span class="font-mono text-[10px] text-black/50">SLOT #03</span>
+                        <div class="tarot-card p-6 flex flex-col justify-between">
+                            <div class="flex justify-between items-start mb-6 font-mono text-xs">
+                                <span class="obsidian-tag">MIDLANE</span>
+                                <span class="text-grimoire-gold">◇ 03 ◇</span>
                             </div>
                             <div>
-                                <h3 class="font-tech text-3xl font-bold hover:text-poster-blue transition-colors">VÁNDR</h3>
-                                <p class="font-mono text-xs uppercase mt-1 opacity-70">MID CARRY</p>
+                                <h3 class="font-serifDisplay text-3xl font-bold">VÁNDR</h3>
+                                <p class="font-mono text-xs uppercase mt-1 opacity-75">MID CARRY</p>
                             </div>
-                            <div class="mt-8 pt-4 border-t border-black/15 flex justify-between items-center font-mono text-xs">
-                                <span class="opacity-70">RANK ELO:</span>
-                                <span class="bg-red-800 text-white px-2 py-0.5 font-bold">MASTER</span>
+                            <div class="mt-8 pt-4 border-t border-grimoire-gold/25 flex justify-between items-center font-mono text-xs">
+                                <span class="opacity-75">RANK ELO:</span>
+                                <span class="crimson-tag">MASTER</span>
                             </div>
                         </div>
 
                         <!-- ADC: KORO -->
-                        <div class="poster-box p-6 relative flex flex-col justify-between">
-                            <div class="flex justify-between items-start mb-6">
-                                <span class="black-tag tag-invert">ADC</span>
-                                <span class="font-mono text-[10px] text-black/50">SLOT #04</span>
+                        <div class="tarot-card p-6 flex flex-col justify-between">
+                            <div class="flex justify-between items-start mb-6 font-mono text-xs">
+                                <span class="obsidian-tag">ADC</span>
+                                <span class="text-grimoire-gold">◇ 04 ◇</span>
                             </div>
                             <div>
-                                <h3 class="font-tech text-3xl font-bold hover:text-poster-blue transition-colors">KORO</h3>
-                                <p class="font-mono text-xs uppercase mt-1 opacity-70">BOTLANE CARRY</p>
+                                <h3 class="font-serifDisplay text-3xl font-bold">KORO</h3>
+                                <p class="font-mono text-xs uppercase mt-1 opacity-75">BOTLANE CARRY</p>
                             </div>
-                            <div class="mt-8 pt-4 border-t border-black/15 flex justify-between items-center font-mono text-xs">
-                                <span class="opacity-70">RANK ELO:</span>
-                                <span class="bg-red-800 text-white px-2 py-0.5 font-bold">MASTER</span>
+                            <div class="mt-8 pt-4 border-t border-grimoire-gold/25 flex justify-between items-center font-mono text-xs">
+                                <span class="opacity-75">RANK ELO:</span>
+                                <span class="crimson-tag">MASTER</span>
                             </div>
                         </div>
 
                         <!-- SUPP: MANZANITA -->
-                        <div class="poster-box p-6 relative flex flex-col justify-between">
-                            <div class="flex justify-between items-start mb-6">
-                                <span class="black-tag tag-invert">SOPORTE</span>
-                                <span class="font-mono text-[10px] text-black/50">SLOT #05</span>
+                        <div class="tarot-card p-6 flex flex-col justify-between">
+                            <div class="flex justify-between items-start mb-6 font-mono text-xs">
+                                <span class="obsidian-tag">SOPORTE</span>
+                                <span class="text-grimoire-gold">◇ 05 ◇</span>
                             </div>
                             <div>
-                                <h3 class="font-tech text-3xl font-bold hover:text-poster-blue transition-colors">MANZANITA</h3>
-                                <p class="font-mono text-xs uppercase mt-1 opacity-70">SUPPORT / ENGAGE</p>
+                                <h3 class="font-serifDisplay text-3xl font-bold">MANZANITA</h3>
+                                <p class="font-mono text-xs uppercase mt-1 opacity-75">SUPPORT / ENGAGE</p>
                             </div>
-                            <div class="mt-8 pt-4 border-t border-black/15 flex justify-between items-center font-mono text-xs">
-                                <span class="opacity-70">RANK ELO:</span>
-                                <span class="bg-blue-700 text-white px-2 py-0.5 font-bold">DIAMANTE</span>
+                            <div class="mt-8 pt-4 border-t border-grimoire-gold/25 flex justify-between items-center font-mono text-xs">
+                                <span class="opacity-75">RANK ELO:</span>
+                                <span class="obsidian-tag text-grimoire-gold font-bold">DIAMANTE</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
+            <!-- DARK CELESTIAL ORNAMENTAL DIVIDER -->
+            <div class="celestial-divider max-w-7xl mx-auto px-4 sm:px-8">
+                <div class="hairline-double"></div>
+                <div class="center-medallion font-mono text-xs tracking-[0.3em]">
+                    <span>✦</span>
+                    <span class="text-[10px] uppercase">SOLARIS // ECLIPSED</span>
+                    <span>✴</span>
+                    <span class="text-[10px] uppercase">ARCANA II</span>
+                    <span>✦</span>
+                </div>
+            </div>
+
             <!-- SECTION 2: BLANK: ECLIPSED -->
-            <section id="eclipsed" class="py-20 bg-poster-darkCard text-white border-b section-border-main border-black/15 relative overflow-hidden reveal-block">
-                <div class="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 pb-6 border-b border-white/20">
+            <section id="eclipsed" class="py-12 relative reveal-block">
+                <div class="max-w-7xl mx-auto px-4 sm:px-8">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 pb-4 border-b border-grimoire-gold/30">
                         <div>
                             <div class="flex items-center space-x-2 mb-2">
-                                <span class="blue-tag">[DIVISION 02]</span>
-                                <span class="text-xs font-mono text-poster-blue font-bold tracking-widest">// MAIN LINEUP</span>
+                                <span class="grimoire-tag">[ARCANA II // DIVISION 02]</span>
+                                <span class="text-xs font-mono text-grimoire-gold tracking-widest">// MAIN LINEUP</span>
                             </div>
-                            <h2 class="font-tech text-4xl sm:text-6xl font-black text-white uppercase tracking-tight">
+                            <h2 class="font-serifDisplay text-3xl sm:text-5xl font-black uppercase">
                                 BLANK: ECLIPSED
                             </h2>
                         </div>
-                        <div class="mt-4 md:mt-0 font-mono text-xs text-gray-400">
-                            [STATUS: HIGH COMPETITIVE] <span class="text-poster-blue font-bold">// CHALLENGER CORE</span>
+                        <div class="mt-4 md:mt-0 font-mono text-xs opacity-75">
+                            [STATUS: HIGH COMPETITIVE] <span class="text-grimoire-gold font-bold">// CHALLENGER CORE</span>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 font-mono">
                         <!-- NIGHT -->
-                        <div class="poster-box-dark p-6 relative group">
-                            <div class="flex justify-between items-center text-xs text-gray-400 mb-6">
-                                <span class="text-poster-blue font-bold">[SLOT 01]</span>
-                                <span class="bg-white/10 px-2 py-0.5 text-[10px]">TOPLANER</span>
+                        <div class="tarot-card p-6">
+                            <div class="flex justify-between items-center text-xs mb-6">
+                                <span class="text-grimoire-gold font-bold">[SLOT 01]</span>
+                                <span class="obsidian-tag">TOPLANER</span>
                             </div>
                             <div class="mb-8">
-                                <h3 class="font-tech text-3xl font-bold text-white group-hover:text-poster-blue transition-colors">NIGHT</h3>
-                                <p class="text-xs text-gray-400 uppercase mt-1">SOLOLANE DOMINANCE</p>
+                                <h3 class="font-serifDisplay text-3xl font-bold">NIGHT</h3>
+                                <p class="text-xs opacity-70 uppercase mt-1">SOLOLANE DOMINANCE</p>
                             </div>
-                            <div class="flex justify-between items-center text-xs border-t border-white/10 pt-4">
-                                <span class="text-gray-400">RATING:</span>
-                                <span class="bg-purple-900 text-white font-bold px-2 py-0.5">GRAND MASTER</span>
+                            <div class="flex justify-between items-center text-xs border-t border-grimoire-gold/25 pt-4">
+                                <span class="opacity-70">RATING:</span>
+                                <span class="crimson-tag">GRAND MASTER</span>
                             </div>
                         </div>
 
                         <!-- SUA -->
-                        <div class="poster-box-dark p-6 relative group">
-                            <div class="flex justify-between items-center text-xs text-gray-400 mb-6">
-                                <span class="text-poster-blue font-bold">[SLOT 02]</span>
-                                <span class="bg-white/10 px-2 py-0.5 text-[10px]">JUNGLA</span>
+                        <div class="tarot-card p-6">
+                            <div class="flex justify-between items-center text-xs mb-6">
+                                <span class="text-grimoire-gold font-bold">[SLOT 02]</span>
+                                <span class="obsidian-tag">JUNGLA</span>
                             </div>
                             <div class="mb-8">
-                                <h3 class="font-tech text-3xl font-bold text-white group-hover:text-poster-blue transition-colors">SUA</h3>
-                                <p class="text-xs text-gray-400 uppercase mt-1">MAP PATHING & TEMPO</p>
+                                <h3 class="font-serifDisplay text-3xl font-bold">SUA</h3>
+                                <p class="text-xs opacity-70 uppercase mt-1">MAP PATHING &amp; TEMPO</p>
                             </div>
-                            <div class="flex justify-between items-center text-xs border-t border-white/10 pt-4">
-                                <span class="text-gray-400">RATING:</span>
-                                <span class="bg-purple-900 text-white font-bold px-2 py-0.5">GRAND MASTER</span>
+                            <div class="flex justify-between items-center text-xs border-t border-grimoire-gold/25 pt-4">
+                                <span class="opacity-70">RATING:</span>
+                                <span class="crimson-tag">GRAND MASTER</span>
                             </div>
                         </div>
 
                         <!-- LUCKY -->
-                        <div class="poster-box-dark p-6 relative group border-2 border-poster-blue">
-                            <div class="flex justify-between items-center text-xs text-gray-400 mb-6">
-                                <span class="text-poster-blue font-bold">[SLOT 03]</span>
-                                <span class="bg-poster-blue text-white px-2 py-0.5 text-[10px]">MIDLANER</span>
+                        <div class="tarot-card-crimson p-6">
+                            <div class="flex justify-between items-center text-xs mb-6">
+                                <span class="text-grimoire-gold font-bold">[SLOT 03]</span>
+                                <span class="grimoire-tag">MIDLANER</span>
                             </div>
                             <div class="mb-8">
-                                <h3 class="font-tech text-3xl font-bold text-white group-hover:text-poster-blue transition-colors">LUCKY</h3>
-                                <p class="text-xs text-gray-400 uppercase mt-1">TACTICAL SHIFT / MID</p>
+                                <h3 class="font-serifDisplay text-3xl font-bold">LUCKY</h3>
+                                <p class="text-xs opacity-75 uppercase mt-1">TACTICAL SHIFT / MID</p>
                             </div>
-                            <div class="flex justify-between items-center text-xs border-t border-white/10 pt-4">
-                                <span class="text-gray-400">RATING:</span>
-                                <span class="blue-tag font-bold">CHALLENGER</span>
+                            <div class="flex justify-between items-center text-xs border-t border-grimoire-gold/25 pt-4">
+                                <span class="opacity-75">RATING:</span>
+                                <span class="grimoire-tag">CHALLENGER</span>
                             </div>
                         </div>
 
                         <!-- NADE -->
-                        <div class="poster-box-dark p-6 relative group border-2 border-poster-blue">
-                            <div class="flex justify-between items-center text-xs text-gray-400 mb-6">
-                                <span class="text-poster-blue font-bold">[SLOT 04]</span>
-                                <span class="bg-poster-blue text-white px-2 py-0.5 text-[10px]">ADC</span>
+                        <div class="tarot-card-crimson p-6">
+                            <div class="flex justify-between items-center text-xs mb-6">
+                                <span class="text-grimoire-gold font-bold">[SLOT 04]</span>
+                                <span class="grimoire-tag">ADC</span>
                             </div>
                             <div class="mb-8">
-                                <h3 class="font-tech text-3xl font-bold text-white group-hover:text-poster-blue transition-colors">NADE</h3>
-                                <p class="text-xs text-gray-400 uppercase mt-1">LETHAL CARRY</p>
+                                <h3 class="font-serifDisplay text-3xl font-bold">NADE</h3>
+                                <p class="text-xs opacity-75 uppercase mt-1">LETHAL CARRY</p>
                             </div>
-                            <div class="flex justify-between items-center text-xs border-t border-white/10 pt-4">
-                                <span class="text-gray-400">RATING:</span>
-                                <span class="blue-tag font-bold">CHALLENGER</span>
+                            <div class="flex justify-between items-center text-xs border-t border-grimoire-gold/25 pt-4">
+                                <span class="opacity-75">RATING:</span>
+                                <span class="grimoire-tag">CHALLENGER</span>
                             </div>
                         </div>
 
                         <!-- POPE -->
-                        <div class="poster-box-dark p-6 relative group border-2 border-poster-blue">
-                            <div class="flex justify-between items-center text-xs text-gray-400 mb-6">
-                                <span class="text-poster-blue font-bold">[SLOT 05]</span>
-                                <span class="bg-poster-blue text-white px-2 py-0.5 text-[10px]">SOPORTE</span>
+                        <div class="tarot-card-crimson p-6">
+                            <div class="flex justify-between items-center text-xs mb-6">
+                                <span class="text-grimoire-gold font-bold">[SLOT 05]</span>
+                                <span class="grimoire-tag">SOPORTE</span>
                             </div>
                             <div class="mb-8">
-                                <h3 class="font-tech text-3xl font-bold text-white group-hover:text-poster-blue transition-colors">POPE</h3>
-                                <p class="text-xs text-gray-400 uppercase mt-1">SHOTCALLER & UTILITY</p>
+                                <h3 class="font-serifDisplay text-3xl font-bold">POPE</h3>
+                                <p class="text-xs opacity-75 uppercase mt-1">SHOTCALLER &amp; UTILITY</p>
                             </div>
-                            <div class="flex justify-between items-center text-xs border-t border-white/10 pt-4">
-                                <span class="text-gray-400">RATING:</span>
-                                <span class="blue-tag font-bold">CHALLENGER</span>
+                            <div class="flex justify-between items-center text-xs border-t border-grimoire-gold/25 pt-4">
+                                <span class="opacity-75">RATING:</span>
+                                <span class="grimoire-tag">CHALLENGER</span>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
+            <!-- DARK CELESTIAL ORNAMENTAL DIVIDER -->
+            <div class="celestial-divider max-w-7xl mx-auto px-4 sm:px-8">
+                <div class="hairline-double"></div>
+                <div class="center-medallion font-mono text-xs tracking-[0.3em]">
+                    <span>✦</span>
+                    <span class="text-[10px] uppercase">DIVINE CHAOS // KORE</span>
+                    <span>✴</span>
+                    <span class="text-[10px] uppercase">ARCANA III</span>
+                    <span>✦</span>
+                </div>
+            </div>
+
             <!-- SECTION 3: BLANK: KORE -->
-            <section id="kore" class="py-20 bg-black text-white border-b border-white/15 relative overflow-hidden reveal-block">
-                <div class="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 pb-6 border-b border-white/20">
+            <section id="kore" class="py-12 relative reveal-block">
+                <div class="max-w-7xl mx-auto px-4 sm:px-8">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 pb-4 border-b border-grimoire-gold/30">
                         <div>
                             <div class="flex items-center space-x-2 mb-2">
-                                <span class="bg-poster-accentRed text-white font-mono text-[10px] font-bold px-2 py-0.5 tracking-wider uppercase">[DIVISION 03]</span>
-                                <span class="text-xs font-mono text-poster-accentRed font-bold tracking-widest">// ACADEMY HIGH PERFORMANCE</span>
+                                <span class="crimson-tag">[ARCANA III // DIVISION 03]</span>
+                                <span class="text-xs font-mono text-grimoire-gold tracking-widest">// ACADEMY HIGH PERFORMANCE</span>
                             </div>
-                            <h2 class="font-tech text-4xl sm:text-6xl font-black text-white uppercase tracking-tight">
+                            <h2 class="font-serifDisplay text-3xl sm:text-5xl font-black uppercase">
                                 BLANK: KORE
                             </h2>
                         </div>
-                        <div class="mt-4 md:mt-0 font-mono text-xs text-gray-400">
-                            [DIVINE CHAOS // VSC] <span class="text-poster-accentRed font-bold">// OPACITY = 1000%</span>
+                        <div class="mt-4 md:mt-0 font-mono text-xs opacity-75">
+                            [DIVINE CHAOS // VSC] <span class="text-grimoire-gold font-bold">// OPACITY = 1000%</span>
                         </div>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 font-mono">
                         <!-- LIE -->
-                        <div class="poster-box-dark p-6 relative group border border-white/15">
-                            <div class="flex justify-between items-center text-xs text-gray-400 mb-6">
-                                <span class="text-poster-accentRed font-bold">[SERIAL NO. 001]</span>
-                                <span class="bg-white/10 px-2 py-0.5 text-[10px] text-white font-bold">TOP</span>
+                        <div class="tarot-card p-6">
+                            <div class="flex justify-between items-center text-xs mb-6">
+                                <span class="text-grimoire-gold font-bold">[SERIAL NO. 001]</span>
+                                <span class="obsidian-tag">TOP</span>
                             </div>
                             <div class="mb-8">
-                                <h3 class="font-tech text-3xl font-bold text-white group-hover:text-poster-accentRed transition-colors">LIE</h3>
-                                <p class="text-xs text-gray-400 uppercase mt-1">Diego Ivan Ochoa</p>
+                                <h3 class="font-serifDisplay text-3xl font-bold">LIE</h3>
+                                <p class="text-xs opacity-70 uppercase mt-1">Diego Ivan Ochoa</p>
                             </div>
-                            <div class="space-y-2 text-xs border-t border-white/10 pt-4">
-                                <div class="flex justify-between text-gray-400"><span>MAIN:</span><span class="text-white">ZAAHEN / GNAR</span></div>
-                                <div class="flex justify-between text-gray-400"><span>PEAK:</span><span class="text-poster-accentRed font-bold">Challenger</span></div>
+                            <div class="space-y-2 text-xs border-t border-grimoire-gold/25 pt-4">
+                                <div class="flex justify-between"><span class="opacity-70">MAIN:</span><span class="font-bold">ZAAHEN / GNAR</span></div>
+                                <div class="flex justify-between"><span class="opacity-70">PEAK:</span><span class="text-grimoire-gold font-bold">Challenger</span></div>
                             </div>
                         </div>
 
                         <!-- EL10 -->
-                        <div class="poster-box-dark p-6 relative group border border-white/15">
-                            <div class="flex justify-between items-center text-xs text-gray-400 mb-6">
-                                <span class="text-poster-accentRed font-bold">[SERIAL NO. 002]</span>
-                                <span class="bg-white/10 px-2 py-0.5 text-[10px] text-white font-bold">JGL</span>
+                        <div class="tarot-card p-6">
+                            <div class="flex justify-between items-center text-xs mb-6">
+                                <span class="text-grimoire-gold font-bold">[SERIAL NO. 002]</span>
+                                <span class="obsidian-tag">JGL</span>
                             </div>
                             <div class="mb-8">
-                                <h3 class="font-tech text-3xl font-bold text-white group-hover:text-poster-accentRed transition-colors">El10</h3>
-                                <p class="text-xs text-gray-400 uppercase mt-1">Miguel Vasquez // 16 Y/O</p>
+                                <h3 class="font-serifDisplay text-3xl font-bold">El10</h3>
+                                <p class="text-xs opacity-70 uppercase mt-1">Miguel Vasquez // 16 Y/O</p>
                             </div>
-                            <div class="space-y-2 text-xs border-t border-white/10 pt-4">
-                                <div class="flex justify-between text-gray-400"><span>MAIN:</span><span class="text-white">AMBESSA / QIYANA</span></div>
-                                <div class="flex justify-between text-gray-400"><span>PEAK:</span><span class="text-poster-accentRed font-bold">Challenger</span></div>
+                            <div class="space-y-2 text-xs border-t border-grimoire-gold/25 pt-4">
+                                <div class="flex justify-between"><span class="opacity-70">MAIN:</span><span class="font-bold">AMBESSA / QIYANA</span></div>
+                                <div class="flex justify-between"><span class="opacity-70">PEAK:</span><span class="text-grimoire-gold font-bold">Challenger</span></div>
                             </div>
                         </div>
 
-                        <!-- UNKNOWN MID -->
-                        <div class="poster-box-dark p-6 relative group border border-white/15">
-                            <div class="flex justify-between items-center text-xs text-gray-400 mb-6">
-                                <span class="text-poster-accentRed font-bold">[SERIAL NO. 003]</span>
-                                <span class="bg-white/10 px-2 py-0.5 text-[10px] text-white font-bold">MID</span>
+                        <!-- OPEN SLOT MID -->
+                        <div class="tarot-card p-6">
+                            <div class="flex justify-between items-center text-xs mb-6">
+                                <span class="text-grimoire-gold font-bold">[SERIAL NO. 003]</span>
+                                <span class="obsidian-tag">MID</span>
                             </div>
                             <div class="mb-8">
-                                <h3 class="font-tech text-3xl font-bold text-white group-hover:text-poster-accentRed transition-colors">OPEN SLOT</h3>
-                                <p class="text-xs text-gray-400 uppercase mt-1">MIDLANE ACADEMY</p>
+                                <h3 class="font-serifDisplay text-3xl font-bold opacity-60">OPEN SLOT</h3>
+                                <p class="text-xs opacity-70 uppercase mt-1">MIDLANE ACADEMY</p>
                             </div>
-                            <div class="space-y-2 text-xs border-t border-white/10 pt-4">
-                                <div class="flex justify-between text-gray-400"><span>MAIN:</span><span class="text-white">-- / --</span></div>
-                                <div class="flex justify-between text-gray-400"><span>PEAK:</span><span class="text-poster-accentRed font-bold">TBD</span></div>
+                            <div class="space-y-2 text-xs border-t border-grimoire-gold/25 pt-4">
+                                <div class="flex justify-between"><span class="opacity-70">MAIN:</span><span>-- / --</span></div>
+                                <div class="flex justify-between"><span class="opacity-70">PEAK:</span><span class="text-grimoire-gold font-bold">TBD</span></div>
                             </div>
                         </div>
 
                         <!-- SVEN -->
-                        <div class="poster-box-dark p-6 relative group border border-white/15">
-                            <div class="flex justify-between items-center text-xs text-gray-400 mb-6">
-                                <span class="text-poster-accentRed font-bold">[SERIAL NO. 004]</span>
-                                <span class="bg-white/10 px-2 py-0.5 text-[10px] text-white font-bold">ADC</span>
+                        <div class="tarot-card p-6">
+                            <div class="flex justify-between items-center text-xs mb-6">
+                                <span class="text-grimoire-gold font-bold">[SERIAL NO. 004]</span>
+                                <span class="obsidian-tag">ADC</span>
                             </div>
                             <div class="mb-8">
-                                <h3 class="font-tech text-3xl font-bold text-white group-hover:text-poster-accentRed transition-colors">Sven</h3>
-                                <p class="text-xs text-gray-400 uppercase mt-1">Yael</p>
+                                <h3 class="font-serifDisplay text-3xl font-bold">Sven</h3>
+                                <p class="text-xs opacity-70 uppercase mt-1">Yael</p>
                             </div>
-                            <div class="space-y-2 text-xs border-t border-white/10 pt-4">
-                                <div class="flex justify-between text-gray-400"><span>MAIN:</span><span class="text-white">KAISA / EZREAL</span></div>
-                                <div class="flex justify-between text-gray-400"><span>PEAK:</span><span class="text-poster-accentRed font-bold">MASTER 875 LP</span></div>
+                            <div class="space-y-2 text-xs border-t border-grimoire-gold/25 pt-4">
+                                <div class="flex justify-between"><span class="opacity-70">MAIN:</span><span class="font-bold">KAISA / EZREAL</span></div>
+                                <div class="flex justify-between"><span class="opacity-70">PEAK:</span><span class="text-grimoire-gold font-bold">MASTER 875 LP</span></div>
                             </div>
                         </div>
 
                         <!-- OHTO -->
-                        <div class="poster-box-dark p-6 relative group border border-white/15">
-                            <div class="flex justify-between items-center text-xs text-gray-400 mb-6">
-                                <span class="text-poster-accentRed font-bold">[SERIAL NO. 005]</span>
-                                <span class="bg-white/10 px-2 py-0.5 text-[10px] text-white font-bold">SUP</span>
+                        <div class="tarot-card p-6">
+                            <div class="flex justify-between items-center text-xs mb-6">
+                                <span class="text-grimoire-gold font-bold">[SERIAL NO. 005]</span>
+                                <span class="obsidian-tag">SUP</span>
                             </div>
                             <div class="mb-8">
-                                <h3 class="font-tech text-3xl font-bold text-white group-hover:text-poster-accentRed transition-colors">Ohto</h3>
-                                <p class="text-xs text-gray-400 uppercase mt-1">Ohto // 18 Y/O</p>
+                                <h3 class="font-serifDisplay text-3xl font-bold">Ohto</h3>
+                                <p class="text-xs opacity-70 uppercase mt-1">Ohto // 18 Y/O</p>
                             </div>
-                            <div class="space-y-2 text-xs border-t border-white/10 pt-4">
-                                <div class="flex justify-between text-gray-400"><span>MAIN:</span><span class="text-white">NAMI / SERAPHINE</span></div>
-                                <div class="flex justify-between text-gray-400"><span>PEAK:</span><span class="text-poster-accentRed font-bold">GRANDMASTER</span></div>
+                            <div class="space-y-2 text-xs border-t border-grimoire-gold/25 pt-4">
+                                <div class="flex justify-between"><span class="opacity-70">MAIN:</span><span class="font-bold">NAMI / SERAPHINE</span></div>
+                                <div class="flex justify-between"><span class="opacity-70">PEAK:</span><span class="text-grimoire-gold font-bold">GRANDMASTER</span></div>
                             </div>
                         </div>
 
                         <!-- KASE COACH -->
-                        <div class="poster-box-dark p-6 relative group border-2 border-poster-accentRed">
-                            <div class="flex justify-between items-center text-xs text-poster-accentRed mb-6">
-                                <span>[SERIAL NO. 006]</span>
-                                <span class="bg-poster-accentRed text-white px-2 py-0.5 text-[10px] font-bold">COACH</span>
+                        <div class="tarot-card-crimson p-6">
+                            <div class="flex justify-between items-center text-xs mb-6">
+                                <span class="text-grimoire-gold font-bold">[SERIAL NO. 006]</span>
+                                <span class="grimoire-tag">COACH</span>
                             </div>
                             <div class="mb-8">
-                                <h3 class="font-tech text-3xl font-bold text-white group-hover:text-poster-accentRed transition-colors">KASE</h3>
-                                <p class="text-xs text-gray-400 uppercase mt-1">Fernando Bernal</p>
+                                <h3 class="font-serifDisplay text-3xl font-bold">KASE</h3>
+                                <p class="text-xs opacity-75 uppercase mt-1">Fernando Bernal</p>
                             </div>
-                            <div class="space-y-2 text-xs border-t border-white/10 pt-4">
-                                <div class="flex justify-between text-gray-400"><span>FOCUS:</span><span class="text-white">MACRO / DRAFT</span></div>
-                                <div class="flex justify-between text-gray-400"><span>EXP:</span><span class="text-white">CHALLENGER COACH</span></div>
+                            <div class="space-y-2 text-xs border-t border-grimoire-gold/25 pt-4">
+                                <div class="flex justify-between"><span class="opacity-75">FOCUS:</span><span class="font-bold">MACRO / DRAFT</span></div>
+                                <div class="flex justify-between"><span class="opacity-75">EXP:</span><span class="text-grimoire-gold font-bold">CHALLENGER COACH</span></div>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
+            <!-- DARK CELESTIAL ORNAMENTAL DIVIDER -->
+            <div class="celestial-divider max-w-7xl mx-auto px-4 sm:px-8">
+                <div class="hairline-double"></div>
+                <div class="center-medallion font-mono text-xs tracking-[0.3em]">
+                    <span>✦</span>
+                    <span class="text-[10px] uppercase">RESERVE ORDER</span>
+                    <span>✴</span>
+                    <span class="text-[10px] uppercase">ARCANA IV</span>
+                    <span>✦</span>
+                </div>
+            </div>
+
             <!-- SECTION 4: BENCH & SUBSTITUTES -->
-            <section id="substitutes" class="relative py-20 bg-black text-white border-t border-white/15 overflow-hidden reveal-block">
-                <div class="max-w-7xl mx-auto px-4 sm:px-8 relative z-10">
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 pb-6 border-b border-white/20">
+            <section id="substitutes" class="pb-20 pt-6 relative reveal-block">
+                <div class="max-w-7xl mx-auto px-4 sm:px-8">
+                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 pb-4 border-b border-grimoire-gold/30">
                         <div>
                             <div class="flex items-center space-x-2 mb-2">
-                                <span class="bg-white text-black font-mono text-[10px] font-bold px-2 py-0.5 tracking-wider uppercase">[RESERVE POOL]</span>
-                                <span class="text-xs font-mono text-gray-400 font-bold tracking-widest">// INTEGRANTES SUSTITUTOS Y SUPLENTES</span>
+                                <span class="obsidian-tag">[RESERVE POOL // GUARDIA]</span>
+                                <span class="text-xs font-mono text-grimoire-gold tracking-widest">// INTEGRANTES SUSTITUTOS Y SUPLENTES</span>
                             </div>
-                            <h2 class="font-tech text-3xl sm:text-5xl font-black text-white uppercase tracking-tight">
-                                BLANK: BENCH & SUBSTITUTES
+                            <h2 class="font-serifDisplay text-3xl sm:text-5xl font-black uppercase">
+                                BLANK: BENCH &amp; SUBSTITUTES
                             </h2>
                         </div>
                     </div>
 
                     <div class="space-y-4 font-mono text-xs">
                         <!-- ECLIPSED SUBS -->
-                        <div class="poster-box-dark p-6 border border-white/15 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-poster-blue transition-colors">
+                        <div class="tarot-card p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                             <div class="flex items-center space-x-4">
-                                <span class="blue-tag">[ECLIPSED]</span>
-                                <span class="text-gray-400 uppercase text-[11px]">SUPLENTES OFICIALES:</span>
+                                <span class="grimoire-tag">[ECLIPSED]</span>
+                                <span class="opacity-75 uppercase text-[11px]">SUPLENTES OFICIALES:</span>
                             </div>
                             <div class="flex flex-wrap items-center gap-3">
-                                <span class="bg-white/10 px-3 py-1 text-white font-bold">Lilo // <span class="text-poster-blue">TOP</span></span>
-                                <span class="bg-white/10 px-3 py-1 text-white font-bold">Petricor // <span class="text-poster-blue">JGL</span></span>
-                                <span class="bg-white/10 px-3 py-1 text-white font-bold">Rouge Carmine // <span class="text-poster-blue">SUPP</span></span>
+                                <span class="px-3 py-1.5 border border-grimoire-gold/40 font-bold">Lilo // <span class="text-grimoire-gold">TOP</span></span>
+                                <span class="px-3 py-1.5 border border-grimoire-gold/40 font-bold">Petricor // <span class="text-grimoire-gold">JGL</span></span>
+                                <span class="px-3 py-1.5 border border-grimoire-gold/40 font-bold">Rouge Carmine // <span class="text-grimoire-gold">SUPP</span></span>
                             </div>
                         </div>
 
                         <!-- KORE SUBS -->
-                        <div class="poster-box-dark p-6 border border-white/15 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-poster-accentRed transition-colors">
+                        <div class="tarot-card p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                             <div class="flex items-center space-x-4">
-                                <span class="bg-poster-accentRed text-white font-mono text-[10px] font-bold px-2 py-0.5 uppercase">KORE</span>
-                                <span class="text-gray-400 uppercase text-[11px]">SUPLENTES OFICIALES:</span>
+                                <span class="crimson-tag">[KORE]</span>
+                                <span class="opacity-75 uppercase text-[11px]">SUPLENTES OFICIALES:</span>
                             </div>
                             <div class="flex flex-wrap items-center gap-3">
-                                <span class="bg-white/10 px-3 py-1 text-white font-bold">-UNKNOWN- // <span class="text-poster-accentRed">TOP</span></span>
-                                <span class="bg-white/10 px-3 py-1 text-white font-bold">MIGAJA // <span class="text-poster-accentRed">MID</span></span>
-                                <span class="bg-white/10 px-3 py-1 text-white font-bold">KAEL // <span class="text-poster-accentRed">ADC</span></span>
+                                <span class="px-3 py-1.5 border border-grimoire-gold/40 font-bold">-UNKNOWN- // <span class="text-grimoire-gold">TOP</span></span>
+                                <span class="px-3 py-1.5 border border-grimoire-gold/40 font-bold">MIGAJA // <span class="text-grimoire-gold">MID</span></span>
+                                <span class="px-3 py-1.5 border border-grimoire-gold/40 font-bold">KAEL // <span class="text-grimoire-gold">ADC</span></span>
                             </div>
                         </div>
 
                         <!-- LAST KNIGHTS SUBS (KEMEZ Y NYFER) -->
-                        <div class="poster-box-dark p-6 border border-white/15 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 hover:border-white transition-colors">
+                        <div class="tarot-card p-6 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                             <div class="flex items-center space-x-4">
-                                <span class="black-tag border border-white/30">LAST KNIGHTS</span>
-                                <span class="text-gray-400 uppercase text-[11px]">SUPLENTES OFICIALES:</span>
+                                <span class="obsidian-tag">[LAST KNIGHTS]</span>
+                                <span class="opacity-75 uppercase text-[11px]">SUPLENTES OFICIALES:</span>
                             </div>
                             <div class="flex flex-wrap items-center gap-3">
-                                <span class="bg-white/10 px-3 py-1 text-white font-bold">Kemez // <span class="text-gray-300">JGL</span></span>
-                                <span class="bg-white/10 px-3 py-1 text-white font-bold">Nyfer // <span class="text-gray-300">SUPP/MID</span></span>
+                                <span class="px-3 py-1.5 border border-grimoire-gold/40 font-bold">Kemez // <span class="text-grimoire-gold">JGL</span></span>
+                                <span class="px-3 py-1.5 border border-grimoire-gold/40 font-bold">Nyfer // <span class="text-grimoire-gold">SUPP/MID</span></span>
                             </div>
                         </div>
                     </div>
@@ -840,157 +1210,141 @@
             </section>
         </div>
 
-        <!-- ========================================== -->
-        <!-- PÁGINA INDEPENDIENTE: VACANTES MAIN ROSTER -->
-        <!-- ========================================== -->
-        <div id="tab-vacancies-content" class="hidden transition-opacity duration-300 py-6">
+        <!-- ========================================================= -->
+        <!-- TAB 3: VACANTES MAIN ROSTER (INDEPENDENT SUB-PAGE)        -->
+        <!-- ========================================================= -->
+        <div id="tab-vacancies-content" class="hidden transition-opacity duration-300 py-8">
             <div class="max-w-7xl mx-auto px-4 sm:px-8">
 
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b-2 section-border-main border-black pb-4 mb-8">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-grimoire-gold/40 pb-6 mb-10">
                     <div>
                         <div class="flex items-center space-x-2 mb-2">
-                            <span class="bg-poster-accentRed text-white font-mono text-[10px] font-bold px-2 py-0.5 tracking-wider uppercase">[RECRUITMENT ACTIVE]</span>
-                            <span class="text-xs font-mono text-poster-blue font-bold tracking-widest">// FIRST TEAM RECRUITMENT</span>
+                            <span class="crimson-tag">[RECRUITMENT ACTIVE]</span>
+                            <span class="text-xs font-mono text-grimoire-gold tracking-widest">// FIRST TEAM RECRUITMENT</span>
                         </div>
-                        <h1 class="font-tech text-4xl sm:text-7xl font-black section-title-main text-black tracking-tighter uppercase leading-none">
-                            VACANTES // MAIN ROSTER
+                        <h1 class="font-serifDisplay text-3xl sm:text-5xl font-black uppercase tracking-tight">
+                            BLANK: MAIN ROSTER (VACANTES / OPEN)
                         </h1>
                     </div>
                     <div class="mt-4 md:mt-0 font-mono text-right">
-                        <div class="text-xs font-bold text-poster-blue tracking-widest uppercase">SLOTS ABIERTOS TIER 1 / TIER 2</div>
-                        <div class="text-[10px] hero-sub-text text-poster-textMuted uppercase mt-1">SELECCIÓN DE ALTO RENDIMIENTO 2026</div>
+                        <div class="text-xs font-bold text-grimoire-gold tracking-widest uppercase">[REQ: CHALLENGER / HIGH GM]</div>
+                        <div class="text-[10px] opacity-70 uppercase mt-1">// TIER 1/2 READY</div>
                     </div>
                 </div>
 
-                <!-- BANNER RECLUTAMIENTO -->
-                <div class="relative w-full mb-10 py-10 px-6 sm:px-10 blue-poster-stripe text-white border border-black/20 shadow-xl overflow-hidden reveal-block active">
-                    <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
-                        <div class="space-y-2">
-                            <span class="bg-black text-white px-3 py-1 font-mono text-xs font-bold uppercase tracking-wider">[OPEN POSITIONS]</span>
-                            <h2 class="font-tech text-2xl sm:text-4xl font-black uppercase tracking-tight">CONVOCATORIA PRINCIPAL BLANK 2026</h2>
-                            <p class="font-mono text-xs text-white/90 max-w-2xl uppercase">Buscamos perfiles competitivos de nivel Challenger / High GM para integrar la alineación titular. Proceso de selección abierto.</p>
-                        </div>
-                        <div class="flex items-center space-x-3 shrink-0 font-mono text-xs font-bold">
-                            <button onclick="switchTab('tryouts')" class="bg-white text-black hover:bg-black hover:text-white px-5 py-3 uppercase transition-all flex items-center space-x-2">
-                                <span>IR A FORMULARIO TRYOUTS ↗</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- GRID DE VACANTES (6 ROLES) -->
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 font-mono">
+                <!--GRID DE 6 VACANTES-->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 font-mono pb-16">
                     <!-- COACH -->
-                    <div class="poster-box p-6 relative flex flex-col justify-between border-2 border-poster-accentRed reveal-block">
+                    <div class="tarot-card-crimson p-7 flex flex-col justify-between">
                         <div>
                             <div class="flex justify-between items-center mb-6">
-                                <span class="bg-poster-accentRed text-white px-2 py-0.5 text-[10px] font-bold uppercase">[OPEN POSITION]</span>
-                                <span class="text-[10px] opacity-60">SLOT #00</span>
+                                <span class="grimoire-tag">[OPEN POSITION]</span>
+                                <span class="text-xs text-grimoire-gold">◇ #00 ◇</span>
                             </div>
-                            <h3 class="font-tech text-3xl font-black">HEAD COACH</h3>
-                            <p class="text-xs opacity-70 uppercase mt-1">ESTRATEGIA & DIRECCIÓN TÁCTICA</p>
-                            <div class="mt-6 space-y-2 text-[11px] border-t border-black/15 pt-4">
-                                <div class="flex items-center space-x-2"><span class="text-poster-blue">▶</span><span>Exp. previa en Tier 1 / Tier 2 Nacional</span></div>
-                                <div class="flex items-center space-x-2"><span class="text-poster-blue">▶</span><span>Manejo de Draft & VOD Review avanzado</span></div>
+                            <h3 class="font-serifDisplay text-3xl font-bold">HEAD COACH</h3>
+                            <p class="text-xs opacity-75 uppercase mt-1">ESTRATEGIA &amp; DIRECCIÓN TÁCTICA</p>
+                            <div class="mt-6 space-y-2 text-[11px] border-t border-grimoire-gold/25 pt-4">
+                                <div class="flex items-center space-x-2"><span class="text-grimoire-gold">✦</span><span>Exp. previa en Tier 1 / Tier 2 Nacional</span></div>
+                                <div class="flex items-center space-x-2"><span class="text-grimoire-gold">✦</span><span>Manejo de Draft &amp; VOD Review avanzado</span></div>
                             </div>
                         </div>
-                        <button onclick="switchTab('tryouts')" class="mt-8 py-3 bg-black text-white hover:bg-poster-blue text-center font-bold uppercase text-xs transition-colors flex items-center justify-center space-x-2">
-                            <span>POSTULAR A COACH ↘</span>
+                        <button onclick="switchTab('tryouts')" class="mt-8 py-3 bg-grimoire-gold text-black hover:bg-white text-center font-bold uppercase text-xs transition-colors">
+                            POSTULAR A COACH ↘
                         </button>
                     </div>
 
                     <!-- TOPLANE -->
-                    <div class="poster-box p-6 relative flex flex-col justify-between border-2 border-black reveal-block">
+                    <div class="tarot-card p-7 flex flex-col justify-between">
                         <div>
                             <div class="flex justify-between items-center mb-6">
-                                <span class="black-tag tag-invert">[VACANTE // TOPLANE]</span>
-                                <span class="text-[10px] opacity-60">SLOT #01</span>
+                                <span class="obsidian-tag">[VACANTE // TOPLANE]</span>
+                                <span class="text-xs text-grimoire-gold">◇ #01 ◇</span>
                             </div>
-                            <h3 class="font-tech text-3xl font-black">TOPLANE</h3>
-                            <p class="text-xs opacity-70 uppercase mt-1">MAIN ROSTER SOLOLANER</p>
-                            <div class="mt-6 space-y-2 text-[11px] border-t border-black/15 pt-4">
-                                <div class="flex items-center space-x-2"><span class="text-poster-blue">▶</span><span>Peak: Challenger 800+ LP</span></div>
-                                <div class="flex items-center space-x-2"><span class="text-poster-blue">▶</span><span>Dominio de Meta Carry & Tanks</span></div>
+                            <h3 class="font-serifDisplay text-3xl font-bold">TOPLANE</h3>
+                            <p class="text-xs opacity-75 uppercase mt-1">MAIN ROSTER SOLOLANER</p>
+                            <div class="mt-6 space-y-2 text-[11px] border-t border-grimoire-gold/25 pt-4">
+                                <div class="flex items-center space-x-2"><span class="text-grimoire-gold">✦</span><span>Peak: Challenger 800+ LP</span></div>
+                                <div class="flex items-center space-x-2"><span class="text-grimoire-gold">✦</span><span>Dominio de Meta Carry &amp; Tanks</span></div>
                             </div>
                         </div>
-                        <button onclick="switchTab('tryouts')" class="mt-8 py-3 bg-black text-white hover:bg-poster-blue text-center font-bold uppercase text-xs transition-colors flex items-center justify-center space-x-2">
-                            <span>POSTULAR A TOPLANE ↘</span>
+                        <button onclick="switchTab('tryouts')" class="mt-8 py-3 border border-grimoire-gold/60 hover:bg-grimoire-gold hover:text-black text-center font-bold uppercase text-xs transition-colors">
+                            POSTULAR A TOPLANE ↘
                         </button>
                     </div>
 
                     <!-- JUNGLER -->
-                    <div class="poster-box p-6 relative flex flex-col justify-between border-2 border-black reveal-block">
+                    <div class="tarot-card p-7 flex flex-col justify-between">
                         <div>
                             <div class="flex justify-between items-center mb-6">
-                                <span class="black-tag tag-invert">[VACANTE // JUNGLER]</span>
-                                <span class="text-[10px] opacity-60">SLOT #02</span>
+                                <span class="obsidian-tag">[VACANTE // JUNGLER]</span>
+                                <span class="text-xs text-grimoire-gold">◇ #02 ◇</span>
                             </div>
-                            <h3 class="font-tech text-3xl font-black">JUNGLER</h3>
-                            <p class="text-xs opacity-70 uppercase mt-1">SHOTCALLER & TEMPO CONTROL</p>
-                            <div class="mt-6 space-y-2 text-[11px] border-t border-black/15 pt-4">
-                                <div class="flex items-center space-x-2"><span class="text-poster-blue">▶</span><span>Peak: Challenger 800+ LP</span></div>
-                                <div class="flex items-center space-x-2"><span class="text-poster-blue">▶</span><span>Tracking & Early Pathing</span></div>
+                            <h3 class="font-serifDisplay text-3xl font-bold">JUNGLER</h3>
+                            <p class="text-xs opacity-75 uppercase mt-1">SHOTCALLER &amp; TEMPO CONTROL</p>
+                            <div class="mt-6 space-y-2 text-[11px] border-t border-grimoire-gold/25 pt-4">
+                                <div class="flex items-center space-x-2"><span class="text-grimoire-gold">✦</span><span>Peak: Challenger 800+ LP</span></div>
+                                <div class="flex items-center space-x-2"><span class="text-grimoire-gold">✦</span><span>Tracking &amp; Early Pathing</span></div>
                             </div>
                         </div>
-                        <button onclick="switchTab('tryouts')" class="mt-8 py-3 bg-black text-white hover:bg-poster-blue text-center font-bold uppercase text-xs transition-colors flex items-center justify-center space-x-2">
-                            <span>POSTULAR A JUNGLA ↘</span>
+                        <button onclick="switchTab('tryouts')" class="mt-8 py-3 border border-grimoire-gold/60 hover:bg-grimoire-gold hover:text-black text-center font-bold uppercase text-xs transition-colors">
+                            POSTULAR A JUNGLA ↘
                         </button>
                     </div>
 
                     <!-- MIDLANE -->
-                    <div class="poster-box p-6 relative flex flex-col justify-between border-2 border-black reveal-block">
+                    <div class="tarot-card p-7 flex flex-col justify-between">
                         <div>
                             <div class="flex justify-between items-center mb-6">
-                                <span class="black-tag tag-invert">[VACANTE // MIDLANE]</span>
-                                <span class="text-[10px] opacity-60">SLOT #03</span>
+                                <span class="obsidian-tag">[VACANTE // MIDLANE]</span>
+                                <span class="text-xs text-grimoire-gold">◇ #03 ◇</span>
                             </div>
-                            <h3 class="font-tech text-3xl font-black">MIDLANE</h3>
-                            <p class="text-xs opacity-70 uppercase mt-1">MAIN CARRY & ROAMER</p>
-                            <div class="mt-6 space-y-2 text-[11px] border-t border-black/15 pt-4">
-                                <div class="flex items-center space-x-2"><span class="text-poster-blue">▶</span><span>Peak: Challenger 900+ LP</span></div>
-                                <div class="flex items-center space-x-2"><span class="text-poster-blue">▶</span><span>Mages & Asesinos de Meta</span></div>
+                            <h3 class="font-serifDisplay text-3xl font-bold">MIDLANE</h3>
+                            <p class="text-xs opacity-75 uppercase mt-1">MAIN CARRY &amp; ROAMER</p>
+                            <div class="mt-6 space-y-2 text-[11px] border-t border-grimoire-gold/25 pt-4">
+                                <div class="flex items-center space-x-2"><span class="text-grimoire-gold">✦</span><span>Peak: Challenger 900+ LP</span></div>
+                                <div class="flex items-center space-x-2"><span class="text-grimoire-gold">✦</span><span>Mages &amp; Asesinos de Meta</span></div>
                             </div>
                         </div>
-                        <button onclick="switchTab('tryouts')" class="mt-8 py-3 bg-black text-white hover:bg-poster-blue text-center font-bold uppercase text-xs transition-colors flex items-center justify-center space-x-2">
-                            <span>POSTULAR A MIDLANE ↘</span>
+                        <button onclick="switchTab('tryouts')" class="mt-8 py-3 border border-grimoire-gold/60 hover:bg-grimoire-gold hover:text-black text-center font-bold uppercase text-xs transition-colors">
+                            POSTULAR A MIDLANE ↘
                         </button>
                     </div>
 
                     <!-- ADC -->
-                    <div class="poster-box p-6 relative flex flex-col justify-between border-2 border-black reveal-block">
+                    <div class="tarot-card p-7 flex flex-col justify-between">
                         <div>
                             <div class="flex justify-between items-center mb-6">
-                                <span class="black-tag tag-invert">[VACANTE // ADC]</span>
-                                <span class="text-[10px] opacity-60">SLOT #04</span>
+                                <span class="obsidian-tag">[VACANTE // ADC]</span>
+                                <span class="text-xs text-grimoire-gold">◇ #04 ◇</span>
                             </div>
-                            <h3 class="font-tech text-3xl font-black">BOTLANE (ADC)</h3>
-                            <p class="text-xs opacity-70 uppercase mt-1">LATE GAME PRIMARY DAMAGE</p>
-                            <div class="mt-6 space-y-2 text-[11px] border-t border-black/15 pt-4">
-                                <div class="flex items-center space-x-2"><span class="text-poster-blue">▶</span><span>Peak: Challenger 850+ LP</span></div>
-                                <div class="flex items-center space-x-2"><span class="text-poster-blue">▶</span><span>Posicionamiento de Teamfight</span></div>
+                            <h3 class="font-serifDisplay text-3xl font-bold">BOTLANE (ADC)</h3>
+                            <p class="text-xs opacity-75 uppercase mt-1">LATE GAME PRIMARY DAMAGE</p>
+                            <div class="mt-6 space-y-2 text-[11px] border-t border-grimoire-gold/25 pt-4">
+                                <div class="flex items-center space-x-2"><span class="text-grimoire-gold">✦</span><span>Peak: Challenger 850+ LP</span></div>
+                                <div class="flex items-center space-x-2"><span class="text-grimoire-gold">✦</span><span>Posicionamiento de Teamfight</span></div>
                             </div>
                         </div>
-                        <button onclick="switchTab('tryouts')" class="mt-8 py-3 bg-black text-white hover:bg-poster-blue text-center font-bold uppercase text-xs transition-colors flex items-center justify-center space-x-2">
-                            <span>POSTULAR A ADC ↘</span>
+                        <button onclick="switchTab('tryouts')" class="mt-8 py-3 border border-grimoire-gold/60 hover:bg-grimoire-gold hover:text-black text-center font-bold uppercase text-xs transition-colors">
+                            POSTULAR A ADC ↘
                         </button>
                     </div>
 
                     <!-- SUPPORT -->
-                    <div class="poster-box p-6 relative flex flex-col justify-between border-2 border-black reveal-block">
+                    <div class="tarot-card p-7 flex flex-col justify-between">
                         <div>
                             <div class="flex justify-between items-center mb-6">
-                                <span class="black-tag tag-invert">[VACANTE // SUPPORT]</span>
-                                <span class="text-[10px] opacity-60">SLOT #05</span>
+                                <span class="obsidian-tag">[VACANTE // SUPPORT]</span>
+                                <span class="text-xs text-grimoire-gold">◇ #05 ◇</span>
                             </div>
-                            <h3 class="font-tech text-3xl font-black">SUPPORT</h3>
-                            <p class="text-xs opacity-70 uppercase mt-1">VISION & ENGAGE CONTROLLER</p>
-                            <div class="mt-6 space-y-2 text-[11px] border-t border-black/15 pt-4">
-                                <div class="flex items-center space-x-2"><span class="text-poster-blue">▶</span><span>Peak: Challenger 800+ LP</span></div>
-                                <div class="flex items-center space-x-2"><span class="text-poster-blue">▶</span><span>Voice Lead & Visión de Campo</span></div>
+                            <h3 class="font-serifDisplay text-3xl font-bold">SUPPORT</h3>
+                            <p class="text-xs opacity-75 uppercase mt-1">VISION &amp; ENGAGE CONTROLLER</p>
+                            <div class="mt-6 space-y-2 text-[11px] border-t border-grimoire-gold/25 pt-4">
+                                <div class="flex items-center space-x-2"><span class="text-grimoire-gold">✦</span><span>Peak: Challenger 800+ LP</span></div>
+                                <div class="flex items-center space-x-2"><span class="text-grimoire-gold">✦</span><span>Voice Lead &amp; Visión de Campo</span></div>
                             </div>
                         </div>
-                        <button onclick="switchTab('tryouts')" class="mt-8 py-3 bg-black text-white hover:bg-poster-blue text-center font-bold uppercase text-xs transition-colors flex items-center justify-center space-x-2">
-                            <span>POSTULAR A SUPPORT ↘</span>
+                        <button onclick="switchTab('tryouts')" class="mt-8 py-3 border border-grimoire-gold/60 hover:bg-grimoire-gold hover:text-black text-center font-bold uppercase text-xs transition-colors">
+                            POSTULAR A SUPPORT ↘
                         </button>
                     </div>
                 </div>
@@ -998,60 +1352,46 @@
             </div>
         </div>
 
-        <!-- ========================================== -->
-        <!-- TAB 3: TRYOUTS (FORMULARIO POSTULACIÓN) -->
-        <!-- ========================================== -->
-        <div id="tab-tryouts-content" class="hidden transition-opacity duration-300 py-6">
+        <!-- ========================================================= -->
+        <!-- TAB 4: TRYOUTS (APPLICATION FORM)                         -->
+        <!-- ========================================================= -->
+        <div id="tab-tryouts-content" class="hidden transition-opacity duration-300 py-8">
             <div class="max-w-7xl mx-auto px-4 sm:px-8">
 
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b-2 section-border-main border-black pb-4 mb-8">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-grimoire-gold/40 pb-6 mb-10">
                     <div>
-                        <div class="black-tag tag-invert mb-2">[OFFICIAL RECRUITMENT PROTOCOL]</div>
-                        <h1 class="font-tech text-4xl sm:text-7xl font-black section-title-main text-black tracking-tighter uppercase leading-none">
+                        <div class="grimoire-tag mb-2">[PROTOCOLO DE INICIACIÓN // TRYOUTS]</div>
+                        <h1 class="font-serifDisplay text-4xl sm:text-6xl font-black uppercase tracking-tight">
                             TRYOUTS 2026
                         </h1>
                     </div>
                     <div class="mt-4 md:mt-0 font-mono text-right">
-                        <div class="text-xs font-bold text-poster-blue tracking-widest uppercase">POSTULACIÓN DE JUGADORES & STAFF</div>
-                        <div class="text-[10px] hero-sub-text text-poster-textMuted uppercase mt-1">EVALUACIÓN DE PERFIL TÁCTICO Y MECÁNICO</div>
+                        <div class="text-xs font-bold text-grimoire-gold tracking-widest uppercase">POSTULACIÓN DE JUGADORES &amp; STAFF</div>
+                        <div class="text-[10px] opacity-70 uppercase mt-1">EVALUACIÓN TÁCTICA Y MECÁNICA</div>
                     </div>
                 </div>
 
-                <div class="relative w-full mb-10 py-10 px-6 sm:px-10 blue-poster-stripe text-white border border-black/20 shadow-xl overflow-hidden reveal-block active">
-                    <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-6">
-                        <div class="space-y-2">
-                            <span class="bg-black text-white px-3 py-1 font-mono text-xs font-bold uppercase tracking-wider">[FORMULARIO ABIERTO]</span>
-                            <h2 class="font-tech text-2xl sm:text-4xl font-black uppercase tracking-tight">¿TIENES LO NECESARIO PARA UNIRTE A BLANK?</h2>
-                            <p class="font-mono text-xs text-white/90 max-w-2xl uppercase">Buscamos talento para Roster Principal, Last Knights Academy y escuadra Kore. Completa la ficha con datos verificables.</p>
-                        </div>
-                        <div class="flex items-center space-x-3 shrink-0 font-mono text-xs font-bold">
-                            <span class="bg-white text-black px-4 py-2 uppercase">[HIGH ELO ONLY]</span>
-                            <span class="bg-poster-accentRed text-white px-4 py-2 uppercase">[SERIOUS INQUIRIES]</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 font-mono">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 font-mono pb-16">
                     <!-- LEFT FORM -->
                     <div class="lg:col-span-8">
-                        <form id="tryoutForm" onsubmit="handleFormSubmit(event)" class="poster-box p-6 sm:p-8 space-y-6 border-2 border-black">
-                            <div class="flex justify-between items-center border-b border-black/15 pb-4">
-                                <span class="black-tag tag-invert">[FORMULARIO DE REGISTRO DE ATLETA]</span>
-                                <span class="text-xs opacity-70">// CAMPOS OBLIGATORIOS</span>
+                        <form id="tryoutForm" onsubmit="handleFormSubmit(event)" class="tarot-card p-6 sm:p-9 space-y-6">
+                            <div class="flex justify-between items-center border-b border-grimoire-gold/25 pb-4">
+                                <span class="grimoire-tag">[FICHA DE INVOCADOR]</span>
+                                <span class="text-xs text-grimoire-gold">✦ CAMPOS REQUERIDOS</span>
                             </div>
 
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                                 <div>
                                     <label class="block text-xs font-bold uppercase tracking-wider mb-2">
-                                        Nombre de Invocador / Riot ID <span class="text-poster-accentRed">*</span>
+                                        Nombre de Invocador / Riot ID <span class="text-grimoire-crimsonBright">*</span>
                                     </label>
-                                    <input type="text" id="summonerName" required placeholder="Ej: Faker#KR1 o BLANK Lucky#LAS" class="poster-input text-xs">
+                                    <input type="text" id="summonerName" required placeholder="Ej: Faker#KR1 o BLANK Lucky#LAS" class="grimoire-input text-xs">
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold uppercase tracking-wider mb-2">
-                                        Peak Elo (Máximo Rango) <span class="text-poster-accentRed">*</span>
+                                        Peak Elo (Máximo Rango) <span class="text-grimoire-crimsonBright">*</span>
                                     </label>
-                                    <select id="peakElo" required class="poster-input text-xs cursor-pointer">
+                                    <select id="peakElo" required class="grimoire-input text-xs cursor-pointer">
                                         <option value="" disabled selected>Selecciona tu Peak Elo</option>
                                         <option value="Challenger 1000+ LP">Challenger 1000+ LP</option>
                                         <option value="Challenger 500-999 LP">Challenger 500-999 LP</option>
@@ -1066,16 +1406,17 @@
                             <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
                                 <div>
                                     <label class="block text-xs font-bold uppercase tracking-wider mb-2">
-                                        Enlace OP.GG <span class="text-poster-accentRed">*</span>
+                                        Enlace OP.GG <span class="text-grimoire-crimsonBright">*</span>
                                     </label>
-                                    <input type="url" id="opggUrl" required placeholder="https://op.gg/..." class="poster-input text-xs">
+                                    <input type="url" id="opggUrl" required placeholder="https://op.gg/..." class="grimoire-input text-xs">
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold uppercase tracking-wider mb-2">
-                                        Rol Principal <span class="text-poster-accentRed">*</span>
+                                        Rol Principal <span class="text-grimoire-crimsonBright">*</span>
                                     </label>
-                                    <select id="roleSelect" required class="poster-input text-xs cursor-pointer">
+                                    <select id="roleSelect" required class="grimoire-input text-xs cursor-pointer">
                                         <option value="" disabled selected>Seleccionar Rol</option>
+                                        <option value="Coach">HEAD COACH</option>
                                         <option value="Top">TOPLANE</option>
                                         <option value="Jg">JUNGLER</option>
                                         <option value="Mid">MIDLANE</option>
@@ -1085,9 +1426,9 @@
                                 </div>
                                 <div>
                                     <label class="block text-xs font-bold uppercase tracking-wider mb-2">
-                                        Exp. Competitiva <span class="text-poster-accentRed">*</span>
+                                        Exp. Competitiva <span class="text-grimoire-crimsonBright">*</span>
                                     </label>
-                                    <select id="expSelect" required class="poster-input text-xs cursor-pointer">
+                                    <select id="expSelect" required class="grimoire-input text-xs cursor-pointer">
                                         <option value="" disabled selected>Seleccionar Exp.</option>
                                         <option value="Con experiencia">Con experiencia (Tier 1 / Tier 2)</option>
                                         <option value="Algo de experiencia">Algo de experiencia (Torneos)</option>
@@ -1100,45 +1441,44 @@
                                 <label class="block text-xs font-bold uppercase tracking-wider mb-2">
                                     Comentarios / Pool de Campeones / Disponibilidad
                                 </label>
-                                <textarea id="comments" rows="4" placeholder="Indica tu disponibilidad horaria, main champions, equipos anteriores..." class="poster-input text-xs resize-none"></textarea>
+                                <textarea id="comments" rows="4" placeholder="Indica tu disponibilidad horaria, main champions, equipos anteriores..." class="grimoire-input text-xs resize-none"></textarea>
                             </div>
 
-                            <button type="submit" class="w-full py-4 bg-black text-white hover:bg-poster-blue transition-all font-bold text-sm tracking-widest uppercase flex items-center justify-center space-x-3 border border-black shadow-[4px_4px_0px_#4956f4]">
-                                <i class="fa-solid fa-paper-plane"></i>
-                                <span>ENVIAR POSTULACIÓN // ENCRYPT DATA</span>
+                            <button type="submit" class="w-full py-4 bg-grimoire-gold text-black hover:bg-grimoire-crimson hover:text-white transition-all font-bold text-xs tracking-widest uppercase flex items-center justify-center space-x-3">
+                                <span>✦ ENVIAR POSTULACIÓN // SELLAR REGISTRO ✦</span>
                             </button>
                         </form>
                     </div>
 
                     <!-- RIGHT INFO -->
                     <div class="lg:col-span-4 space-y-6">
-                        <div class="poster-box-dark p-6 border-2 border-white/20">
-                            <div class="flex items-center space-x-2 border-b border-white/10 pb-3 mb-4">
-                                <span class="red-tag">[REQUISITOS MÍNIMOS]</span>
+                        <div class="tarot-card-crimson p-6">
+                            <div class="flex items-center space-x-2 border-b border-grimoire-gold/25 pb-3 mb-4">
+                                <span class="grimoire-tag">[REQUISITOS DE LA ORDEN]</span>
                             </div>
-                            <ul class="space-y-3 text-xs text-gray-300">
+                            <ul class="space-y-3 text-xs opacity-90">
                                 <li class="flex items-start space-x-2">
-                                    <span class="text-poster-blue font-bold">01/</span>
-                                    <span>Elo mínimo: Master 100+ LP en LAS/LAN/BR.</span>
+                                    <span class="text-grimoire-gold font-bold">I.</span>
+                                    <span>Elo mínimo: Master 100+ LP en LAS/LAN/BR (Diamante+ para Academy).</span>
                                 </li>
                                 <li class="flex items-start space-x-2">
-                                    <span class="text-poster-blue font-bold">02/</span>
+                                    <span class="text-grimoire-gold font-bold">II.</span>
                                     <span>Disponibilidad para scrims nocturnas (19:00 a 23:00).</span>
                                 </li>
                                 <li class="flex items-start space-x-2">
-                                    <span class="text-poster-blue font-bold">03/</span>
-                                    <span>Micrófono de alta calidad y disciplina en Discord.</span>
+                                    <span class="text-grimoire-gold font-bold">III.</span>
+                                    <span>Comunicación limpia y mentalidad inquebrantable.</span>
                                 </li>
                             </ul>
                         </div>
 
-                        <div id="applicationPreviewBox" class="poster-box p-6 border-2 border-poster-blue">
-                            <div class="flex items-center justify-between mb-3 border-b border-black/15 pb-2">
-                                <span class="blue-tag">[ÚLTIMO REGISTRO ENVIADO]</span>
+                        <div id="applicationPreviewBox" class="tarot-card p-6">
+                            <div class="flex items-center justify-between mb-3 border-b border-grimoire-gold/25 pb-2">
+                                <span class="obsidian-tag">[ÚLTIMO PERGAMINO ENVIADO]</span>
                                 <span class="text-[10px] opacity-70" id="submissionTime">SIN REGISTRO</span>
                             </div>
-                            <div id="submittedContent" class="text-xs space-y-2 opacity-70 italic">
-                                Módulo a la espera de postulación. Completa el formulario de la izquierda.
+                            <div id="submittedContent" class="text-xs space-y-2 opacity-75 italic">
+                                Módulo a la espera de postulación. Completa el formulario adjunto.
                             </div>
                         </div>
                     </div>
@@ -1147,105 +1487,104 @@
             </div>
         </div>
 
-        <!-- ========================================== -->
-        <!-- TAB 4: GALERÍA (LIMPIA PARA ESTRENARSE) -->
-        <!-- ========================================== -->
-        <div id="tab-gallery-content" class="hidden transition-opacity duration-300 py-6">
+        <!-- ========================================================= -->
+        <!-- TAB 5: GALERÍA (MEDIA VAULT)                              -->
+        <!-- ========================================================= -->
+        <div id="tab-gallery-content" class="hidden transition-opacity duration-300 py-8">
             <div class="max-w-7xl mx-auto px-4 sm:px-8">
 
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b-2 section-border-main border-black pb-4 mb-8">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-grimoire-gold/40 pb-6 mb-8">
                     <div>
-                        <div class="black-tag tag-invert mb-2">[BLANK MEDIA VAULT]</div>
-                        <h1 class="font-tech text-4xl sm:text-7xl font-black section-title-main text-black tracking-tighter uppercase leading-none">
-                            GALERÍA & HIGHLIGHTS
+                        <div class="grimoire-tag mb-2">[ARCHIVO VISUAL // MEDIA VAULT]</div>
+                        <h1 class="font-serifDisplay text-4xl sm:text-6xl font-black uppercase tracking-tight">
+                            GALERÍA &amp; HIGHLIGHTS
                         </h1>
                     </div>
                     <div class="mt-4 md:mt-0 font-mono text-right">
-                        <div class="text-xs font-bold text-poster-blue tracking-widest uppercase">REPLAYS & PLAY OF THE WEEK</div>
-                        <div class="text-[10px] hero-sub-text text-poster-textMuted uppercase mt-1">BIBLIOTECA DE CLIPS Y VODS DE SCRIMS</div>
+                        <div class="text-xs font-bold text-grimoire-gold tracking-widest uppercase">REPLAYS &amp; PLAY OF THE WEEK</div>
+                        <div class="text-[10px] opacity-70 uppercase mt-1">COLECCIÓN DE VODS Y CLIPS</div>
                     </div>
                 </div>
 
                 <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 mb-8 font-mono">
                     <div class="flex flex-wrap items-center gap-2">
-                        <button onclick="filterGallery('All')" class="gallery-filter-btn active bg-black text-white px-3 py-1.5 text-xs font-bold uppercase hover:bg-poster-blue transition-colors">TODOS</button>
-                        <button onclick="filterGallery('Highlights')" class="gallery-filter-btn border border-black/30 px-3 py-1.5 text-xs font-bold uppercase hover:bg-black hover:text-white transition-colors">HIGHLIGHTS</button>
-                        <button onclick="filterGallery('Scrim VOD')" class="gallery-filter-btn border border-black/30 px-3 py-1.5 text-xs font-bold uppercase hover:bg-black hover:text-white transition-colors">SCRIM VODS</button>
-                        <button onclick="filterGallery('Teamfight')" class="gallery-filter-btn border border-black/30 px-3 py-1.5 text-xs font-bold uppercase hover:bg-black hover:text-white transition-colors">TEAMFIGHTS</button>
+                        <button onclick="filterGallery('All')" class="gallery-filter-btn tab-nav-btn active px-3.5 py-1.5 text-xs font-bold uppercase">TODOS</button>
+                        <button onclick="filterGallery('Highlights')" class="gallery-filter-btn tab-nav-btn px-3.5 py-1.5 text-xs font-bold uppercase">HIGHLIGHTS</button>
+                        <button onclick="filterGallery('Scrim VOD')" class="gallery-filter-btn tab-nav-btn px-3.5 py-1.5 text-xs font-bold uppercase">SCRIM VODS</button>
+                        <button onclick="filterGallery('Teamfight')" class="gallery-filter-btn tab-nav-btn px-3.5 py-1.5 text-xs font-bold uppercase">TEAMFIGHTS</button>
                     </div>
 
-                    <button onclick="toggleVideoUploadModal(true)" class="bg-poster-blue text-white px-5 py-2 text-xs font-bold uppercase hover:bg-black transition-all flex items-center justify-center space-x-2 border border-black shadow-[3px_3px_0px_#0b0c10]">
+                    <button onclick="toggleVideoUploadModal(true)" class="bg-grimoire-gold text-black px-5 py-2.5 text-xs font-bold uppercase hover:bg-grimoire-crimson hover:text-white transition-all flex items-center justify-center space-x-2">
                         <i class="fa-solid fa-cloud-arrow-up"></i>
                         <span>SUBIR VIDEO / CLIP ↗</span>
                     </button>
                 </div>
 
-                <!-- VIDEO GALLERY GRID (VACÍA INICIALMENTE) -->
-                <div id="videoGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 font-mono">
-                    <!-- Dynamic Empty State rendered via JS -->
+                <div id="videoGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 font-mono pb-16">
+                    <!-- Dynamic Empty State or Video Cards -->
                 </div>
 
             </div>
         </div>
 
-        <!-- ========================================== -->
-        <!-- TAB 5: RANKING (LIMPIO PARA RIOT IDs REALES) -->
-        <!-- ========================================== -->
-        <div id="tab-ranking-content" class="hidden transition-opacity duration-300 py-6">
+        <!-- ========================================================= -->
+        <!-- TAB 6: RANKING (RIOT ID LEADERBOARD)                      -->
+        <!-- ========================================================= -->
+        <div id="tab-ranking-content" class="hidden transition-opacity duration-300 py-8">
             <div class="max-w-7xl mx-auto px-4 sm:px-8">
 
-                <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b-2 section-border-main border-black pb-4 mb-8">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-grimoire-gold/40 pb-6 mb-8">
                     <div>
-                        <div class="black-tag tag-invert mb-2">[RIOT GAMES API LIVE TRACKING]</div>
-                        <h1 class="font-tech text-4xl sm:text-7xl font-black section-title-main text-black tracking-tighter uppercase leading-none">
-                            RANKING & LEADERBOARD
+                        <div class="grimoire-tag mb-2">[RIOT GAMES API LIVE TRACKING]</div>
+                        <h1 class="font-serifDisplay text-4xl sm:text-6xl font-black uppercase tracking-tight">
+                            RANKING &amp; LEADERBOARD
                         </h1>
                     </div>
                     <div class="mt-4 md:mt-0 font-mono text-right">
-                        <div class="text-xs font-bold text-poster-blue tracking-widest uppercase">TRACKEO DE CUENTAS DE INTEGRANTES</div>
-                        <div class="text-[10px] hero-sub-text text-poster-textMuted uppercase mt-1">VINCULACIÓN OAUTH RIOT & STANDINGS</div>
+                        <div class="text-xs font-bold text-grimoire-gold tracking-widest uppercase">TRACKEO DE CUENTAS DE INTEGRANTES</div>
+                        <div class="text-[10px] opacity-70 uppercase mt-1">VINCULACIÓN OAUTH RIOT &amp; STANDINGS</div>
                     </div>
                 </div>
 
-                <!-- RIOT USER PROFILES & LINKING CARDS -->
-                <div id="riotAccountBanner" class="poster-box p-6 mb-8 border-2 border-poster-blue font-mono">
+                <!-- RIOT ACCOUNT LINK BANNER -->
+                <div id="riotAccountBanner" class="tarot-card p-6 mb-8 font-mono">
                     <div class="flex flex-col md:flex-row items-center justify-between gap-6">
                         
                         <div id="unlinkedState" class="flex flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6 text-center md:text-left">
-                            <div class="w-16 h-16 bg-black text-white flex items-center justify-center text-3xl shrink-0 font-tech font-bold border-2 border-poster-blue">
-                                <i class="fa-solid fa-gamepad"></i>
+                            <div class="w-16 h-16 bg-grimoire-crimson text-grimoire-gold flex items-center justify-center text-2xl shrink-0 border border-grimoire-gold">
+                                <i class="fa-solid fa-chess-knight"></i>
                             </div>
                             <div>
                                 <div class="flex items-center justify-center md:justify-start space-x-2">
-                                    <span class="black-tag tag-invert">[SISTEMA LISTO]</span>
-                                    <span class="text-xs font-bold text-poster-blue">// VINCULACIÓN RIOT ID</span>
+                                    <span class="obsidian-tag">[SISTEMA LISTO]</span>
+                                    <span class="text-xs font-bold text-grimoire-gold">// VINCULACIÓN RIOT ID</span>
                                 </div>
-                                <h3 class="font-tech text-xl sm:text-2xl font-black uppercase mt-1">
-                                    LINKEE SU CUENTA OFICIAL DE RIOT GAMES
+                                <h3 class="font-serifDisplay text-xl sm:text-2xl font-bold uppercase mt-1">
+                                    VINCULE SU CUENTA OFICIAL DE RIOT GAMES
                                 </h3>
-                                <p class="text-xs opacity-70 uppercase">
-                                    Vincula tu Riot ID para figurar en la tabla oficial de standings del equipo.
+                                <p class="text-xs opacity-75 uppercase">
+                                    Enlaza tu Riot ID para figurar en la tabla oficial de clasificación de BLANK.
                                 </p>
                             </div>
                         </div>
 
                         <div id="linkedState" class="hidden flex-col md:flex-row items-center space-y-4 md:space-y-0 md:space-x-6 text-center md:text-left w-full">
-                            <img id="linkedAvatar" src="https://placehold.co/100x100/0b0c10/4956f4?text=RIOT" alt="Riot Avatar" class="w-16 h-16 border-2 border-poster-blue object-cover">
+                            <img id="linkedAvatar" src="https://placehold.co/100x100/120e0d/c8b28e?text=RIOT" alt="Riot Avatar" class="w-16 h-16 border border-grimoire-gold object-cover">
                             <div class="flex-grow">
                                 <div class="flex items-center space-x-2">
-                                    <span class="blue-tag">[CUENTA VINCULADA]</span>
-                                    <span id="linkedTag" class="text-xs font-bold text-poster-blue">#LAS</span>
+                                    <span class="grimoire-tag">[CUENTA VINCULADA]</span>
+                                    <span id="linkedTag" class="text-xs font-bold text-grimoire-gold">#LAS</span>
                                 </div>
-                                <h3 id="linkedName" class="font-tech text-2xl font-black uppercase mt-1">PLAYER_NAME</h3>
+                                <h3 id="linkedName" class="font-serifDisplay text-2xl font-bold uppercase mt-1">PLAYER_NAME</h3>
                                 <div class="flex flex-wrap gap-4 text-xs mt-1">
-                                    <span>PEAK: <strong id="linkedTier" class="text-poster-blue">CHALLENGER 950 LP</strong></span>
-                                    <span>WINRATE: <strong id="linkedWinrate" class="text-green-600">64.5%</strong></span>
+                                    <span>PEAK: <strong id="linkedTier" class="text-grimoire-gold">CHALLENGER 950 LP</strong></span>
+                                    <span>WINRATE: <strong id="linkedWinrate" class="text-green-500">64.5%</strong></span>
                                 </div>
                             </div>
                         </div>
 
                         <div class="shrink-0">
-                            <button id="riotConnectBtn" onclick="openRiotAuthModal()" class="py-3 px-6 bg-poster-accentRed text-white hover:bg-black transition-all font-bold text-xs uppercase flex items-center space-x-2 border border-black shadow-[4px_4px_0px_#0b0c10]">
+                            <button id="riotConnectBtn" onclick="openRiotAuthModal()" class="py-3 px-6 bg-grimoire-crimson text-grimoire-parchment border border-grimoire-gold/60 hover:bg-grimoire-gold hover:text-black transition-all font-bold text-xs uppercase flex items-center space-x-2">
                                 <i class="fa-solid fa-link"></i>
                                 <span>LINK RIOT ACCOUNT ↗</span>
                             </button>
@@ -1253,38 +1592,38 @@
                     </div>
                 </div>
 
-                <!-- TABLE CONTROLS -->
+                <!-- FILTER & SEARCH CONTROLS -->
                 <div class="flex flex-col sm:flex-row justify-between items-stretch sm:items-center gap-4 mb-6 font-mono">
                     <div class="flex flex-wrap items-center gap-2">
-                        <button onclick="filterLeaderboard('All')" class="lb-filter-btn active bg-black text-white px-3 py-1.5 text-xs font-bold uppercase">TODOS</button>
-                        <button onclick="filterLeaderboard('Eclipsed')" class="lb-filter-btn border border-black/30 px-3 py-1.5 text-xs font-bold uppercase hover:bg-black hover:text-white">ECLIPSED</button>
-                        <button onclick="filterLeaderboard('Kore')" class="lb-filter-btn border border-black/30 px-3 py-1.5 text-xs font-bold uppercase hover:bg-black hover:text-white">KORE</button>
-                        <button onclick="filterLeaderboard('Last Knights')" class="lb-filter-btn border border-black/30 px-3 py-1.5 text-xs font-bold uppercase hover:bg-black hover:text-white">LAST KNIGHTS</button>
+                        <button onclick="filterLeaderboard('All')" class="lb-filter-btn tab-nav-btn active px-3.5 py-1.5 text-xs font-bold uppercase">TODOS</button>
+                        <button onclick="filterLeaderboard('Eclipsed')" class="lb-filter-btn tab-nav-btn px-3.5 py-1.5 text-xs font-bold uppercase">ECLIPSED</button>
+                        <button onclick="filterLeaderboard('Kore')" class="lb-filter-btn tab-nav-btn px-3.5 py-1.5 text-xs font-bold uppercase">KORE</button>
+                        <button onclick="filterLeaderboard('Last Knights')" class="lb-filter-btn tab-nav-btn px-3.5 py-1.5 text-xs font-bold uppercase">LAST KNIGHTS</button>
                     </div>
 
                     <div class="relative min-w-[240px]">
-                        <input type="text" id="lbSearch" oninput="renderLeaderboard()" placeholder="Buscar invocador..." class="poster-input text-xs pl-8 py-2">
-                        <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-3 text-xs opacity-40"></i>
+                        <input type="text" id="lbSearch" oninput="renderLeaderboard()" placeholder="Buscar invocador..." class="grimoire-input text-xs pl-8 py-2">
+                        <i class="fa-solid fa-magnifying-glass absolute left-2.5 top-3 text-xs opacity-50"></i>
                     </div>
                 </div>
 
-                <!-- DYNAMIC LEADERBOARD TABLE (VACÍA INICIALMENTE) -->
-                <div class="poster-box border-2 border-black overflow-x-auto">
+                <!-- LEADERBOARD TABLE -->
+                <div class="tarot-card overflow-x-auto mb-16">
                     <table class="w-full text-left font-mono text-xs">
                         <thead>
-                            <tr class="bg-black text-white uppercase border-b border-black text-[11px] tracking-wider">
-                                <th class="p-3 text-center"># RANK</th>
-                                <th class="p-3">INVOCADOR / RIOT ID</th>
-                                <th class="p-3">DIVISIÓN / ROSTER</th>
-                                <th class="p-3">TIER / ELO</th>
-                                <th class="p-3">LP</th>
-                                <th class="p-3">WIN RATE %</th>
-                                <th class="p-3">MAIN ROL</th>
-                                <th class="p-3 text-center">STREAK</th>
+                            <tr class="border-b border-grimoire-gold/40 text-grimoire-gold uppercase text-[11px] tracking-wider bg-black/40">
+                                <th class="p-3.5 text-center"># RANK</th>
+                                <th class="p-3.5">INVOCADOR / RIOT ID</th>
+                                <th class="p-3.5">DIVISIÓN / ROSTER</th>
+                                <th class="p-3.5">TIER / ELO</th>
+                                <th class="p-3.5">LP</th>
+                                <th class="p-3.5">WIN RATE %</th>
+                                <th class="p-3.5">MAIN ROL</th>
+                                <th class="p-3.5 text-center">STREAK</th>
                             </tr>
                         </thead>
-                        <tbody id="leaderboardTbody" class="divide-y divide-black/15">
-                            <!-- Dynamic Rows rendered via JS -->
+                        <tbody id="leaderboardTbody" class="divide-y divide-grimoire-gold/15">
+                            <!-- Dynamic Rows -->
                         </tbody>
                     </table>
                 </div>
@@ -1294,31 +1633,31 @@
 
     </main>
 
-    <!-- ========================================== -->
-    <!-- MODALS SECTION -->
-    <!-- ========================================== -->
+    <!-- ========================================================= -->
+    <!-- MODALS SECTION                                            -->
+    <!-- ========================================================= -->
 
     <!-- 1. VIDEO UPLOAD MODAL -->
-    <div id="uploadVideoModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 font-mono">
-        <div class="poster-box p-6 sm:p-8 max-w-xl w-full border-2 border-poster-blue relative">
-            <button onclick="toggleVideoUploadModal(false)" class="absolute top-4 right-4 hover:text-poster-blue font-bold text-lg">
+    <div id="uploadVideoModal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 font-mono">
+        <div class="tarot-card p-6 sm:p-8 max-w-xl w-full relative">
+            <button onclick="toggleVideoUploadModal(false)" class="absolute top-4 right-4 hover:text-grimoire-gold font-bold text-lg">
                 <i class="fa-solid fa-xmark"></i>
             </button>
             <div class="mb-4">
-                <span class="blue-tag">[MEDIA UPLOAD PROTOCOL]</span>
-                <h3 class="font-tech text-2xl font-black uppercase mt-1">SUBIR NUEVO VIDEO / HIGHLIGHT</h3>
+                <span class="grimoire-tag">[MEDIA UPLOAD PROTOCOL]</span>
+                <h3 class="font-serifDisplay text-2xl font-bold uppercase mt-2">SUBIR NUEVO VIDEO / HIGHLIGHT</h3>
             </div>
             
             <form onsubmit="handleVideoUpload(event)" class="space-y-4">
                 <div>
                     <label class="block text-xs font-bold uppercase mb-1">Título del Video</label>
-                    <input type="text" id="vidTitle" required placeholder="Ej: BLANK Pentakill vs Isurus" class="poster-input text-xs">
+                    <input type="text" id="vidTitle" required placeholder="Ej: BLANK Pentakill vs Isurus" class="grimoire-input text-xs">
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-bold uppercase mb-1">Categoría</label>
-                        <select id="vidCategory" class="poster-input text-xs">
+                        <select id="vidCategory" class="grimoire-input text-xs">
                             <option value="Highlights">Highlights</option>
                             <option value="Scrim VOD">Scrim VOD</option>
                             <option value="Teamfight">Teamfight</option>
@@ -1327,17 +1666,17 @@
                     </div>
                     <div>
                         <label class="block text-xs font-bold uppercase mb-1">Creador / Player</label>
-                        <input type="text" id="vidUploader" required placeholder="Ej: BLANK Lucky" class="poster-input text-xs">
+                        <input type="text" id="vidUploader" required placeholder="Ej: BLANK Lucky" class="grimoire-input text-xs">
                     </div>
                 </div>
 
                 <div>
                     <label class="block text-xs font-bold uppercase mb-1">URL de Video (YouTube / Embed MP4)</label>
-                    <input type="url" id="vidUrl" required placeholder="https://www.youtube.com/watch?v=..." class="poster-input text-xs">
+                    <input type="url" id="vidUrl" required placeholder="https://www.youtube.com/watch?v=..." class="grimoire-input text-xs">
                 </div>
 
                 <div class="pt-2">
-                    <button type="submit" class="w-full py-3 bg-poster-blue text-white font-bold text-xs uppercase hover:bg-black transition-colors border border-black shadow-[3px_3px_0px_#0b0c10]">
+                    <button type="submit" class="w-full py-3 bg-grimoire-gold text-black font-bold text-xs uppercase hover:bg-grimoire-crimson hover:text-white transition-colors">
                         PUBLICAR EN GALERÍA ↗
                     </button>
                 </div>
@@ -1347,20 +1686,18 @@
 
     <!-- 2. VIDEO PLAYER MODAL -->
     <div id="videoPlayerModal" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4 font-mono">
-        <div class="max-w-4xl w-full bg-poster-darkCard border-2 border-poster-blue p-4 relative">
-            <button onclick="closeVideoPlayer()" class="absolute -top-10 right-0 text-white hover:text-poster-blue font-bold text-xl">
+        <div class="max-w-4xl w-full tarot-card p-5 relative">
+            <button onclick="closeVideoPlayer()" class="absolute -top-10 right-0 text-white hover:text-grimoire-gold font-bold text-sm">
                 <i class="fa-solid fa-xmark"></i> CERRAR [X]
             </button>
-            <div id="playerContainer" class="aspect-video w-full bg-black mb-4">
-                <!-- Video Iframe or player injected here -->
-            </div>
-            <div class="flex justify-between items-center text-white font-mono">
+            <div id="playerContainer" class="aspect-video w-full bg-black mb-4 border border-grimoire-gold/30"></div>
+            <div class="flex justify-between items-center font-mono">
                 <div>
-                    <span id="modalVidCategory" class="blue-tag mb-1">CATEGORIA</span>
-                    <h3 id="modalVidTitle" class="font-tech text-xl font-bold uppercase text-white">TITULO DEL VIDEO</h3>
-                    <p id="modalVidUploader" class="text-xs text-gray-400">Subido por: Player</p>
+                    <span id="modalVidCategory" class="grimoire-tag mb-1">CATEGORIA</span>
+                    <h3 id="modalVidTitle" class="font-serifDisplay text-xl font-bold uppercase">TITULO DEL VIDEO</h3>
+                    <p id="modalVidUploader" class="text-xs opacity-70">Subido por: Player</p>
                 </div>
-                <button id="likeBtn" onclick="toggleLikeCurrentVideo()" class="px-4 py-2 border border-white/20 hover:border-poster-accentRed hover:text-poster-accentRed transition-all text-xs font-bold flex items-center space-x-2">
+                <button id="likeBtn" onclick="toggleLikeCurrentVideo()" class="px-4 py-2 border border-grimoire-gold/40 hover:border-grimoire-crimsonBright hover:text-grimoire-crimsonBright transition-all text-xs font-bold flex items-center space-x-2">
                     <i class="fa-solid fa-heart"></i>
                     <span id="likeCount">0</span>
                 </button>
@@ -1370,31 +1707,31 @@
 
     <!-- 3. RIOT GAMES OAUTH SIMULATION MODAL -->
     <div id="riotAuthModal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 font-mono">
-        <div class="poster-box p-6 sm:p-8 max-w-md w-full border-2 border-poster-accentRed text-center relative">
-            <button onclick="closeRiotAuthModal()" class="absolute top-4 right-4 hover:text-poster-accentRed font-bold">
+        <div class="tarot-card p-6 sm:p-8 max-w-md w-full text-center relative">
+            <button onclick="closeRiotAuthModal()" class="absolute top-4 right-4 hover:text-grimoire-gold font-bold">
                 <i class="fa-solid fa-xmark"></i>
             </button>
 
-            <div class="w-16 h-16 bg-poster-accentRed text-white mx-auto mb-4 flex items-center justify-center text-3xl font-black">
-                <i class="fa-solid fa-fire"></i>
+            <div class="w-14 h-14 bg-grimoire-crimson text-grimoire-gold mx-auto mb-4 flex items-center justify-center text-2xl border border-grimoire-gold">
+                <span>✦</span>
             </div>
             
-            <h3 class="font-tech text-2xl font-black uppercase">RIOT GAMES SIGN-IN</h3>
+            <h3 class="font-serifDisplay text-2xl font-bold uppercase">RIOT GAMES SIGN-IN</h3>
             <p class="text-xs opacity-70 uppercase mt-1 mb-6">Ingresa tu Riot ID real para aparecer en la tabla oficial.</p>
 
             <form onsubmit="handleRiotLogin(event)" class="space-y-4 text-left">
                 <div>
                     <label class="block text-xs font-bold uppercase mb-1">Riot ID Game Name</label>
-                    <input type="text" id="riotFormName" required placeholder="Ej: Faker o BLANK Lucky" class="poster-input text-xs">
+                    <input type="text" id="riotFormName" required placeholder="Ej: Faker o BLANK Lucky" class="grimoire-input text-xs">
                 </div>
                 <div>
                     <label class="block text-xs font-bold uppercase mb-1">Tagline</label>
-                    <input type="text" id="riotFormTag" required placeholder="Ej: #KR1 o #LAS" class="poster-input text-xs">
+                    <input type="text" id="riotFormTag" required placeholder="Ej: #KR1 o #LAS" class="grimoire-input text-xs">
                 </div>
                 <div class="grid grid-cols-2 gap-4">
                     <div>
                         <label class="block text-xs font-bold uppercase mb-1">Roster / División</label>
-                        <select id="riotFormDivision" class="poster-input text-xs">
+                        <select id="riotFormDivision" class="grimoire-input text-xs">
                             <option value="Eclipsed">Eclipsed</option>
                             <option value="Kore">Kore</option>
                             <option value="Last Knights">Last Knights</option>
@@ -1403,7 +1740,7 @@
                     </div>
                     <div>
                         <label class="block text-xs font-bold uppercase mb-1">Rol</label>
-                        <select id="riotFormRole" class="poster-input text-xs">
+                        <select id="riotFormRole" class="grimoire-input text-xs">
                             <option value="MID">MID</option>
                             <option value="TOP">TOP</option>
                             <option value="JGL">JGL</option>
@@ -1414,7 +1751,7 @@
                 </div>
                 <div>
                     <label class="block text-xs font-bold uppercase mb-1">Servidor / Región</label>
-                    <select id="riotFormRegion" class="poster-input text-xs">
+                    <select id="riotFormRegion" class="grimoire-input text-xs">
                         <option value="LAS">LAS (Latinoamérica Sur)</option>
                         <option value="LAN">LAN (Latinoamérica Norte)</option>
                         <option value="BR">BR (Brasil)</option>
@@ -1422,66 +1759,89 @@
                         <option value="NA">NA (Norteamérica)</option>
                     </select>
                 </div>
-                <button type="submit" class="w-full py-3 bg-poster-accentRed text-white font-bold text-xs uppercase hover:bg-black transition-colors border border-black shadow-[3px_3px_0px_#0b0c10]">
+                <button type="submit" class="w-full py-3 bg-grimoire-gold text-black font-bold text-xs uppercase hover:bg-grimoire-crimson hover:text-white transition-colors">
                     AUTENTICAR Y REGISTRAR ↗
                 </button>
             </form>
         </div>
     </div>
 
-    <!-- FOOTER UNIFICADO -->
-    <footer class="bg-black text-white border-t border-white/15 py-8 font-mono text-xs">
+    <!-- ========================================================= -->
+    <!-- FOOTER UNIFICADO                                          -->
+    <!-- ========================================================= -->
+    <footer class="bg-black text-grimoire-parchment border-t border-grimoire-gold/30 py-8 font-mono text-xs relative z-20">
         <div class="max-w-7xl mx-auto px-4 sm:px-8 flex flex-col md:flex-row justify-between items-center gap-4">
             <div class="flex items-center space-x-3">
-                <span class="font-tech font-extrabold text-poster-blue tracking-widest text-lg">BLANK</span>
-                <span class="text-white/40">//</span>
-                <span class="text-gray-400">HIGH PERFORMANCE DIVISION</span>
+                <span class="font-serifDisplay font-bold text-grimoire-gold tracking-widest text-lg">BLANK</span>
+                <span class="opacity-40">//</span>
+                <span class="opacity-75">HIGH PERFORMANCE DIVISION</span>
             </div>
-            <div class="text-gray-400 text-center md:text-center text-[11px]">
-                [OPACITY = 1000%] • BLANK ESPORTS © 2026
+            <div class="opacity-70 text-center text-[11px] tracking-widest">
+                ✦ [OPACITY = 1000%] • BLANK ESPORTS © 2026 ✦
             </div>
-            <div class="text-poster-blue font-bold tracking-widest uppercase">
+            <div class="text-grimoire-gold font-bold tracking-widest uppercase">
                 DESIGN BY FLUGEL
             </div>
         </div>
     </footer>
 
-    <!-- JS APP LOGIC -->
+    <!-- ========================================================= -->
+    <!-- JAVASCRIPT LOGIC                                          -->
+    <!-- ========================================================= -->
     <script>
-        // --- GLOBAL APP STATE ---
         let currentTab = 'inicio';
         let currentFilterGallery = 'All';
         let currentFilterLb = 'All';
         let activePlayingVideoId = null;
-        let isDarkMode = false;
+        let isLightMode = false;
+        let currentFontIndex = 0;
+        const fontModes = [
+            { class: '', label: 'FONT: BODONI' },
+            { class: 'font-mode-tenor', label: 'FONT: TENOR' },
+            { class: 'font-mode-syne', label: 'FONT: SYNE' }
+        ];
 
-        // ARRAYS LISTOS PARA REGISTROS REALES
         let galleryVideos = [];
         let leaderboardPlayers = [];
         let linkedRiotUser = null;
 
-        // --- THEME TOGGLE (MODO OSCURO / CLARO) ---
+        // --- LIVE TITLE FONT SWITCHER (BODONI MODA / TENOR SANS / SYNE) ---
+        function cycleTitleFont() {
+            const body = document.body;
+            fontModes.forEach(m => {
+                if (m.class) body.classList.remove(m.class);
+            });
+
+            currentFontIndex = (currentFontIndex + 1) % fontModes.length;
+            const nextFont = fontModes[currentFontIndex];
+            if (nextFont.class) {
+                body.classList.add(nextFont.class);
+            }
+            document.getElementById('fontModeLabel').innerText = nextFont.label;
+        }
+
+        // --- THEME TOGGLE (OBSIDIANA OSCURO POR DEFECTO / PERGAMINO EDITORIAL) ---
         function toggleTheme() {
-            isDarkMode = !isDarkMode;
+            isLightMode = !isLightMode;
             const body = document.body;
             const icon = document.getElementById('themeIcon');
             const text = document.getElementById('themeText');
 
-            if (isDarkMode) {
-                body.classList.add('dark-theme');
-                icon.className = 'fa-solid fa-sun text-yellow-400';
-                text.innerText = 'LIGHT MODE';
-            } else {
-                body.classList.remove('dark-theme');
+            if (isLightMode) {
+                body.classList.add('light-theme');
                 icon.className = 'fa-solid fa-moon';
-                text.innerText = 'NIGHT MODE';
+                text.innerText = 'OBSIDIANA';
+            } else {
+                body.classList.remove('light-theme');
+                icon.className = 'fa-solid fa-sun text-grimoire-gold';
+                text.innerText = 'PERGAMINO';
             }
         }
 
-        // --- TAB SWITCHING ---
-        function switchTab(tab) {
+        // --- TAB SWITCHING (6 TABS INDEPENDIENTES) ---
+        function switchTab(tab, skipScrollTop = false) {
             currentTab = tab;
-            const tabs = ['inicio', 'vacancies', 'tryouts', 'gallery', 'ranking'];
+            const tabs = ['inicio', 'rosters', 'vacancies', 'tryouts', 'gallery', 'ranking'];
             
             tabs.forEach(t => {
                 const btn = document.getElementById(`nav-${t}`);
@@ -1490,11 +1850,9 @@
                 if (btn && content) {
                     if (t === tab) {
                         btn.classList.add('active');
-                        btn.classList.remove('bg-black/5', 'text-black');
                         content.classList.remove('hidden');
                     } else {
                         btn.classList.remove('active');
-                        btn.classList.add('bg-black/5', 'text-black');
                         content.classList.add('hidden');
                     }
                 }
@@ -1502,10 +1860,21 @@
 
             if (tab === 'gallery') renderGallery();
             if (tab === 'ranking') renderLeaderboard();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            if (!skipScrollTop) {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
             
-            // Re-trigger reveal animation for newly visible section elements
-            setTimeout(initScrollReveal, 50);
+            setTimeout(initScrollReveal, 60);
+        }
+
+        function openRosterSection(sectionId) {
+            switchTab('rosters', true);
+            setTimeout(() => {
+                const target = document.getElementById(sectionId);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 80);
         }
 
         // --- SCROLL REVEAL OBSERVER ---
@@ -1516,14 +1885,14 @@
                         entry.target.classList.add('active');
                     }
                 });
-            }, { threshold: 0.1 });
+            }, { threshold: 0.08 });
 
             document.querySelectorAll('.reveal-block').forEach((el) => {
                 observer.observe(el);
             });
         }
 
-        // --- SUB-PAGE: TRYOUTS LOGIC ---
+        // --- TRYOUTS FORM SUBMISSION ---
         function handleFormSubmit(e) {
             e.preventDefault();
             
@@ -1536,27 +1905,25 @@
 
             const timeNow = new Date().toLocaleTimeString();
 
-            // Preview Render
-            document.getElementById('submissionTime').innerText = `ENVIADO: ${timeNow}`;
+            document.getElementById('submissionTime').innerText = `SELLADO: ${timeNow}`;
             document.getElementById('submittedContent').innerHTML = `
                 <div class="space-y-2 not-italic font-mono">
-                    <div class="flex justify-between items-center bg-black text-white p-2">
+                    <div class="flex justify-between items-center bg-black/70 text-grimoire-parchment p-2.5 border border-grimoire-gold/40">
                         <span class="font-bold text-xs uppercase">${summoner}</span>
-                        <span class="blue-tag">${role.toUpperCase()}</span>
+                        <span class="grimoire-tag">${role.toUpperCase()}</span>
                     </div>
-                    <div class="text-[11px] space-y-1 p-3 border border-black">
+                    <div class="text-[11px] space-y-1 p-3 border border-grimoire-gold/30">
                         <div><strong>Peak Elo:</strong> ${peak}</div>
                         <div><strong>Exp:</strong> ${exp}</div>
-                        <div><strong>OP.GG:</strong> <a href="${opgg}" target="_blank" class="text-poster-blue underline truncate block">${opgg}</a></div>
-                        ${comments ? `<div class="mt-2 border-t border-black/15 pt-1"><strong>Notas:</strong> ${comments}</div>` : ''}
+                        <div><strong>OP.GG:</strong> <a href="${opgg}" target="_blank" class="text-grimoire-gold underline truncate block">${opgg}</a></div>
+                        ${comments ? `<div class="mt-2 border-t border-grimoire-gold/20 pt-1"><strong>Notas:</strong> ${comments}</div>` : ''}
                     </div>
-                    <div class="bg-green-600 text-white p-2 text-center text-[10px] font-bold tracking-widest uppercase">
-                        [CONFIRMADO // RESPUESTA EN DISCORD EN < 48HRS]
+                    <div class="bg-grimoire-crimson text-grimoire-parchment p-2 text-center text-[10px] font-bold tracking-widest uppercase border border-grimoire-gold/40">
+                        ✦ [REGISTRADO // RESPUESTA EN DISCORD EN &lt; 48HRS] ✦
                     </div>
                 </div>
             `;
 
-            // Auto registrar en el ranking como postulante
             const parts = summoner.split('#');
             const pName = parts[0] || summoner;
             const pTag = parts[1] ? `#${parts[1]}` : '#LAS';
@@ -1571,23 +1938,20 @@
                 winrate: 58.0,
                 role: role.toUpperCase(),
                 streak: 'W2',
-                avatar: `https://placehold.co/80/0b0c10/ffffff?text=${encodeURIComponent(pName.substring(0,3).toUpperCase())}`
+                avatar: `https://placehold.co/80/120e0d/c8b28e?text=${encodeURIComponent(pName.substring(0,3).toUpperCase())}`
             });
 
-            // Reset form
             document.getElementById('tryoutForm').reset();
         }
 
-        // --- SUB-PAGE: GALLERY LOGIC ---
+        // --- GALLERY LOGIC ---
         function filterGallery(cat) {
             currentFilterGallery = cat;
             document.querySelectorAll('.gallery-filter-btn').forEach(btn => {
                 if (btn.innerText.includes(cat.toUpperCase()) || (cat === 'All' && btn.innerText.includes('TODOS'))) {
-                    btn.classList.add('bg-black', 'text-white');
-                    btn.classList.remove('border-black/30');
+                    btn.classList.add('active');
                 } else {
-                    btn.classList.remove('bg-black', 'text-white');
-                    btn.classList.add('border-black/30');
+                    btn.classList.remove('active');
                 }
             });
             renderGallery();
@@ -1601,12 +1965,12 @@
 
             if (filtered.length === 0) {
                 container.innerHTML = `
-                    <div class="col-span-full p-12 text-center poster-box border-2 border-black font-mono my-4">
-                        <div class="w-16 h-16 bg-black text-white flex items-center justify-center text-2xl mx-auto mb-4 border border-poster-blue">
-                            <i class="fa-solid fa-photo-film"></i>
+                    <div class="col-span-full p-14 text-center tarot-card font-mono my-4">
+                        <div class="w-14 h-14 bg-grimoire-crimson text-grimoire-gold flex items-center justify-center text-xl mx-auto mb-4 border border-grimoire-gold">
+                            <span>✦</span>
                         </div>
-                        <h3 class="font-tech text-2xl font-black uppercase">GALERÍA LISTA PARA ESTRENARSE</h3>
-                        <p class="text-xs uppercase mt-2 max-w-md mx-auto opacity-70">
+                        <h3 class="font-serifDisplay text-2xl font-bold uppercase">BÓVEDA MULTIMEDIA LISTA PARA ESTRENARSE</h3>
+                        <p class="text-xs uppercase mt-2 max-w-md mx-auto opacity-75">
                             No hay clips ni highlights publicados aún. Sé el primero en subir un video utilizando el botón "Subir Video / Clip".
                         </p>
                     </div>
@@ -1616,29 +1980,29 @@
 
             filtered.forEach(vid => {
                 const card = document.createElement('div');
-                card.className = 'poster-box border-2 border-black overflow-hidden flex flex-col justify-between group cursor-pointer';
+                card.className = 'tarot-card overflow-hidden flex flex-col justify-between group cursor-pointer';
                 card.onclick = () => openVideoPlayer(vid.id);
 
                 card.innerHTML = `
                     <div>
                         <div class="relative aspect-video bg-black overflow-hidden">
                             <img src="${vid.thumbnail}" alt="${vid.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors flex items-center justify-center">
-                                <div class="w-12 h-12 bg-poster-blue text-white rounded-none flex items-center justify-center text-xl shadow-[3px_3px_0px_#0b0c10]">
+                            <div class="absolute inset-0 bg-black/40 group-hover:bg-black/15 transition-colors flex items-center justify-center">
+                                <div class="w-12 h-12 bg-grimoire-crimson text-grimoire-gold border border-grimoire-gold flex items-center justify-center text-lg">
                                     <i class="fa-solid fa-play ml-1"></i>
                                 </div>
                             </div>
-                            <span class="absolute top-2 left-2 black-tag">${vid.category}</span>
+                            <span class="absolute top-2 left-2 obsidian-tag">${vid.category}</span>
                         </div>
-                        <div class="p-4">
-                            <h4 class="font-tech text-lg font-black group-hover:text-poster-blue transition-colors line-clamp-2 uppercase">${vid.title}</h4>
+                        <div class="p-5">
+                            <h4 class="font-serifDisplay text-lg font-bold group-hover:text-grimoire-gold transition-colors line-clamp-2 uppercase">${vid.title}</h4>
                             <p class="text-xs uppercase mt-1 opacity-70">UPLOADER: <span class="font-bold">${vid.uploader}</span></p>
                         </div>
                     </div>
-                    <div class="p-4 pt-0 border-t border-black/10 flex justify-between items-center text-xs mt-2">
-                        <span class="text-poster-blue font-bold">VER REPLAY ↗</span>
-                        <span class="flex items-center space-x-1 opacity-70">
-                            <i class="fa-solid fa-heart text-poster-accentRed"></i>
+                    <div class="p-5 pt-3 border-t border-grimoire-gold/20 flex justify-between items-center text-xs">
+                        <span class="text-grimoire-gold font-bold">VER REPLAY ↗</span>
+                        <span class="flex items-center space-x-1 opacity-80">
+                            <i class="fa-solid fa-heart text-grimoire-crimsonBright"></i>
                             <span>${vid.likes}</span>
                         </span>
                     </div>
@@ -1671,7 +2035,7 @@
                 category: category,
                 uploader: uploader,
                 url: embedUrl,
-                thumbnail: `https://placehold.co/600x340/0b0c10/ffffff?text=${encodeURIComponent(title.substring(0, 20))}`,
+                thumbnail: `https://placehold.co/600x340/120e0d/c8b28e?text=${encodeURIComponent(title.substring(0, 20))}`,
                 likes: 0,
                 role: 'Player'
             };
@@ -1715,16 +2079,14 @@
             }
         }
 
-        // --- SUB-PAGE: RANKING LOGIC ---
+        // --- RANKING / LEADERBOARD LOGIC ---
         function filterLeaderboard(div) {
             currentFilterLb = div;
             document.querySelectorAll('.lb-filter-btn').forEach(btn => {
                 if (btn.innerText.includes(div.toUpperCase()) || (div === 'All' && btn.innerText.includes('TODOS'))) {
-                    btn.classList.add('bg-black', 'text-white');
-                    btn.classList.remove('border-black/30');
+                    btn.classList.add('active');
                 } else {
-                    btn.classList.remove('bg-black', 'text-white');
-                    btn.classList.add('border-black/30');
+                    btn.classList.remove('active');
                 }
             });
             renderLeaderboard();
@@ -1745,9 +2107,9 @@
             if (players.length === 0) {
                 tbody.innerHTML = `
                     <tr>
-                        <td colspan="8" class="p-12 text-center opacity-70 uppercase font-mono">
+                        <td colspan="8" class="p-14 text-center opacity-75 uppercase font-mono">
                             <div class="max-w-md mx-auto space-y-2">
-                                <i class="fa-solid fa-trophy text-3xl opacity-30"></i>
+                                <div class="text-2xl text-grimoire-gold">✦</div>
                                 <div class="font-bold text-sm">NO HAY INVOCADORES REGISTRADOS EN EL RANKING</div>
                                 <div class="text-[11px]">Vincula tu cuenta oficial de Riot Games o envía una postulación para figurar en la tabla de clasificación.</div>
                             </div>
@@ -1761,41 +2123,39 @@
 
             players.forEach((p, index) => {
                 const tr = document.createElement('tr');
-                tr.className = 'hover:bg-poster-blue/10 transition-colors font-mono';
+                tr.className = 'hover:bg-grimoire-gold/10 transition-colors font-mono';
 
-                let tierBadgeClass = 'bg-black text-white px-2 py-0.5 text-[10px]';
-                if (p.tier === 'Challenger') tierBadgeClass = 'blue-tag';
-                else if (p.tier === 'GrandMaster') tierBadgeClass = 'bg-purple-900 text-white font-bold px-2 py-0.5 text-[10px]';
-                else if (p.tier === 'Master') tierBadgeClass = 'red-tag';
+                let tierBadgeClass = 'obsidian-tag';
+                if (p.tier === 'Challenger') tierBadgeClass = 'grimoire-tag';
+                else if (p.tier === 'GrandMaster') tierBadgeClass = 'crimson-tag';
 
                 tr.innerHTML = `
-                    <td class="p-3 text-center font-bold text-sm text-poster-blue">#${index + 1}</td>
-                    <td class="p-3">
+                    <td class="p-3.5 text-center font-bold text-sm text-grimoire-gold">#${index + 1}</td>
+                    <td class="p-3.5">
                         <div class="flex items-center space-x-3">
-                            <img src="${p.avatar}" alt="${p.name}" class="w-8 h-8 rounded-none border border-black object-cover">
+                            <img src="${p.avatar}" alt="${p.name}" class="w-8 h-8 border border-grimoire-gold/60 object-cover">
                             <div>
                                 <div class="font-bold uppercase">${p.name} <span class="opacity-60 text-[10px]">${p.tag}</span></div>
                             </div>
                         </div>
                     </td>
-                    <td class="p-3">
-                        <span class="black-tag tag-invert">${p.division}</span>
+                    <td class="p-3.5">
+                        <span class="obsidian-tag">${p.division}</span>
                     </td>
-                    <td class="p-3">
+                    <td class="p-3.5">
                         <span class="${tierBadgeClass}">${p.tier}</span>
                     </td>
-                    <td class="p-3 font-bold">${p.lp} LP</td>
-                    <td class="p-3 font-bold ${p.winrate > 60 ? 'text-green-600' : ''}">${p.winrate}%</td>
-                    <td class="p-3 font-bold">${p.role}</td>
-                    <td class="p-3 text-center">
-                        <span class="${p.streak.startsWith('W') ? 'bg-green-700' : 'bg-red-700'} text-white font-bold px-2 py-0.5 text-[10px]">${p.streak}</span>
+                    <td class="p-3.5 font-bold">${p.lp} LP</td>
+                    <td class="p-3.5 font-bold text-grimoire-gold">${p.winrate}%</td>
+                    <td class="p-3.5 font-bold">${p.role}</td>
+                    <td class="p-3.5 text-center">
+                        <span class="obsidian-tag text-grimoire-gold font-bold">${p.streak}</span>
                     </td>
                 `;
                 tbody.appendChild(tr);
             });
         }
 
-        // --- RIOT AUTH OAUTH SIMULATION ---
         function openRiotAuthModal() {
             document.getElementById('riotAuthModal').classList.remove('hidden');
         }
@@ -1822,7 +2182,7 @@
                 winrate: 62.5,
                 role: rRole,
                 streak: 'W3',
-                avatar: `https://placehold.co/100x100/4956f4/ffffff?text=${encodeURIComponent(rName.substring(0,3).toUpperCase())}`
+                avatar: `https://placehold.co/100x100/6b1d24/e6dfd5?text=${encodeURIComponent(rName.substring(0,3).toUpperCase())}`
             };
 
             leaderboardPlayers.unshift(linkedRiotUser);
@@ -1837,15 +2197,14 @@
             document.getElementById('linkedAvatar').src = linkedRiotUser.avatar;
 
             const btn = document.getElementById('riotConnectBtn');
-            btn.className = 'py-3 px-6 bg-green-600 text-white font-bold text-xs uppercase cursor-default';
-            btn.innerHTML = `<i class="fa-solid fa-circle-check"></i> <span>VERIFICADO</span>`;
+            btn.className = 'py-3 px-6 bg-grimoire-gold text-black font-bold text-xs uppercase cursor-default';
+            btn.innerHTML = `<span>✦ VERIFICADO ✦</span>`;
             btn.onclick = null;
 
             closeRiotAuthModal();
             renderLeaderboard();
         }
 
-        // --- INITIALIZATION ---
         window.onload = function() {
             switchTab('inicio');
             initScrollReveal();
