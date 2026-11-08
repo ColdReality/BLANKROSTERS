@@ -2788,49 +2788,62 @@
         }
 
         // --- REAL-TIME SYNC (FETCHES ./data/ranking.json OR WORKER PROXY OR SIMULATES LIVE DELTA) ---
+        // --- FUNCIÓN PARA CARGAR EL ARCHIVO REAL DE GITHUB AL INICIAR ---
+        async function loadGithubRankingData() {
+            try {
+                // ?t= evita que el navegador use una copia vieja en caché
+                const res = await fetch('./data/ranking.json?t=' + Date.now(), { cache: 'no-store' });
+                if (res.ok) {
+                    const data = await res.json();
+                    if (Array.isArray(data.players) && data.players.length > 0) {
+                        // Mapea los datos del archivo generado por GitHub Actions
+                        leaderboardPlayers = data.players.map(p => ({
+                            id: p.id || (p.name || p.displayName || '').toLowerCase().replace(/\s+/g, '-'),
+                            name: p.name || p.displayName,
+                            tag: p.tag ? (p.tag.startsWith('#') ? p.tag : '#' + p.tag) : '#LAN',
+                            region: p.region || 'LAN',
+                            division: p.division || 'Last Knights',
+                            role: p.role || 'TOP',
+                            tier: p.tier || 'UNRANKED',
+                            lp: p.lp !== undefined ? p.lp : 0,
+                            wins: p.wins || 0,
+                            losses: p.losses || 0,
+                            winrate: p.winrate !== undefined ? p.winrate : 0,
+                            streak: p.streak || '0',
+                            recentMatches: p.recentMatches || ['W', 'W', 'W'],
+                            recentChamps: p.recentChamps || (p.topChampions ? p.topChampions.map(c => ({ name: c, kda: '' })) : []),
+                            avatar: p.avatar || 'https://ddragon.leagueoflegends.com/cdn/14.21.1/img/profileicon/588.png'
+                        }));
+
+                        const badge = document.getElementById('apiSourceBadge');
+                        if (badge) badge.innerText = 'DATOS REALES (GITHUB SYNC)';
+
+                        if (data.updatedAt) {
+                            const dateObj = new Date(data.updatedAt);
+                            document.getElementById('lastSyncTimestamp').innerText = dateObj.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) + ' UTC';
+                        }
+
+                        renderLeaderboard();
+                        return;
+                    }
+                }
+            } catch (err) {
+                console.warn('No se pudo cargar data/ranking.json aún, usando datos locales:', err);
+            }
+            renderLeaderboard();
+        }
+
+        // --- REAL-TIME SYNC CON EL BOTÓN ---
         async function syncRankingLive() {
             const spinner = document.getElementById('syncSpinnerIcon');
             if (spinner) spinner.classList.add('fa-spin');
 
-            try {
-                const endpoint = customWorkerUrl ? `${customWorkerUrl}/ranking` : './data/ranking.json?t=' + Date.now();
-                const res = await fetch(endpoint, { cache: 'no-store' });
-                if (res.ok) {
-                    const data = await res.json();
-                    if (Array.isArray(data.players) && data.players.length > 0) {
-                        leaderboardPlayers = data.players;
-                        document.getElementById('apiSourceBadge').innerText = 'GITHUB JSON SYNC';
-                    }
-                } else {
-                    throw new Error('Local fallback');
-                }
-            } catch (err) {
-                // Live telemetry refresh simulation when running standalone without backend
-                leaderboardPlayers.forEach(p => {
-                    const delta = Math.random() > 0.42 ? Math.floor(Math.random() * 19) + 12 : -(Math.floor(Math.random() * 16) + 10);
-                    p.lp = Math.max(0, p.lp + delta);
-                    if (delta > 0) {
-                        p.wins = (p.wins || 90) + 1;
-                        p.recentMatches = [...(p.recentMatches || ['W','W','L','W','W']).slice(1), 'W'];
-                        const wCount = p.streak.includes('W') ? parseInt(p.streak.replace(/\D/g, '') || '1') + 1 : 1;
-                        p.streak = wCount >= 3 ? `🔥 W${wCount}` : `W${wCount}`;
-                    } else {
-                        p.losses = (p.losses || 65) + 1;
-                        p.recentMatches = [...(p.recentMatches || ['W','W','L','W','W']).slice(1), 'L'];
-                        p.streak = 'L1';
-                    }
-                    p.winrate = Number(((p.wins / (p.wins + p.losses)) * 100).toFixed(1));
-                });
-            }
-
-            const nowStr = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-            document.getElementById('lastSyncTimestamp').innerText = `HOY, ${nowStr} (LIVE)`;
+            await loadGithubRankingData();
 
             setTimeout(() => {
                 if (spinner) spinner.classList.remove('fa-spin');
-                renderLeaderboard();
-                showToast('TELEMETRÍA DE RANKING SINCRONIZADA EN TIEMPO REAL');
-            }, 450);
+                showToast('TELEMETRÍA DE RANKING ACTUALIZADA');
+            }, 500);
         }
 
         function refreshSinglePlayer(playerId) {
@@ -2935,8 +2948,8 @@
 
 on:
   schedule:
-    - cron: '0 */6 * * *' # Ejecuta automáticamente cada 6 horas
-  workflow_dispatch:       # Permite ejecutarlo manualmente con 1 clic en GitHub
+    - cron: '0 */6 * * *'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -2968,11 +2981,7 @@ jobs:
             script: {
                 filename: 'scripts/fetch-riot-ranking.js',
                 downloadName: 'fetch-riot-ranking.js',
-                content: `/**
- * BLANK ESPORTS // RIOT API v5 FETCHER (Node.js 20+)
- * Consulta Account-V1, Summoner-V4, League-V4 y Match-V5 (rachas y top 3 campeones recientes)
- */
-const fs = require('fs');
+                content: `const fs = require('fs');
 const path = require('path');
 
 const API_KEY = process.env.RIOT_API_KEY;
@@ -2995,15 +3004,11 @@ async function riotFetch(url) {
 
 async function processPlayer(p) {
   const route = ROUTING[p.region] || ROUTING.LAS;
-  // 1. Obtener PUUID por Riot ID (gameName + tagLine)
   const account = await riotFetch(\`https://\${route.regional}/riot/account/v1/accounts/by-riot-id/\${encodeURIComponent(p.gameName)}/\${encodeURIComponent(p.tagLine)}\`);
   const summoner = await riotFetch(\`https://\${route.platform}/lol/summoner/v4/summoners/by-puuid/\${account.puuid}\`);
-
-  // 2. Obtener ELO y LP en SoloQ
   const leagues = await riotFetch(\`https://\${route.platform}/lol/league/v4/entries/by-summoner/\${summoner.id}\`);
   const soloq = leagues.find(e => e.queueType === 'RANKED_SOLO_5x5') || { tier: p.fallbackTier, leaguePoints: p.fallbackLp, wins: 50, losses: 40 };
 
-  // 3. Obtener últimas 10 partidas de SoloQ (queue=420) para rachas y campeones recientes
   const matchIds = await riotFetch(\`https://\${route.regional}/lol/match/v5/matches/by-puuid/\${account.puuid}/ids?queue=420&count=8\`);
   const recentMatches = [];
   const champStats = {};
@@ -3022,7 +3027,6 @@ async function processPlayer(p) {
     }
   }
 
-  // Calcular racha activa
   let streakType = recentMatches[recentMatches.length - 1] || 'W';
   let streakCount = 0;
   for (let i = recentMatches.length - 1; i >= 0; i--) {
@@ -3031,7 +3035,6 @@ async function processPlayer(p) {
   }
   const streakLabel = (streakType === 'W' && streakCount >= 3 ? '🔥 W' : streakType) + streakCount;
 
-  // Top 3 campeones recientes
   const recentChamps = Object.entries(champStats)
     .sort((a, b) => b[1].count - a[1].count)
     .slice(0, 3)
@@ -3078,30 +3081,13 @@ async function processPlayer(p) {
                 downloadName: 'players.json',
                 content: `[
   { "id": "uchiha", "displayName": "LK Uchiha", "gameName": "Uchiha", "tagLine": "LAS", "region": "LAS", "division": "Last Knights", "role": "TOP", "fallbackTier": "Diamante", "fallbackLp": 84 },
-  { "id": "mifulafu", "displayName": "LK Mifulafu", "gameName": "Mifulafu", "tagLine": "LAS", "region": "LAS", "division": "Last Knights", "role": "JGL", "fallbackTier": "Diamante", "fallbackLp": 92 },
-  { "id": "vandr", "displayName": "LK Vándr", "gameName": "Vandr", "tagLine": "LAS", "region": "LAS", "division": "Last Knights", "role": "MID", "fallbackTier": "Master", "fallbackLp": 410 },
-  { "id": "koro", "displayName": "LK Koro", "gameName": "Koro", "tagLine": "LAS", "region": "LAS", "division": "Last Knights", "role": "ADC", "fallbackTier": "Master", "fallbackLp": 365 },
-  { "id": "manzanita", "displayName": "LK Manzanita", "gameName": "Manzanita", "tagLine": "LAS", "region": "LAS", "division": "Last Knights", "role": "SUPP", "fallbackTier": "Diamante", "fallbackLp": 76 },
-  { "id": "kemez", "displayName": "LK Kemez (Sub)", "gameName": "Kemez", "tagLine": "LAS", "region": "LAS", "division": "Last Knights", "role": "JGL", "fallbackTier": "GrandMaster", "fallbackLp": 520 },
-  { "id": "night", "displayName": "BLANK Night", "gameName": "Night", "tagLine": "LAS", "region": "LAS", "division": "Eclipsed", "role": "TOP", "fallbackTier": "GrandMaster", "fallbackLp": 740 },
-  { "id": "sua", "displayName": "BLANK Sua", "gameName": "Sua", "tagLine": "LAS", "region": "LAS", "division": "Eclipsed", "role": "JGL", "fallbackTier": "GrandMaster", "fallbackLp": 715 },
-  { "id": "lucky", "displayName": "BLANK Lucky", "gameName": "Lucky", "tagLine": "LAS", "region": "LAS", "division": "Eclipsed", "role": "MID", "fallbackTier": "Challenger", "fallbackLp": 1045 },
-  { "id": "nade", "displayName": "BLANK Nade", "gameName": "Nade", "tagLine": "LAS", "region": "LAS", "division": "Eclipsed", "role": "ADC", "fallbackTier": "Challenger", "fallbackLp": 980 },
-  { "id": "pope", "displayName": "BLANK Pope", "gameName": "Pope", "tagLine": "LAS", "region": "LAS", "division": "Eclipsed", "role": "SUPP", "fallbackTier": "Challenger", "fallbackLp": 912 },
-  { "id": "lie", "displayName": "KORE Lie", "gameName": "Lie", "tagLine": "LAN", "region": "LAN", "division": "Kore", "role": "TOP", "fallbackTier": "Challenger", "fallbackLp": 890 },
-  { "id": "el10", "displayName": "KORE El10", "gameName": "El10", "tagLine": "LAN", "region": "LAN", "division": "Kore", "role": "JGL", "fallbackTier": "Challenger", "fallbackLp": 864 },
-  { "id": "sven", "displayName": "KORE Sven", "gameName": "Sven", "tagLine": "LAN", "region": "LAN", "division": "Kore", "role": "ADC", "fallbackTier": "Master", "fallbackLp": 875 },
-  { "id": "ohto", "displayName": "KORE Ohto", "gameName": "Ohto", "tagLine": "LAN", "region": "LAN", "division": "Kore", "role": "SUPP", "fallbackTier": "GrandMaster", "fallbackLp": 680 }
+  { "id": "mifulafu", "displayName": "LK Mifulafu", "gameName": "Mifulafu", "tagLine": "LAS", "region": "LAS", "division": "Last Knights", "role": "JGL", "fallbackTier": "Diamante", "fallbackLp": 92 }
 ]`
             },
             worker: {
                 filename: 'cloudflare-worker-proxy.js',
                 downloadName: 'cloudflare-worker-proxy.js',
-                content: `/**
- * CLOUDFLARE WORKER // LIVE RIOT API PROXY PARA EL BOTÓN "SYNC AHORA"
- * Permite que cualquier visitante actualice su progreso en tiempo real sin exponer RIOT_API_KEY
- */
-export default {
+                content: `export default {
   async fetch(request, env) {
     const corsHeaders = {
       'Access-Control-Allow-Origin': '*',
@@ -3182,10 +3168,11 @@ export default {
             showToast(val ? 'ENDPOINT LIVE GUARDADO CORRECTAMENTE' : 'USANDO MODO LOCAL / GITHUB JSON');
         }
 
+        // --- INICIALIZACIÓN AUTOMÁTICA AL ABRIR LA WEB ---
         window.onload = function() {
             switchTab('inicio');
             initScrollReveal();
-            renderLeaderboard();
+            loadGithubRankingData();
         }
     </script>
 </body>
