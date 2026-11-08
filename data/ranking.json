@@ -1,4 +1,264 @@
 {
-  "updatedAt": "2026-11-08T21:01:04.388Z",
-  "players": []
+  "updatedAt": "2026-11-08T21:18:03.784Z",
+  "players": [
+    {
+      "id": "lk-nyfer",
+      "name": "LK Nyfer",
+      "tag": "#BLANK",
+      "division": "Last Knights",
+      "role": "SUPP",
+      "region": "LA1",
+      "tier": "MASTER",
+      "rankNumber": "I",
+      "lp": 759,
+      "wins": 298,
+      "losses": 255,
+      "winrate": 53.9,
+      "streak": "W1",
+      "recentMatches": [
+        "W",
+        "L",
+        "W",
+        "L",
+        "W"
+      ],
+      "recentChamps": [
+        {
+          "name": "Milio",
+          "kda": ""
+        },
+        {
+          "name": "Nami",
+          "kda": ""
+        },
+        {
+          "name": "Janna",
+          "kda": ""
+        }
+      ],
+      "avatar": "https://ddragon.leagueoflegends.com/cdn/14.21.1/img/profileicon/10005.png"
+    },
+    {
+      "id": "kemez",
+      "name": "KEMEz",
+      "tag": "#TZ1",
+      "division": "Last Knights",
+      "role": "JGL",
+      "region": "LA1",
+      "tier": "MASTER",
+      "rankNumber": "I",
+      "lp": 261,
+      "wins": 503,
+      "losses": 475,
+      "winrate": 51.4,
+      "streak": "L2",
+      "recentMatches": [
+        "L",
+        "L",
+        "W",
+        "W",
+        "L"
+      ],
+      "recentChamps": [
+        {
+          "name": "Qiyana",
+          "kda": ""
+        },
+        {
+          "name": "Sylas",
+          "kda": ""
+        },
+        {
+          "name": "Yone",
+          "kda": ""
+        }
+      ],
+      "avatar": "https://ddragon.leagueoflegends.com/cdn/14.21.1/img/profileicon/6236.png"
+    },
+    {
+      "id": "oda-mifulafu",
+      "name": "ODA Mifulafu",
+      "tag": "#KITTY",
+      "division": "Last Knights",
+      "role": "JGL",
+      "region": "LA1",
+      "tier": "DIAMOND",
+      "rankNumber": "IV",
+      "lp": 37,
+      "wins": 124,
+      "losses": 116,
+      "winrate": 51.7,
+      "streak": "W1",
+      "recentMatches": [
+        "W",
+        "L",
+        "L",
+        "W",
+        "L"
+      ],
+      "recentChamps": [
+        {
+          "name": "JarvanIV",
+          "kda": ""
+        },
+        {
+          "name": "Diana",
+          "kda": ""
+        },
+        {
+          "name": "Belveth",
+          "kda": ""
+        }
+      ],
+      "avatar": "https://ddragon.leagueoflegends.com/cdn/14.21.1/img/profileicon/5010.png"
+    },
+    {
+      "id": "lk-koro",
+      "name": "LK Koro",
+      "tag": "#0612S",
+      "division": "Last Knights",
+      "role": "ADC",
+      "region": "LA1",
+      "tier": "DIAMOND",
+      "rankNumber": "IV",
+      "lp": 36,
+      "wins": 491,
+      "losses": 475,
+      "winrate": 50.8,
+      "streak": "W1",
+      "recentMatches": [
+        "W",
+        "L",
+        "W",
+        "L",
+        "L"
+      ],
+      "recentChamps": [
+        {
+          "name": "Senna",
+          "kda": ""
+        },
+        {
+          "name": "Lucian",
+          "kda": ""
+        },
+        {
+          "name": "Sivir",
+          "kda": ""
+        }
+      ],
+      "avatar": "https://ddragon.leagueoflegends.com/cdn/14.21.1/img/profileicon/5915.png"
+    },
+    {
+      "id": "manzanita",
+      "name": "Manzanita",
+      "tag": "#FDG",
+      "division": "Last Knight",
+      "role": "SUPP",
+      "region": "LA1",
+      "tier": "DIAMOND",
+      "rankNumber": "IV",
+      "lp": 32,
+      "wins": 134,
+      "losses": 130,
+      "winrate": 50.8,
+      "streak": "L3",
+      "recentMatches": [
+        "L",
+        "L",
+        "L",
+        "W",
+        "W"
+      ],
+      "recentChamps": [
+        {
+          "name": "Thresh",
+          "kda": ""
+        },
+        {
+          "name": "Irelia",
+          "kda": ""
+        },
+        {
+          "name": "Pyke",
+          "kda": ""
+        }
+      ],
+      "avatar": "https://ddragon.leagueoflegends.com/cdn/14.21.1/img/profileicon/6090.png"
+    },
+    {
+      "id": "lk-vαndr",
+      "name": "LK Vαndr",
+      "tag": "#BLANK",
+      "division": "Last Knight",
+      "role": "MID",
+      "region": "LA1",
+      "tier": "EMERALD",
+      "rankNumber": "IV",
+      "lp": 79,
+      "wins": 436,
+      "losses": 428,
+      "winrate": 50.5,
+      "streak": "L1",
+      "recentMatches": [
+        "L",
+        "W",
+        "L",
+        "L",
+        "W"
+      ],
+      "recentChamps": [
+        {
+          "name": "Viktor",
+          "kda": ""
+        },
+        {
+          "name": "Diana",
+          "kda": ""
+        },
+        {
+          "name": "Ahri",
+          "kda": ""
+        }
+      ],
+      "avatar": "https://ddragon.leagueoflegends.com/cdn/14.21.1/img/profileicon/7098.png"
+    },
+    {
+      "id": "uchiha-itachi-朱",
+      "name": "Uchiha Itachi 朱",
+      "tag": "#ZEN",
+      "division": "Last Knights",
+      "role": "TOP",
+      "region": "LA1",
+      "tier": "EMERALD",
+      "rankNumber": "I",
+      "lp": 20,
+      "wins": 439,
+      "losses": 429,
+      "winrate": 50.6,
+      "streak": "L1",
+      "recentMatches": [
+        "L",
+        "W",
+        "L",
+        "W",
+        "L"
+      ],
+      "recentChamps": [
+        {
+          "name": "Kennen",
+          "kda": ""
+        },
+        {
+          "name": "Pyke",
+          "kda": ""
+        },
+        {
+          "name": "Ambessa",
+          "kda": ""
+        }
+      ],
+      "avatar": "https://ddragon.leagueoflegends.com/cdn/14.21.1/img/profileicon/6205.png"
+    }
+  ]
 }
