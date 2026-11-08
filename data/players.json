@@ -47,5 +47,12 @@
     "region": "la1",
     "division": "Last Knights",
     "role": "MID"
+  },
+  {
+    "gameName": "LFT Näde",
+    "tagLine": "NA2",
+    "region": "na1",
+    "division": "Eclipsed",
+    "role": "ADC"
   }
 ]
