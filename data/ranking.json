@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-08T21:18:03.784Z",
+  "updatedAt": "2026-11-08T21:27:34.376Z",
   "players": [
     {
       "id": "lk-nyfer",
@@ -153,7 +153,7 @@
       "id": "manzanita",
       "name": "Manzanita",
       "tag": "#FDG",
-      "division": "Last Knight",
+      "division": "Last Knights",
       "role": "SUPP",
       "region": "LA1",
       "tier": "DIAMOND",
@@ -190,7 +190,7 @@
       "id": "lk-vαndr",
       "name": "LK Vαndr",
       "tag": "#BLANK",
-      "division": "Last Knight",
+      "division": "Last Knights",
       "role": "MID",
       "region": "LA1",
       "tier": "EMERALD",
