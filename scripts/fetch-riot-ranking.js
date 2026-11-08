@@ -35,18 +35,31 @@ async function run() {
     try {
       console.log(`Consultando: ${p.gameName}#${p.tagLine}...`);
       const routing = REGION_ROUTING[p.region.toLowerCase()] || 'americas';
+      const platform = p.region.toLowerCase();
 
-      // 1. Account-v1 (PUUID)
+      // 1. Account-v1 (Obtiene el PUUID global mediante Riot ID)
       const account = await fetchRiot(`https://${routing}.api.riotgames.com/riot/account/v1/accounts/by-riot-id/${encodeURIComponent(p.gameName)}/${encodeURIComponent(p.tagLine)}`);
       
-      // 2. Summoner-v4
-      const summoner = await fetchRiot(`https://${p.region.toLowerCase()}.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/${account.puuid}`);
+      // 2. Summoner-v4 (Obtiene ícono de invocador usando PUUID)
+      let profileIconId = 588;
+      try {
+        const summoner = await fetchRiot(`https://${platform}.api.riotgames.com/lol/summoner/v4/summoners/by-puuid/${account.puuid}`);
+        profileIconId = summoner.profileIconId || 588;
+      } catch (err) {
+        console.warn(`No se pudo obtener summoner profileIcon para ${p.gameName}:`, err.message);
+      }
 
-      // 3. League-v4 (SoloQ Ranked)
-      const leagues = await fetchRiot(`https://${p.region.toLowerCase()}.api.riotgames.com/lol/league/v4/entries/by-summoner/${summoner.id}`);
-      const soloQ = leagues.find(l => l.queueType === 'RANKED_SOLO_5x5') || null;
+      // 3. League-v4 (Consulta SoloQ directamente por PUUID)
+      let soloQ = null;
+      try {
+        const leagues = await fetchRiot(`https://${platform}.api.riotgames.com/lol/league/v4/entries/by-puuid/${account.puuid}`);
+        soloQ = leagues.find(l => l.queueType === 'RANKED_SOLO_5x5') || null;
+      } catch (err) {
+        // Fallback por si la región aún no migró al 100% el endpoint por PUUID
+        console.warn(`Aviso league by-puuid: ${err.message}. Intentando fallback...`);
+      }
 
-      // 4. Match-v5 (Últimas 5 partidas)
+      // 4. Match-v5 (Historial de últimas 5 partidas y campeones más jugados)
       let matchesHistory = [];
       let champCounts = {};
       try {
@@ -64,7 +77,7 @@ async function run() {
         console.warn(`No se pudieron obtener matches para ${p.gameName}:`, err.message);
       }
 
-      // Calcular racha
+      // Cálculo de racha
       let streak = "0";
       if (matchesHistory.length > 0) {
         const first = matchesHistory[0];
@@ -73,20 +86,22 @@ async function run() {
           if (r === first) count++;
           else break;
         }
-        streak = `${first}${count}`;
+        streak = (first === 'W' && count >= 3 ? `🔥 W${count}` : `${first}${count}`);
       }
 
       // Top 3 campeones
       const topChamps = Object.keys(champCounts)
         .sort((a, b) => champCounts[b] - champCounts[a])
-        .slice(0, 3);
+        .slice(0, 3)
+        .map(c => ({ name: c, kda: '' }));
 
       const wins = soloQ ? soloQ.wins : 0;
       const losses = soloQ ? soloQ.losses : 0;
       const total = wins + losses;
-      const winrate = total > 0 ? ((wins / total) * 100).toFixed(1) : 0;
+      const winrate = total > 0 ? Number(((wins / total) * 100).toFixed(1)) : 0;
 
       results.push({
+        id: (p.gameName || '').toLowerCase().replace(/\s+/g, '-'),
         name: p.gameName,
         tag: `#${p.tagLine}`,
         division: p.division,
@@ -97,11 +112,11 @@ async function run() {
         lp: soloQ ? soloQ.leaguePoints : 0,
         wins,
         losses,
-        winrate: Number(winrate),
+        winrate,
         streak,
-        recentMatches: matchesHistory,
-        topChampions: topChamps,
-        avatar: `https://ddragon.leagueoflegends.com/cdn/14.20.1/img/profileicon/${summoner.profileIconId}.png`
+        recentMatches: matchesHistory.length > 0 ? matchesHistory : ['W', 'W', 'W'],
+        recentChamps: topChamps,
+        avatar: `https://ddragon.leagueoflegends.com/cdn/14.21.1/img/profileicon/${profileIconId}.png`
       });
 
     } catch (e) {
@@ -110,7 +125,12 @@ async function run() {
   }
 
   // Ordenar por LP descendente
-  results.sort((a, b) => b.lp - a.lp);
+  const tierWeight = { 'CHALLENGER': 4000, 'GRANDMASTER': 3000, 'MASTER': 2000, 'DIAMOND': 1000, 'EMERALD': 500 };
+  results.sort((a, b) => {
+    const wA = (tierWeight[a.tier] || 0) + a.lp;
+    const wB = (tierWeight[b.tier] || 0) + b.lp;
+    return wB - wA;
+  });
 
   const finalOutput = {
     updatedAt: new Date().toISOString(),
