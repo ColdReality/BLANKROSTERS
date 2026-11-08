@@ -1,0 +1,51 @@
+[
+  {
+    "gameName": "Uchiha Itachi 朱",
+    "tagLine": "ZEN",
+    "region": "la1",
+    "division": "Last Knights",
+    "role": "TOP"
+  },
+  {
+    "gameName": "ODA Mifulafu",
+    "tagLine": "KITTY",
+    "region": "la1",
+    "division": "Last Knights",
+    "role": "JGL"
+  },
+  {
+    "gameName": "KEMEz",
+    "tagLine": "TZ1",
+    "region": "la1",
+    "division": "Last Knights",
+    "role": "JGL"
+  },
+  {
+    "gameName": "LK Nyfer",
+    "tagLine": "BLANK",
+    "region": "la1",
+    "division": "Last Knights",
+    "role": "SUPP"
+  },
+  {
+    "gameName": "LK Koro",
+    "tagLine": "0612S",
+    "region": "la1",
+    "division": "Last Knights",
+    "role": "ADC"
+  },
+  {
+    "gameName": "Manzanita",
+    "tagLine": "FDG",
+    "region": "la1",
+    "division": "Last Knight",
+    "role": "SUPP"
+    },
+  {
+    "gameName": "LK Vαndr",
+    "tagLine": "BLANK",
+    "region": "la1",
+    "division": "Last Knight",
+    "role": "MID"
+  }
+]
