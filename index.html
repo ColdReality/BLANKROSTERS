@@ -2518,6 +2518,7 @@
         }
 
         // --- REAL-TIME SYNC CON EL BOTÓN ---
+       // --- ACTUALIZAR RANKING DESDE GITHUB SIN DATOS AL AZAR ---
         async function syncRankingLive() {
             const spinner = document.getElementById('syncSpinnerIcon');
             if (spinner) spinner.classList.add('fa-spin');
@@ -2526,35 +2527,25 @@
 
             setTimeout(() => {
                 if (spinner) spinner.classList.remove('fa-spin');
-                showToast('TELEMETRÍA DE RANKING ACTUALIZADA');
-            }, 500);
+                showToast('RANKING ACTUALIZADO');
+            }, 400);
         }
 
-        function refreshSinglePlayer(playerId) {
+        // --- ACTUALIZAR JUGADOR INDIVIDUAL DESDE EL JSON REAL ---
+        async function refreshSinglePlayer(playerId) {
             const icon = document.getElementById(`refresh-icon-${playerId}`);
             if (icon) icon.classList.add('fa-spin');
 
-            const player = leaderboardPlayers.find(p => p.id === playerId);
+            // Vuelve a consultar el JSON oficial en vez de generar números aleatorios
+            await loadGithubRankingData();
+
             setTimeout(() => {
-                if (player) {
-                    const gain = Math.random() > 0.35 ? 21 : -15;
-                    player.lp = Math.max(0, player.lp + gain);
-                    if (gain > 0) {
-                        player.wins = (player.wins || 85) + 1;
-                        player.recentMatches = [...player.recentMatches.slice(1), 'W'];
-                        const currW = player.streak.includes('W') ? parseInt(player.streak.replace(/\D/g, '') || '1') + 1 : 1;
-                        player.streak = currW >= 3 ? `🔥 W${currW}` : `W${currW}`;
-                    } else {
-                        player.losses = (player.losses || 60) + 1;
-                        player.recentMatches = [...player.recentMatches.slice(1), 'L'];
-                        player.streak = 'L1';
-                    }
-                    player.winrate = Number(((player.wins / (player.wins + player.losses)) * 100).toFixed(1));
-                }
                 if (icon) icon.classList.remove('fa-spin');
-                renderLeaderboard();
-                if (player) showToast(`${player.name}: ELO ACTUALIZADO (${player.tier} ${player.lp} LP)`);
-            }, 400);
+                const p = leaderboardPlayers.find(item => item.id === playerId);
+                if (p) {
+                    showToast(`${p.name}: SINCRONIZADO (${p.tier} ${p.lp} LP)`);
+                }
+            }, 300);
         }
 
         function openRiotAuthModal() {
