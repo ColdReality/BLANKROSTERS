@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-09T03:02:44.821Z",
+  "updatedAt": "2026-11-09T03:41:35.881Z",
   "players": [
     {
       "id": "lft-näde",
@@ -88,25 +88,25 @@
       "wins": 503,
       "losses": 476,
       "winrate": 51.4,
-      "streak": "L3",
+      "streak": "L4",
       "recentMatches": [
         "L",
         "L",
         "L",
-        "W",
+        "L",
         "W"
       ],
       "recentChamps": [
+        {
+          "name": "Sylas",
+          "kda": ""
+        },
         {
           "name": "Shyvana",
           "kda": ""
         },
         {
           "name": "Qiyana",
-          "kda": ""
-        },
-        {
-          "name": "Sylas",
           "kda": ""
         }
       ],
@@ -121,29 +121,29 @@
       "region": "LA1",
       "tier": "DIAMOND",
       "rankNumber": "IV",
-      "lp": 49,
-      "wins": 493,
+      "lp": 67,
+      "wins": 494,
       "losses": 476,
       "winrate": 50.9,
-      "streak": "W2",
+      "streak": "🔥 W3",
       "recentMatches": [
         "W",
         "W",
-        "L",
         "W",
-        "L"
+        "L",
+        "W"
       ],
       "recentChamps": [
+        {
+          "name": "Zeri",
+          "kda": ""
+        },
         {
           "name": "Xayah",
           "kda": ""
         },
         {
           "name": "KogMaw",
-          "kda": ""
-        },
-        {
-          "name": "Ezreal",
           "kda": ""
         }
       ],
