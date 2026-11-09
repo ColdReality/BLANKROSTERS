@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-08T22:22:13.724Z",
+  "updatedAt": "2026-11-09T03:02:44.821Z",
   "players": [
     {
       "id": "lft-näde",
@@ -47,21 +47,21 @@
       "region": "LA1",
       "tier": "MASTER",
       "rankNumber": "I",
-      "lp": 759,
-      "wins": 298,
+      "lp": 789,
+      "wins": 299,
       "losses": 255,
-      "winrate": 53.9,
-      "streak": "W1",
+      "winrate": 54,
+      "streak": "W2",
       "recentMatches": [
         "W",
-        "L",
         "W",
         "L",
-        "W"
+        "W",
+        "L"
       ],
       "recentChamps": [
         {
-          "name": "Milio",
+          "name": "Soraka",
           "kda": ""
         },
         {
@@ -84,19 +84,23 @@
       "region": "LA1",
       "tier": "MASTER",
       "rankNumber": "I",
-      "lp": 261,
+      "lp": 231,
       "wins": 503,
-      "losses": 475,
+      "losses": 476,
       "winrate": 51.4,
-      "streak": "L2",
+      "streak": "L3",
       "recentMatches": [
         "L",
         "L",
+        "L",
         "W",
-        "W",
-        "L"
+        "W"
       ],
       "recentChamps": [
+        {
+          "name": "Shyvana",
+          "kda": ""
+        },
         {
           "name": "Qiyana",
           "kda": ""
@@ -104,13 +108,46 @@
         {
           "name": "Sylas",
           "kda": ""
-        },
-        {
-          "name": "Yone",
-          "kda": ""
         }
       ],
       "avatar": "https://ddragon.leagueoflegends.com/cdn/14.21.1/img/profileicon/6236.png"
+    },
+    {
+      "id": "lk-koro",
+      "name": "LK Koro",
+      "tag": "#0612S",
+      "division": "Last Knights",
+      "role": "ADC",
+      "region": "LA1",
+      "tier": "DIAMOND",
+      "rankNumber": "IV",
+      "lp": 49,
+      "wins": 493,
+      "losses": 476,
+      "winrate": 50.9,
+      "streak": "W2",
+      "recentMatches": [
+        "W",
+        "W",
+        "L",
+        "W",
+        "L"
+      ],
+      "recentChamps": [
+        {
+          "name": "Xayah",
+          "kda": ""
+        },
+        {
+          "name": "KogMaw",
+          "kda": ""
+        },
+        {
+          "name": "Ezreal",
+          "kda": ""
+        }
+      ],
+      "avatar": "https://ddragon.leagueoflegends.com/cdn/14.21.1/img/profileicon/5915.png"
     },
     {
       "id": "oda-mifulafu",
@@ -148,43 +185,6 @@
         }
       ],
       "avatar": "https://ddragon.leagueoflegends.com/cdn/14.21.1/img/profileicon/5010.png"
-    },
-    {
-      "id": "lk-koro",
-      "name": "LK Koro",
-      "tag": "#0612S",
-      "division": "Last Knights",
-      "role": "ADC",
-      "region": "LA1",
-      "tier": "DIAMOND",
-      "rankNumber": "IV",
-      "lp": 36,
-      "wins": 491,
-      "losses": 475,
-      "winrate": 50.8,
-      "streak": "W1",
-      "recentMatches": [
-        "W",
-        "L",
-        "W",
-        "L",
-        "L"
-      ],
-      "recentChamps": [
-        {
-          "name": "Senna",
-          "kda": ""
-        },
-        {
-          "name": "Lucian",
-          "kda": ""
-        },
-        {
-          "name": "Sivir",
-          "kda": ""
-        }
-      ],
-      "avatar": "https://ddragon.leagueoflegends.com/cdn/14.21.1/img/profileicon/5915.png"
     },
     {
       "id": "manzanita",
@@ -268,30 +268,30 @@
       "role": "TOP",
       "region": "LA1",
       "tier": "EMERALD",
-      "rankNumber": "I",
-      "lp": 20,
+      "rankNumber": "II",
+      "lp": 76,
       "wins": 439,
-      "losses": 429,
-      "winrate": 50.6,
-      "streak": "L1",
+      "losses": 431,
+      "winrate": 50.5,
+      "streak": "L3",
       "recentMatches": [
         "L",
-        "W",
+        "L",
         "L",
         "W",
         "L"
       ],
       "recentChamps": [
         {
+          "name": "Ambessa",
+          "kda": ""
+        },
+        {
           "name": "Kennen",
           "kda": ""
         },
         {
           "name": "Pyke",
-          "kda": ""
-        },
-        {
-          "name": "Ambessa",
           "kda": ""
         }
       ],
