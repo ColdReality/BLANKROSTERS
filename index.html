@@ -136,18 +136,22 @@
             border: 1px solid var(--border-ornate);
             color: var(--text-main);
             background: transparent;
-            transition: all 0.25s ease;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
         }
 
         .tab-nav-btn:hover {
             border-color: var(--border-strong);
             background-color: rgba(200, 178, 142, 0.15);
+            transform: translateY(-1px);
         }
 
         .tab-nav-btn.active {
             background-color: #c8b28e !important;
             color: #070709 !important;
             border-color: #c8b28e !important;
+            box-shadow: 0 0 15px rgba(200, 178, 142, 0.35);
         }
 
         body.light-theme .tab-nav-btn.active {
@@ -161,7 +165,7 @@
             background: var(--bg-card);
             border: 1px solid var(--border-ornate);
             position: relative;
-            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.55);
         }
 
@@ -175,7 +179,7 @@
             inset: 5px;
             border: 1px solid rgba(200, 178, 142, 0.16);
             pointer-events: none;
-            transition: border-color 0.35s ease;
+            transition: border-color 0.35s ease, inset 0.35s ease;
         }
 
         body.light-theme .tarot-card::before {
@@ -184,12 +188,13 @@
 
         .tarot-card:hover {
             border-color: var(--border-strong);
-            transform: translateY(-4px);
-            box-shadow: 0 20px 45px rgba(107, 29, 36, 0.28);
+            transform: translateY(-5px);
+            box-shadow: 0 22px 48px rgba(107, 29, 36, 0.32);
         }
 
         .tarot-card:hover::before {
-            border-color: rgba(200, 178, 142, 0.45);
+            border-color: rgba(200, 178, 142, 0.48);
+            inset: 7px;
         }
 
         /* Crimson Baroque Card Variant */
@@ -198,7 +203,7 @@
             border: 1px solid rgba(158, 42, 53, 0.55);
             color: #e6dfd5;
             position: relative;
-            transition: all 0.35s ease;
+            transition: all 0.45s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .tarot-card-crimson::before {
@@ -207,12 +212,18 @@
             inset: 5px;
             border: 1px solid rgba(200, 178, 142, 0.22);
             pointer-events: none;
+            transition: all 0.35s ease;
         }
 
         .tarot-card-crimson:hover {
             border-color: #c8b28e;
-            transform: translateY(-4px);
-            box-shadow: 0 20px 45px rgba(158, 42, 53, 0.3);
+            transform: translateY(-5px);
+            box-shadow: 0 22px 48px rgba(158, 42, 53, 0.36);
+        }
+
+        .tarot-card-crimson:hover::before {
+            inset: 7px;
+            border-color: rgba(200, 178, 142, 0.5);
         }
 
         /* Framed Banner like "ELUSIVE" title box */
@@ -220,7 +231,9 @@
             border-top: 1px solid var(--border-strong);
             border-bottom: 1px solid var(--border-strong);
             position: relative;
-            padding: 1rem 0;
+            padding: 1.25rem 0;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .elusive-banner-frame::before,
         .elusive-banner-frame::after {
@@ -233,9 +246,242 @@
             color: var(--accent-gold);
             font-size: 12px;
             line-height: 1;
+            z-index: 20;
         }
         .elusive-banner-frame::before { top: -7px; }
         .elusive-banner-frame::after { bottom: -7px; }
+
+        /* =========================================================
+           NEW: KINETIC LETTERS DOCKING TO SCREEN/FRAME EDGES
+           ========================================================= */
+        .kinetic-title-stage {
+            position: relative;
+            min-height: 5.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        @media (min-width: 640px) {
+            .kinetic-title-stage {
+                min-height: 6.8rem;
+            }
+        }
+
+        .kinetic-word {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+            transition: all 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .kinetic-letter {
+            display: inline-block;
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+                        opacity 0.6s ease,
+                        color 0.6s ease,
+                        text-shadow 0.6s ease,
+                        font-size 0.6s ease;
+            will-change: transform;
+        }
+
+        /* Center Hidden Core that emerges when letters part to the edges */
+        .kinetic-center-reveal {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transform: scale(0.82) translateY(8px);
+            filter: blur(6px);
+            pointer-events: none;
+            transition: opacity 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.65s cubic-bezier(0.16, 1, 0.3, 1),
+                        filter 0.65s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 15;
+        }
+
+        /* Active state triggered on scroll or hover/toggle */
+        .kinetic-docked .kinetic-letter[data-idx="0"] {
+            transform: translateX(-140%) scale(0.55);
+            color: var(--accent-gold);
+            opacity: 0.85;
+        }
+        .kinetic-docked .kinetic-letter[data-idx="1"] {
+            transform: translateX(-115%) scale(0.55);
+            opacity: 0.65;
+        }
+        .kinetic-docked .kinetic-letter[data-idx="2"] {
+            transform: translateY(-135%) scale(0.42);
+            opacity: 0.25;
+        }
+        .kinetic-docked .kinetic-letter[data-idx="3"] {
+            transform: translateX(115%) scale(0.55);
+            opacity: 0.65;
+        }
+        .kinetic-docked .kinetic-letter[data-idx="4"] {
+            transform: translateX(140%) scale(0.55);
+            color: var(--accent-gold);
+            opacity: 0.85;
+        }
+
+        @media (min-width: 768px) {
+            .kinetic-docked .kinetic-letter[data-idx="0"] { transform: translateX(-210%) scale(0.52); }
+            .kinetic-docked .kinetic-letter[data-idx="1"] { transform: translateX(-175%) scale(0.52); }
+            .kinetic-docked .kinetic-letter[data-idx="3"] { transform: translateX(175%) scale(0.52); }
+            .kinetic-docked .kinetic-letter[data-idx="4"] { transform: translateX(210%) scale(0.52); }
+        }
+
+        .kinetic-docked .kinetic-center-reveal {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+            filter: blur(0);
+            pointer-events: auto;
+        }
+
+        /* Floating Screen-Edge Telemetry Glyph Rails on Scroll */
+        .edge-glyph-rail {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 40;
+            pointer-events: none;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.65rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            letter-spacing: 0.25em;
+            color: var(--accent-gold);
+            opacity: 0;
+            transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        @media (min-width: 1280px) {
+            .edge-glyph-rail {
+                display: flex;
+            }
+        }
+
+        .edge-glyph-rail.left-rail {
+            left: 14px;
+            transform: translate(-20px, -50%);
+        }
+
+        .edge-glyph-rail.right-rail {
+            right: 14px;
+            transform: translate(20px, -50%);
+        }
+
+        body.scrolled-active .edge-glyph-rail.left-rail,
+        body.scrolled-active .edge-glyph-rail.right-rail {
+            opacity: 0.7;
+            transform: translate(0, -50%);
+        }
+
+        /* =========================================================
+           NEW: EXPANDING NEWS PANEL ON SCROLL
+           ========================================================= */
+        .news-expandable-wrapper {
+            max-width: 78rem;
+            margin-left: auto;
+            margin-right: auto;
+            transition: max-width 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                        padding 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                        background-color 0.85s ease,
+                        border-color 0.85s ease,
+                        box-shadow 0.85s ease;
+            border: 1px solid transparent;
+            border-radius: 2px;
+        }
+
+        .news-expandable-wrapper.is-expanded {
+            max-width: 96rem;
+            background: linear-gradient(180deg, rgba(20, 14, 15, 0.72) 0%, rgba(10, 8, 10, 0.92) 100%);
+            border-color: rgba(200, 178, 142, 0.42);
+            box-shadow: 0 30px 90px rgba(0, 0, 0, 0.85), 0 0 40px rgba(107, 29, 36, 0.25);
+            padding-top: 2.25rem;
+            padding-bottom: 2.5rem;
+        }
+
+        body.light-theme .news-expandable-wrapper.is-expanded {
+            background: linear-gradient(180deg, rgba(244, 239, 230, 0.95) 0%, rgba(230, 221, 208, 0.95) 100%);
+            border-color: rgba(18, 16, 16, 0.35);
+            box-shadow: 0 25px 60px rgba(18, 16, 16, 0.12);
+        }
+
+        .news-drawer-extra {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transform: translateY(16px);
+            transition: max-height 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                        opacity 0.65s ease 0.1s,
+                        transform 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.1s,
+                        margin-top 0.65s ease;
+            margin-top: 0;
+        }
+
+        .news-expandable-wrapper.is-expanded .news-drawer-extra {
+            max-height: 900px;
+            opacity: 1;
+            transform: translateY(0);
+            margin-top: 2.25rem;
+        }
+
+        /* =========================================================
+           NEW: CREATIVE SUBPAGE TRANSITION VEIL & KEYFRAMES
+           ========================================================= */
+        #arcanePageVeil {
+            position: fixed;
+            inset: 0;
+            z-index: 90;
+            pointer-events: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: radial-gradient(circle at center, rgba(28, 12, 15, 0.92) 0%, rgba(7, 7, 9, 0.98) 100%);
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.38s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.38s ease;
+        }
+
+        #arcanePageVeil.veil-active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .veil-sigil-box {
+            transform: scale(0.8) rotate(-12deg);
+            transition: transform 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        #arcanePageVeil.veil-active .veil-sigil-box {
+            transform: scale(1) rotate(0deg);
+        }
+
+        @keyframes tabSubpageEnter {
+            0% {
+                opacity: 0;
+                transform: translateY(22px) scale(0.985);
+                filter: blur(8px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+                filter: blur(0);
+            }
+        }
+
+        .tab-panel-animate {
+            animation: tabSubpageEnter 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
 
         /* Dark Celestial & Tarot Section Divider */
         .celestial-divider {
@@ -374,17 +620,19 @@
             box-shadow: 0 0 0 1px #c8b28e, 4px 4px 0px rgba(107, 29, 36, 0.6);
         }
 
-        /* Scroll Reveal Animation */
+        /* Enhanced Scroll Reveal Animation */
         .reveal-block {
             opacity: 0;
-            transform: translateY(24px);
-            filter: blur(4px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), filter 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(32px) scale(0.985);
+            filter: blur(5px);
+            transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                        transform 0.85s cubic-bezier(0.16, 1, 0.3, 1),
+                        filter 0.85s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .reveal-block.active {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateY(0) scale(1);
             filter: blur(0);
         }
 
@@ -398,6 +646,46 @@
 
     <!-- Stardust & Subtle Antique Grain Overlay -->
     <div class="stardust-canvas"></div>
+
+    <!-- ========================================================= -->
+    <!-- NEW: SCREEN-EDGE KINETIC TELEMETRY RAILS                  -->
+    <!-- ========================================================= -->
+    <div class="edge-glyph-rail left-rail">
+        <span>✦</span>
+        <span>B</span>
+        <span>L</span>
+        <span>A</span>
+        <span>N</span>
+        <span>K</span>
+        <div class="w-px h-12 bg-grimoire-gold/40 my-1"></div>
+        <span class="text-[8px] opacity-70">[XVII]</span>
+    </div>
+
+    <div class="edge-glyph-rail right-rail">
+        <span class="text-[8px] opacity-70">[2026]</span>
+        <div class="w-px h-12 bg-grimoire-gold/40 my-1"></div>
+        <span>O</span>
+        <span>R</span>
+        <span>D</span>
+        <span>E</span>
+        <span>R</span>
+        <span>✦</span>
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- NEW: CREATIVE SUBPAGE TRANSITION CURTAIN                  -->
+    <!-- ========================================================= -->
+    <div id="arcanePageVeil">
+        <div class="veil-sigil-box flex flex-col items-center space-y-3 font-mono text-center">
+            <div class="w-16 h-16 rounded-full border border-grimoire-gold flex items-center justify-center bg-grimoire-crimson/40 shadow-[0_0_30px_rgba(200,178,142,0.4)]">
+                <img src="https://i.imgur.com/xQMgAgw.png" alt="BLANK Sigil" class="w-10 h-10 object-contain">
+            </div>
+            <div class="text-xs tracking-[0.35em] text-grimoire-gold uppercase font-bold" id="veilDestinationText">
+                ✦ ARCANA SHIFT ✦
+            </div>
+            <div class="w-32 h-px bg-gradient-to-r from-transparent via-grimoire-gold to-transparent"></div>
+        </div>
+    </div>
 
     <!-- ========================================================= -->
     <!-- NAVIGATION HEADER (BAROQUE / EDITORIAL SERIAL BAR)        -->
@@ -476,7 +764,7 @@
         <!-- ========================================================= -->
         <!-- TAB 1: INICIO (NEOCLASSICAL POSTER HERO + NOTICIAS)       -->
         <!-- ========================================================= -->
-        <div id="tab-inicio-content" class="transition-opacity duration-300">
+        <div id="tab-inicio-content" class="tab-panel-animate">
             
             <!-- BAROQUE / CELESTIAL HERO POSTER -->
             <section id="hero" class="relative pt-8 pb-14">
@@ -620,7 +908,7 @@
                             </div>
                         </div>
 
-                        <!-- RIGHT COLUMN: MONUMENTAL TYPOGRAPHY & ELUSIVE FRAME (7 COLS) -->
+                        <!-- RIGHT COLUMN: MONUMENTAL KINETIC TYPOGRAPHY & ELUSIVE FRAME (7 COLS) -->
                         <div class="lg:col-span-7 tarot-card p-6 sm:p-10 flex flex-col justify-between relative">
                             
                             <!-- Top Row of 4 Eight-Pointed Stars -->
@@ -632,20 +920,51 @@
                                     </p>
                                 </div>
                                 <div class="flex items-center space-x-3 text-grimoire-gold text-xl">
-                                    <span>✴</span><span>✴</span><span>✴</span><span>✴</span>
+                                    <button onclick="toggleKineticHeroTitle()" title="Alternar apertura cinemática del título" class="text-[10px] font-mono px-2.5 py-1 border border-grimoire-gold/50 hover:bg-grimoire-gold hover:text-black transition-all uppercase tracking-wider">
+                                        ✦ FOCUS CORE
+                                    </button>
+                                    <span class="hidden sm:inline">✴</span><span class="hidden sm:inline">✴</span>
                                 </div>
                             </div>
 
-                            <!-- Monumental Title Block -->
+                            <!-- Monumental Title Block with Kinetic Edge-Docking Letters -->
                             <div class="my-8">
-                                <div class="text-xs font-mono uppercase tracking-[0.35em] text-grimoire-gold mb-2">
-                                    JEAN-HONORÉ // PROTOCOLO DE ÉLITE
+                                <div class="flex items-center justify-between text-xs font-mono uppercase tracking-[0.35em] text-grimoire-gold mb-2">
+                                    <span>JEAN-HONORÉ // PROTOCOLO DE ÉLITE</span>
+                                    <span class="text-[10px] opacity-70 hidden sm:inline">[SCROLL O HOVER PARA EXPANDIR NÚCLEO]</span>
                                 </div>
 
-                                <div class="elusive-banner-frame my-3 text-center">
-                                    <h1 class="font-serifDisplay text-5xl sm:text-7xl lg:text-8xl font-bold uppercase leading-none">
-                                        BLANK
-                                    </h1>
+                                <div id="kineticHeroFrame" 
+                                     onmouseenter="setKineticHeroState(true)" 
+                                     onmouseleave="restoreKineticHeroByScroll()"
+                                     class="elusive-banner-frame my-3 text-center cursor-pointer select-none">
+                                    
+                                    <div class="kinetic-title-stage">
+                                        <!-- The 5 Monumental Letters that dock to the edges -->
+                                        <h1 class="kinetic-word font-serifDisplay text-5xl sm:text-7xl lg:text-8xl font-bold uppercase leading-none">
+                                            <span class="kinetic-letter" data-idx="0">B</span>
+                                            <span class="kinetic-letter" data-idx="1">L</span>
+                                            <span class="kinetic-letter" data-idx="2">A</span>
+                                            <span class="kinetic-letter" data-idx="3">N</span>
+                                            <span class="kinetic-letter" data-idx="4">K</span>
+                                        </h1>
+
+                                        <!-- Center Core Information Revealed When Letters Dock to Edges -->
+                                        <div class="kinetic-center-reveal px-4">
+                                            <div class="flex items-center space-x-2 mb-1">
+                                                <span class="obsidian-tag text-[9px]">[NÚCLEO TÁCTICO // 2026]</span>
+                                                <span class="crimson-tag text-[9px]">3 ESCUADRAS ACTIVAS</span>
+                                            </div>
+                                            <div class="font-serifDisplay text-lg sm:text-2xl font-bold uppercase tracking-widest text-grimoire-gold">
+                                                ORDEN SOBERANA DE LA GRIETA
+                                            </div>
+                                            <div class="mt-1.5 flex flex-wrap items-center justify-center gap-2 font-mono text-[10px]">
+                                                <span onclick="openRosterSection('eclipsed'); event.stopPropagation();" class="px-2 py-0.5 bg-black/80 border border-grimoire-gold/50 hover:bg-grimoire-gold hover:text-black transition-colors">✦ ECLIPSED (CHALL)</span>
+                                                <span onclick="openRosterSection('kore'); event.stopPropagation();" class="px-2 py-0.5 bg-grimoire-crimson/90 border border-grimoire-gold/50 hover:bg-grimoire-gold hover:text-black transition-colors">✦ KORE (GM/CHALL)</span>
+                                                <span onclick="openRosterSection('academy'); event.stopPropagation();" class="px-2 py-0.5 bg-black/80 border border-grimoire-gold/50 hover:bg-grimoire-gold hover:text-black transition-colors">✦ LAST KNIGHTS (ACADEMY)</span>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                                 <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mt-4">
@@ -750,23 +1069,27 @@
             </div>
 
             <!-- ========================================================= -->
-            <!-- APARTADO DE NOTICIAS Y AVISOS (DEBAJO DE LOS BOTONES)     -->
+            <!-- APARTADO DE NOTICIAS Y AVISOS (SE EXTIENDE AL SCROLLEAR)  -->
             <!-- ========================================================= -->
-            <section id="noticias-avisos" class="pb-20 pt-4 relative reveal-block active">
-                <div class="max-w-7xl mx-auto px-4 sm:px-8">
+            <section id="noticias-avisos" class="pb-24 pt-4 relative px-2 sm:px-6">
+                <div id="newsExpandablePanel" class="news-expandable-wrapper px-4 sm:px-8">
                     
                     <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 pb-4 border-b border-grimoire-gold/40">
                         <div>
-                            <div class="flex items-center space-x-2 mb-2">
+                            <div class="flex flex-wrap items-center gap-2 mb-2">
                                 <span class="crimson-tag">[BOLETÍN OFICIAL // GRIMOIRE]</span>
                                 <span class="text-xs font-mono text-grimoire-gold tracking-widest">// CRÓNICAS DE LA ORDEN</span>
+                                <span id="newsExpansionStatusBadge" class="obsidian-tag text-[9px]">✦ PANEL EXPANDIBLE AL SCROLLEAR</span>
                             </div>
                             <h2 class="font-serifDisplay text-3xl sm:text-5xl font-black uppercase tracking-tight">
                                 NOTICIAS Y AVISOS
                             </h2>
                         </div>
-                        <div class="mt-4 md:mt-0 font-mono text-xs opacity-75">
-                            [EDICIÓN XI // 2026] <span class="text-grimoire-gold font-bold">★ ★ ★ ★ ★</span>
+                        <div class="mt-4 md:mt-0 flex items-center space-x-3 font-mono text-xs">
+                            <span class="opacity-75">[EDICIÓN XI // 2026] <span class="text-grimoire-gold font-bold">★ ★ ★ ★ ★</span></span>
+                            <button onclick="toggleNewsExpansionManual()" class="px-3 py-1 border border-grimoire-gold/50 hover:bg-grimoire-gold hover:text-black transition-all text-[10px] uppercase font-bold">
+                                <span id="newsManualBtnText">EXTENDER PANEL ↘</span>
+                            </button>
                         </div>
                     </div>
 
@@ -856,6 +1179,67 @@
                         </article>
 
                     </div>
+
+                    <!-- ========================================================= -->
+                    <!-- NEW: EXTENDED NEWS DRAWER (REVEALED ON SCROLL DOWN)       -->
+                    <!-- ========================================================= -->
+                    <div class="news-drawer-extra">
+                        <div class="pt-6 border-t border-grimoire-gold/35 grid grid-cols-1 lg:grid-cols-12 gap-6 font-mono text-xs">
+                            
+                            <!-- Left: Operational Schedule & Scrim Blocks -->
+                            <div class="lg:col-span-7 tarot-card p-6 flex flex-col justify-between">
+                                <div>
+                                    <div class="flex items-center justify-between border-b border-grimoire-gold/25 pb-3 mb-4">
+                                        <span class="grimoire-tag">[REGISTRO EXTENDIDO // CRONOGRAMA DE OPERACIONES]</span>
+                                        <span class="text-grimoire-gold text-[10px]">✦ DESPLEGADO POR SCROLL</span>
+                                    </div>
+                                    <h4 class="font-serifDisplay text-xl font-bold uppercase mb-3">
+                                        AGENDA TÁCTICA DE SCRIMS &amp; CIRCUITOS 2026
+                                    </h4>
+                                    <div class="space-y-2.5 text-[11px]">
+                                        <div class="flex flex-col sm:flex-row sm:items-center justify-between p-2.5 bg-black/40 border border-grimoire-gold/25">
+                                            <div><span class="text-grimoire-gold font-bold">✦ BLOQUE NOCTURNO (LUN - VIE):</span> Scrims Oficiales Bo3 / Bo5 &amp; VOD Review</div>
+                                            <span class="obsidian-tag mt-1 sm:mt-0">19:00 - 23:00 HRS</span>
+                                        </div>
+                                        <div class="flex flex-col sm:flex-row sm:items-center justify-between p-2.5 bg-black/40 border border-grimoire-gold/25">
+                                            <div><span class="text-grimoire-gold font-bold">✦ ECLIPSED &amp; LAST KNIGHTS:</span> Preparación de Circuito y Torneos Oficiales</div>
+                                            <span class="crimson-tag mt-1 sm:mt-0">FASE ACTIVA</span>
+                                        </div>
+                                        <div class="flex flex-col sm:flex-row sm:items-center justify-between p-2.5 bg-black/40 border border-grimoire-gold/25">
+                                            <div><span class="text-grimoire-gold font-bold">✦ BÓVEDA MULTIMEDIA:</span> Integración de Clips Multi-Plataforma (YouTube, Twitch, MP4, TikTok)</div>
+                                            <span class="grimoire-tag mt-1 sm:mt-0">ACTUALIZADO</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Right: Quick Dispatch & Live Media Vault Access -->
+                            <div class="lg:col-span-5 tarot-card-crimson p-6 flex flex-col justify-between">
+                                <div>
+                                    <div class="flex items-center justify-between border-b border-grimoire-gold/25 pb-3 mb-4">
+                                        <span class="crimson-tag">[DESPACHO DIRECTO]</span>
+                                        <span class="text-grimoire-gold">✴ ORDEN XVII</span>
+                                    </div>
+                                    <h4 class="font-serifDisplay text-xl font-bold uppercase mb-2">
+                                        ACCESO RÁPIDO A ARCHIVOS DE LA ORDEN
+                                    </h4>
+                                    <p class="font-editorial text-base opacity-90 leading-relaxed mb-4">
+                                        Explora las repeticiones tácticas en la galería renovada o verifica el ascenso de LP en tiempo real de todos los integrantes.
+                                    </p>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <button onclick="switchTab('gallery')" class="py-3 bg-grimoire-gold text-black font-bold uppercase hover:bg-white transition-all">
+                                        ABRIR GALERÍA ↗
+                                    </button>
+                                    <button onclick="switchTab('rosters')" class="py-3 border border-grimoire-gold/60 hover:bg-grimoire-gold hover:text-black font-bold uppercase transition-all">
+                                        VER ESCUADRAS ↘
+                                    </button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
                 </div>
             </section>
         </div>
@@ -863,7 +1247,7 @@
         <!-- ========================================================= -->
         <!-- TAB 2: ROSTERS (DEDICATED PAGE WITH DARK CELESTIAL CUTS)  -->
         <!-- ========================================================= -->
-        <div id="tab-rosters-content" class="hidden transition-opacity duration-300">
+        <div id="tab-rosters-content" class="hidden">
             
             <!-- ROSTERS HEADER -->
             <section class="pt-8 pb-10">
@@ -1089,7 +1473,7 @@
                             </div>
                             <div class="flex justify-between items-center text-xs border-t border-grimoire-gold/25 pt-4">
                                 <span class="opacity-70">RATING:</span>
-                                <span class="grimoire-tag">CHALLENGER</span>
+                                <span class="crimson-tag">GRAND MASTER</span>
                             </div>
                         </div>
 
@@ -1356,7 +1740,7 @@
         <!-- ========================================================= -->
         <!-- TAB 3: VACANTES MAIN ROSTER (INDEPENDENT SUB-PAGE)        -->
         <!-- ========================================================= -->
-        <div id="tab-vacancies-content" class="hidden transition-opacity duration-300 py-8">
+        <div id="tab-vacancies-content" class="hidden py-8">
             <div class="max-w-7xl mx-auto px-4 sm:px-8">
 
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-grimoire-gold/40 pb-6 mb-10">
@@ -1498,7 +1882,7 @@
         <!-- ========================================================= -->
         <!-- TAB 4: TRYOUTS (APPLICATION FORM)                         -->
         <!-- ========================================================= -->
-        <div id="tab-tryouts-content" class="hidden transition-opacity duration-300 py-8">
+        <div id="tab-tryouts-content" class="hidden py-8">
             <div class="max-w-7xl mx-auto px-4 sm:px-8">
 
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-grimoire-gold/40 pb-6 mb-10">
@@ -1631,21 +2015,24 @@
         </div>
 
         <!-- ========================================================= -->
-        <!-- TAB 5: GALERÍA (MEDIA VAULT)                              -->
+        <!-- TAB 5: GALERÍA (UNIVERSAL MEDIA VAULT FIXED)              -->
         <!-- ========================================================= -->
-        <div id="tab-gallery-content" class="hidden transition-opacity duration-300 py-8">
+        <div id="tab-gallery-content" class="hidden py-8">
             <div class="max-w-7xl mx-auto px-4 sm:px-8">
 
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-grimoire-gold/40 pb-6 mb-8">
                     <div>
-                        <div class="grimoire-tag mb-2">[ARCHIVO VISUAL // MEDIA VAULT]</div>
+                        <div class="flex flex-wrap items-center gap-2 mb-2">
+                            <span class="grimoire-tag">[ARCHIVO VISUAL // UNIVERSAL MEDIA VAULT]</span>
+                            <span class="crimson-tag">YOUTUBE • TWITCH • TIKTOK • STREAMABLE • VIMEO • MP4</span>
+                        </div>
                         <h1 class="font-serifDisplay text-4xl sm:text-6xl font-black uppercase tracking-tight">
                             GALERÍA &amp; HIGHLIGHTS
                         </h1>
                     </div>
                     <div class="mt-4 md:mt-0 font-mono text-right">
                         <div class="text-xs font-bold text-grimoire-gold tracking-widest uppercase">REPLAYS &amp; PLAY OF THE WEEK</div>
-                        <div class="text-[10px] opacity-70 uppercase mt-1">COLECCIÓN DE VODS Y CLIPS</div>
+                        <div class="text-[10px] opacity-70 uppercase mt-1">SOPORTE UNIVERSAL DE URLS SIN BLOQUEO</div>
                     </div>
                 </div>
 
@@ -1659,7 +2046,7 @@
 
                     <button onclick="toggleVideoUploadModal(true)" class="bg-grimoire-gold text-black px-5 py-2.5 text-xs font-bold uppercase hover:bg-grimoire-crimson hover:text-white transition-all flex items-center justify-center space-x-2">
                         <i class="fa-solid fa-cloud-arrow-up"></i>
-                        <span>SUBIR VIDEO / CLIP ↗</span>
+                        <span>SUBIR VIDEO / CUALQUIER URL ↗</span>
                     </button>
                 </div>
 
@@ -1673,7 +2060,7 @@
         <!-- ========================================================= -->
         <!-- TAB 6: RANKING (LIVE RIOT API + GITHUB ACTIONS + SYNC)    -->
         <!-- ========================================================= -->
-        <div id="tab-ranking-content" class="hidden transition-opacity duration-300 py-8">
+        <div id="tab-ranking-content" class="hidden py-8">
             <div class="max-w-7xl mx-auto px-4 sm:px-8">
 
                 <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end border-b border-grimoire-gold/40 pb-6 mb-8 gap-4">
@@ -1806,15 +2193,18 @@
     <!-- MODALS SECTION                                            -->
     <!-- ========================================================= -->
 
-    <!-- 1. VIDEO UPLOAD MODAL -->
+    <!-- 1. VIDEO UPLOAD MODAL (UPDATED FOR ALL PLATFORMS) -->
     <div id="uploadVideoModal" class="fixed inset-0 z-50 hidden bg-black/85 backdrop-blur-sm flex items-center justify-center p-4 font-mono">
         <div class="tarot-card p-6 sm:p-8 max-w-xl w-full relative">
             <button onclick="toggleVideoUploadModal(false)" class="absolute top-4 right-4 hover:text-grimoire-gold font-bold text-lg">
                 <i class="fa-solid fa-xmark"></i>
             </button>
             <div class="mb-4">
-                <span class="grimoire-tag">[MEDIA UPLOAD PROTOCOL]</span>
-                <h3 class="font-serifDisplay text-2xl font-bold uppercase mt-2">SUBIR NUEVO VIDEO / HIGHLIGHT</h3>
+                <span class="grimoire-tag">[UNIVERSAL MEDIA UPLOAD PROTOCOL]</span>
+                <h3 class="font-serifDisplay text-2xl font-bold uppercase mt-2">SUBIR VIDEO / CLIP MULTI-PLATAFORMA</h3>
+                <p class="text-[11px] opacity-75 mt-1">
+                    Soporta YouTube (watch, shorts, youtu.be), Twitch (clips/videos), TikTok, Streamable, Vimeo, Google Drive y enlaces directos (.mp4, .webm).
+                </p>
             </div>
             
             <form onsubmit="handleVideoUpload(event)" class="space-y-4">
@@ -1840,8 +2230,13 @@
                 </div>
 
                 <div>
-                    <label class="block text-xs font-bold uppercase mb-1">URL de Video (YouTube / Embed MP4)</label>
-                    <input type="url" id="vidUrl" required placeholder="https://www.youtube.com/watch?v=..." class="grimoire-input text-xs">
+                    <label class="block text-xs font-bold uppercase mb-1">URL del Video (Cualquier Plataforma)</label>
+                    <input type="url" id="vidUrl" required placeholder="https://youtu.be/... , https://clips.twitch.tv/... , https://streamable.com/... , .mp4" class="grimoire-input text-xs">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-bold uppercase mb-1">URL de Miniatura (Opcional - Automática para YouTube)</label>
+                    <input type="url" id="vidThumbUrl" placeholder="https://i.imgur.com/... (Opcional)" class="grimoire-input text-xs">
                 </div>
 
                 <div class="pt-2">
@@ -1853,23 +2248,32 @@
         </div>
     </div>
 
-    <!-- 2. VIDEO PLAYER MODAL -->
+    <!-- 2. VIDEO PLAYER MODAL (WITH UNIVERSAL EMBED & EXTERNAL FALLBACK) -->
     <div id="videoPlayerModal" class="fixed inset-0 z-50 hidden bg-black/90 backdrop-blur-md flex items-center justify-center p-4 font-mono">
         <div class="max-w-4xl w-full tarot-card p-5 relative">
             <button onclick="closeVideoPlayer()" class="absolute -top-10 right-0 text-white hover:text-grimoire-gold font-bold text-sm">
                 <i class="fa-solid fa-xmark"></i> CERRAR [X]
             </button>
-            <div id="playerContainer" class="aspect-video w-full bg-black mb-4 border border-grimoire-gold/30"></div>
-            <div class="flex justify-between items-center font-mono">
+            <div id="playerContainer" class="aspect-video w-full bg-black mb-4 border border-grimoire-gold/30 relative overflow-hidden flex items-center justify-center"></div>
+            <div class="flex flex-wrap justify-between items-center gap-4 font-mono">
                 <div>
-                    <span id="modalVidCategory" class="grimoire-tag mb-1">CATEGORIA</span>
+                    <div class="flex items-center space-x-2 mb-1">
+                        <span id="modalVidCategory" class="grimoire-tag">CATEGORIA</span>
+                        <span id="modalVidPlatform" class="obsidian-tag">PLATAFORMA</span>
+                    </div>
                     <h3 id="modalVidTitle" class="font-serifDisplay text-xl font-bold uppercase">TITULO DEL VIDEO</h3>
                     <p id="modalVidUploader" class="text-xs opacity-70">Subido por: Player</p>
                 </div>
-                <button id="likeBtn" onclick="toggleLikeCurrentVideo()" class="px-4 py-2 border border-grimoire-gold/40 hover:border-grimoire-crimsonBright hover:text-grimoire-crimsonBright transition-all text-xs font-bold flex items-center space-x-2">
-                    <i class="fa-solid fa-heart"></i>
-                    <span id="likeCount">0</span>
-                </button>
+                <div class="flex items-center space-x-2.5">
+                    <a id="modalExternalUrlBtn" href="#" target="_blank" rel="noopener noreferrer" class="px-3.5 py-2 bg-grimoire-crimson text-grimoire-parchment border border-grimoire-gold/50 hover:bg-grimoire-gold hover:text-black transition-all text-xs font-bold uppercase flex items-center space-x-1.5">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        <span>ABRIR EN PESTAÑA ORIGINAL</span>
+                    </a>
+                    <button id="likeBtn" onclick="toggleLikeCurrentVideo()" class="px-4 py-2 border border-grimoire-gold/40 hover:border-grimoire-crimsonBright hover:text-grimoire-crimsonBright transition-all text-xs font-bold flex items-center space-x-2">
+                        <i class="fa-solid fa-heart"></i>
+                        <span id="likeCount">0</span>
+                    </button>
+                </div>
             </div>
         </div>
     </div>
@@ -2038,6 +2442,8 @@
         let isLightMode = false;
         let currentFontIndex = 0;
         let customWorkerUrl = '';
+        let manualKineticOverride = false;
+        let manualNewsExpanded = false;
 
         const fontModes = [
             { class: '', label: 'FONT: BODONI' },
@@ -2096,33 +2502,135 @@
             }
         }
 
-        // --- TAB SWITCHING ---
-        function switchTab(tab, skipScrollTop = false) {
-            currentTab = tab;
-            const tabs = ['inicio', 'rosters', 'vacancies', 'tryouts', 'gallery', 'ranking'];
-            
-            tabs.forEach(t => {
-                const btn = document.getElementById(`nav-${t}`);
-                const content = document.getElementById(`tab-${t}-content`);
-                
-                if (btn && content) {
-                    if (t === tab) {
-                        btn.classList.add('active');
-                        content.classList.remove('hidden');
-                    } else {
-                        btn.classList.remove('active');
-                        content.classList.add('hidden');
-                    }
-                }
-            });
-
-            if (tab === 'gallery') renderGallery();
-            if (tab === 'ranking') renderLeaderboard();
-            if (!skipScrollTop) {
-                window.scrollTo({ top: 0, behavior: 'smooth' });
+        // =========================================================
+        // KINETIC HERO TITLE & SCROLL ANIMATIONS
+        // =========================================================
+        function setKineticHeroState(docked) {
+            const frame = document.getElementById('kineticHeroFrame');
+            if (!frame) return;
+            if (docked) {
+                frame.classList.add('kinetic-docked');
+            } else {
+                frame.classList.remove('kinetic-docked');
             }
-            
-            setTimeout(initScrollReveal, 60);
+        }
+
+        function toggleKineticHeroTitle() {
+            manualKineticOverride = !manualKineticOverride;
+            setKineticHeroState(manualKineticOverride);
+        }
+
+        function restoreKineticHeroByScroll() {
+            if (manualKineticOverride) return;
+            const y = window.scrollY || window.pageYOffset;
+            setKineticHeroState(y > 65);
+        }
+
+        function toggleNewsExpansionManual() {
+            const panel = document.getElementById('newsExpandablePanel');
+            const btnTxt = document.getElementById('newsManualBtnText');
+            if (!panel) return;
+            manualNewsExpanded = !panel.classList.contains('is-expanded');
+            panel.classList.toggle('is-expanded', manualNewsExpanded);
+            if (btnTxt) {
+                btnTxt.innerText = manualNewsExpanded ? 'CONTRAER PANEL ↖' : 'EXTENDER PANEL ↘';
+            }
+        }
+
+        function handleInteractiveScroll() {
+            const y = window.scrollY || window.pageYOffset;
+
+            // 1. Toggle screen-edge glyph rails
+            if (y > 90) {
+                document.body.classList.add('scrolled-active');
+            } else {
+                document.body.classList.remove('scrolled-active');
+            }
+
+            // 2. Dock Hero "BLANK" letters to the edges when scrolling down
+            if (!manualKineticOverride && currentTab === 'inicio') {
+                setKineticHeroState(y > 65);
+            }
+
+            // 3. Expand News Panel smoothly when scrolling into the lower section
+            const newsSection = document.getElementById('noticias-avisos');
+            const newsPanel = document.getElementById('newsExpandablePanel');
+            const btnTxt = document.getElementById('newsManualBtnText');
+            if (newsSection && newsPanel && currentTab === 'inicio') {
+                const rect = newsSection.getBoundingClientRect();
+                const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+                const shouldExpand = rect.top < windowHeight * 0.72;
+                if (shouldExpand || manualNewsExpanded) {
+                    newsPanel.classList.add('is-expanded');
+                    if (btnTxt) btnTxt.innerText = 'CONTRAER PANEL ↖';
+                } else {
+                    newsPanel.classList.remove('is-expanded');
+                    if (btnTxt) btnTxt.innerText = 'EXTENDER PANEL ↘';
+                }
+            }
+        }
+
+        window.addEventListener('scroll', handleInteractiveScroll, { passive: true });
+
+        // --- TAB SWITCHING WITH CREATIVE ARCANE CURTAIN ---
+        function switchTab(tab, skipScrollTop = false) {
+            const tabs = ['inicio', 'rosters', 'vacancies', 'tryouts', 'gallery', 'ranking'];
+            const tabLabels = {
+                inicio: '✦ ARCANA I // INICIO ✦',
+                rosters: '✦ ARCANA II // ROSTERS OFICIALES ✦',
+                vacancies: '✦ ARCANA III // VACANTES MAIN ✦',
+                tryouts: '✦ ARCANA IV // TRYOUTS 2026 ✦',
+                gallery: '✦ ARCANA V // BÓVEDA MULTIMEDIA ✦',
+                ranking: '✦ ARCANA VI // TELEMETRÍA & RANKING ✦'
+            };
+
+            const isSwitchingToDifferentTab = currentTab !== tab;
+            currentTab = tab;
+
+            const veil = document.getElementById('arcanePageVeil');
+            const veilText = document.getElementById('veilDestinationText');
+
+            const performDomSwitch = () => {
+                tabs.forEach(t => {
+                    const btn = document.getElementById(`nav-${t}`);
+                    const content = document.getElementById(`tab-${t}-content`);
+                    
+                    if (btn && content) {
+                        if (t === tab) {
+                            btn.classList.add('active');
+                            content.classList.remove('hidden');
+                            content.classList.remove('tab-panel-animate');
+                            void content.offsetWidth; // Reflow to re-trigger animation
+                            content.classList.add('tab-panel-animate');
+                        } else {
+                            btn.classList.remove('active');
+                            content.classList.add('hidden');
+                            content.classList.remove('tab-panel-animate');
+                        }
+                    }
+                });
+
+                if (tab === 'gallery') renderGallery();
+                if (tab === 'ranking') renderLeaderboard();
+                if (!skipScrollTop) {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+                
+                setTimeout(initScrollReveal, 60);
+            };
+
+            if (veil && isSwitchingToDifferentTab) {
+                if (veilText) veilText.innerText = tabLabels[tab] || '✦ ARCANA SHIFT ✦';
+                veil.classList.add('veil-active');
+                setTimeout(() => {
+                    performDomSwitch();
+                }, 170);
+                setTimeout(() => {
+                    veil.classList.remove('veil-active');
+                }, 420);
+            } else {
+                performDomSwitch();
+            }
         }
 
         function openRosterSection(sectionId) {
@@ -2132,7 +2640,7 @@
                 if (target) {
                     target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
-            }, 80);
+            }, 240);
         }
 
         // --- SCROLL REVEAL OBSERVER ---
@@ -2212,7 +2720,121 @@
             showToast(`POSTULACIÓN SELLADA: ${pName} AÑADIDO AL RANKING`);
         }
 
-        // --- GALLERY LOGIC ---
+        // =========================================================
+        // UNIVERSAL GALLERY LOGIC (YOUTUBE UNBLOCKED + ANY PLATFORM)
+        // =========================================================
+        function parseUniversalVideoUrl(rawUrl, titleFallback = 'BLANK CLIP', customThumb = '') {
+            const url = (rawUrl || '').trim();
+            const safeTitle = encodeURIComponent((titleFallback || 'BLANK').substring(0, 20));
+            const defaultThumb = customThumb || `https://placehold.co/600x340/120e0d/c8b28e?text=${safeTitle}`;
+            const parentDomain = window.location.hostname || 'localhost';
+
+            // 1. Direct Video File (.mp4, .webm, .ogg, .mov)
+            if (/\.(mp4|webm|ogg|mov)(\?.*)?$/i.test(url)) {
+                return {
+                    type: 'video',
+                    platform: 'DIRECT VIDEO',
+                    embedUrl: url,
+                    originalUrl: url,
+                    thumbnail: defaultThumb
+                };
+            }
+
+            // 2. YouTube (watch?v=, youtu.be/, shorts/, embed/, live/)
+            const ytRegex = /(?:youtube(?:-nocookie)?\.com\/(?:[^\/\n\s]+\/\S+\/|(?:v|e(?:mbed)?|shorts|live)\/|\S*?[?&]v=)|youtu\.be\/)([a-zA-Z0-9_-]{11})/;
+            const ytMatch = url.match(ytRegex);
+            if (ytMatch && ytMatch[1]) {
+                const videoId = ytMatch[1];
+                return {
+                    type: 'iframe',
+                    platform: 'YOUTUBE',
+                    embedUrl: `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`,
+                    originalUrl: `https://www.youtube.com/watch?v=${videoId}`,
+                    thumbnail: customThumb || `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`
+                };
+            }
+
+            // 3. Twitch Clips & Twitch VODs
+            const twitchClipMatch = url.match(/(?:clips\.twitch\.tv\/|twitch\.tv\/\w+\/clip\/)([a-zA-Z0-9_-]+)/);
+            if (twitchClipMatch && twitchClipMatch[1]) {
+                const clipSlug = twitchClipMatch[1];
+                return {
+                    type: 'iframe',
+                    platform: 'TWITCH CLIP',
+                    embedUrl: `https://clips.twitch.tv/embed?clip=${clipSlug}&parent=${parentDomain}&autoplay=true`,
+                    originalUrl: url,
+                    thumbnail: defaultThumb
+                };
+            }
+            const twitchVodMatch = url.match(/twitch\.tv\/videos\/(\d+)/);
+            if (twitchVodMatch && twitchVodMatch[1]) {
+                return {
+                    type: 'iframe',
+                    platform: 'TWITCH VOD',
+                    embedUrl: `https://player.twitch.tv/?video=${twitchVodMatch[1]}&parent=${parentDomain}&autoplay=true`,
+                    originalUrl: url,
+                    thumbnail: defaultThumb
+                };
+            }
+
+            // 4. Streamable
+            const streamableMatch = url.match(/streamable\.com\/(?:e\/)?([a-zA-Z0-9]+)/);
+            if (streamableMatch && streamableMatch[1]) {
+                return {
+                    type: 'iframe',
+                    platform: 'STREAMABLE',
+                    embedUrl: `https://streamable.com/e/${streamableMatch[1]}?autoplay=1`,
+                    originalUrl: url,
+                    thumbnail: defaultThumb
+                };
+            }
+
+            // 5. Vimeo
+            const vimeoMatch = url.match(/vimeo\.com\/(?:video\/)?(\d+)/);
+            if (vimeoMatch && vimeoMatch[1]) {
+                return {
+                    type: 'iframe',
+                    platform: 'VIMEO',
+                    embedUrl: `https://player.vimeo.com/video/${vimeoMatch[1]}?autoplay=1`,
+                    originalUrl: url,
+                    thumbnail: defaultThumb
+                };
+            }
+
+            // 6. TikTok
+            const tiktokMatch = url.match(/tiktok\.com\/.*\/video\/(\d+)/);
+            if (tiktokMatch && tiktokMatch[1]) {
+                return {
+                    type: 'iframe',
+                    platform: 'TIKTOK',
+                    embedUrl: `https://www.tiktok.com/embed/v2/${tiktokMatch[1]}`,
+                    originalUrl: url,
+                    thumbnail: defaultThumb
+                };
+            }
+
+            // 7. Google Drive Video
+            const gdriveMatch = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
+            if (gdriveMatch && gdriveMatch[1]) {
+                return {
+                    type: 'iframe',
+                    platform: 'GOOGLE DRIVE',
+                    embedUrl: `https://drive.google.com/file/d/${gdriveMatch[1]}/preview`,
+                    originalUrl: url,
+                    thumbnail: defaultThumb
+                };
+            }
+
+            // 8. Generic Any External / Embed URL fallback
+            return {
+                type: 'iframe',
+                platform: 'EXTERNAL STREAM',
+                embedUrl: url,
+                originalUrl: url,
+                thumbnail: defaultThumb
+            };
+        }
+
         function filterGallery(cat) {
             currentFilterGallery = cat;
             document.querySelectorAll('.gallery-filter-btn').forEach(btn => {
@@ -2239,7 +2861,7 @@
                         </div>
                         <h3 class="font-serifDisplay text-2xl font-bold uppercase">BÓVEDA MULTIMEDIA LISTA PARA ESTRENARSE</h3>
                         <p class="text-xs uppercase mt-2 max-w-md mx-auto opacity-75">
-                            No hay clips ni highlights publicados aún. Sé el primero en subir un video utilizando el botón "Subir Video / Clip".
+                            No hay clips ni highlights publicados aún. Sube videos de YouTube, Twitch, TikTok, Streamable, Vimeo o archivos MP4 con el botón "Subir Video".
                         </p>
                     </div>
                 `;
@@ -2254,13 +2876,17 @@
                 card.innerHTML = `
                     <div>
                         <div class="relative aspect-video bg-black overflow-hidden">
-                            <img src="${vid.thumbnail}" alt="${vid.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                            <img src="${vid.thumbnail}" 
+                                 onerror="this.src='https://placehold.co/600x340/120e0d/c8b28e?text=BLANK+MEDIA'" 
+                                 alt="${vid.title}" 
+                                 class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
                             <div class="absolute inset-0 bg-black/40 group-hover:bg-black/15 transition-colors flex items-center justify-center">
-                                <div class="w-12 h-12 bg-grimoire-crimson text-grimoire-gold border border-grimoire-gold flex items-center justify-center text-lg">
+                                <div class="w-12 h-12 bg-grimoire-crimson text-grimoire-gold border border-grimoire-gold flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
                                     <i class="fa-solid fa-play ml-1"></i>
                                 </div>
                             </div>
                             <span class="absolute top-2 left-2 obsidian-tag">${vid.category}</span>
+                            <span class="absolute top-2 right-2 crimson-tag text-[9px]">${vid.platform || 'VIDEO'}</span>
                         </div>
                         <div class="p-5">
                             <h4 class="font-serifDisplay text-lg font-bold group-hover:text-grimoire-gold transition-colors line-clamp-2 uppercase">${vid.title}</h4>
@@ -2268,7 +2894,7 @@
                         </div>
                     </div>
                     <div class="p-5 pt-3 border-t border-grimoire-gold/20 flex justify-between items-center text-xs">
-                        <span class="text-grimoire-gold font-bold">VER REPLAY ↗</span>
+                        <span class="text-grimoire-gold font-bold">REPRODUCIR CLIP ↗</span>
                         <span class="flex items-center space-x-1 opacity-80">
                             <i class="fa-solid fa-heart text-grimoire-crimsonBright"></i>
                             <span>${vid.likes}</span>
@@ -2291,27 +2917,29 @@
             const category = document.getElementById('vidCategory').value;
             const uploader = document.getElementById('vidUploader').value;
             const url = document.getElementById('vidUrl').value;
+            const customThumb = document.getElementById('vidThumbUrl')?.value.trim() || '';
 
-            let embedUrl = url;
-            if (url.includes('youtube.com/watch?v=')) {
-                embedUrl = url.replace('watch?v=', 'embed/');
-            }
+            const parsed = parseUniversalVideoUrl(url, title, customThumb);
 
             const newVid = {
                 id: Date.now(),
                 title: title,
                 category: category,
                 uploader: uploader,
-                url: embedUrl,
-                thumbnail: `https://placehold.co/600x340/120e0d/c8b28e?text=${encodeURIComponent(title.substring(0, 20))}`,
+                url: parsed.embedUrl,
+                originalUrl: parsed.originalUrl,
+                mediaType: parsed.type,
+                platform: parsed.platform,
+                thumbnail: parsed.thumbnail,
                 likes: 0,
                 role: 'Player'
             };
 
             galleryVideos.unshift(newVid);
+            e.target.reset();
             toggleVideoUploadModal(false);
             renderGallery();
-            showToast('CLIP PUBLICADO EN LA GALERÍA');
+            showToast(`CLIP PUBLICADO (${parsed.platform})`);
         }
 
         function openVideoPlayer(id) {
@@ -2321,13 +2949,33 @@
             activePlayingVideoId = id;
             document.getElementById('modalVidTitle').innerText = vid.title;
             document.getElementById('modalVidCategory').innerText = vid.category;
+            document.getElementById('modalVidPlatform').innerText = vid.platform || 'MEDIA';
             document.getElementById('modalVidUploader').innerText = `SUBIDO POR: ${vid.uploader}`;
             document.getElementById('likeCount').innerText = vid.likes;
 
+            const extBtn = document.getElementById('modalExternalUrlBtn');
+            if (extBtn) {
+                extBtn.href = vid.originalUrl || vid.url;
+            }
+
             const container = document.getElementById('playerContainer');
-            container.innerHTML = `
-                <iframe class="w-full h-full" src="${vid.url}" title="${vid.title}" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-            `;
+            if (vid.mediaType === 'video') {
+                container.innerHTML = `
+                    <video class="w-full h-full bg-black" controls autoplay playsinline src="${vid.url}">
+                        Tu navegador no soporta reproducción directa de este formato de video.
+                    </video>
+                `;
+            } else {
+                container.innerHTML = `
+                    <iframe class="w-full h-full" 
+                            src="${vid.url}" 
+                            title="${vid.title}" 
+                            frameborder="0" 
+                            referrerpolicy="strict-origin-when-cross-origin"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen" 
+                            allowfullscreen></iframe>
+                `;
+            }
 
             document.getElementById('videoPlayerModal').classList.remove('hidden');
         }
@@ -2350,6 +2998,7 @@
 
         // =========================================================
         // RANKING / RIOT API LIVE SYNC & GITHUB REPO INTEGRATION
+        // (100% UNCHANGED MECHANISM)
         // =========================================================
         function getTierWeight(tier) {
             const weights = { 'Challenger': 4000, 'GrandMaster': 3000, 'Master': 2000, 'Diamante': 1000 };
