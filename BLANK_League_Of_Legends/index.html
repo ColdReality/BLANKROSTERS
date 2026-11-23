@@ -822,79 +822,95 @@
         </div>
     </div>
 
-    <!-- 4. FIXED LEFT RENAISSANCE INDEX SIDEBAR (SCROLL INDEX + SUBPAGES) -->
+  <!-- 4. FIXED LEFT RENAISSANCE INDEX SIDEBAR (TRYOUTS DESTACADO + SUBPAGES + SCROLL INDEX) -->
+    <aside id="leftIndexSidebar" class="renaissance-left-index !w-64 !p-4">
 
-    <aside id="leftIndexSidebar" class="renaissance-left-index">
+        <!-- BLOQUE SEPARADO Y PRIORITARIO: TRYOUTS -->
+        <div class="mb-5 pb-4 border-b border-grimoire-parchment/30">
+            <button onclick="switchTab('tryouts')" id="side-nav-tryouts"
+                    class="w-full text-left p-3.5 border border-grimoire-gold/75 bg-grimoire-gold/15 hover:bg-grimoire-gold/25 hover:border-grimoire-gold transition-all duration-300 group cursor-pointer">
+                <div class="flex items-center justify-between font-mono text-[9px] tracking-[0.24em] uppercase text-grimoire-gold font-bold mb-1.5">
+                    <span class="flex items-center gap-1.5">
+                        <span class="w-1.5 h-1.5 rounded-full bg-grimoire-gold animate-pulse"></span>
+                        TRYOUTS // LoL
+                    </span>
+                    <span class="transform transition-transform duration-300 group-hover:translate-x-1">→</span>
+                </div>
+                <div class="font-display font-extrabold text-[13px] leading-snug text-grimoire-parchment tracking-wide">
+                    ¿Buscas entrar a algún equipo?
+                </div>
+                <div class="mt-1.5 font-mono text-[10px] tracking-[0.18em] uppercase text-grimoire-gold group-hover:text-white font-bold transition-colors">
+                    ¡Llena tu solicitud! ✦
+                </div>
+            </button>
+        </div>
+
         <!-- Ornate Top Cross -->
-        <div class="flex items-center justify-between border-b border-grimoire-parchment/25 pb-2.5 mb-3 font-mono text-[10px]">
-            <span class="tracking-[0.22em] font-bold text-grimoire-parchment">✥ ÍNDICE</span>
+        <div class="flex items-center justify-between border-b border-grimoire-parchment/25 pb-2.5 mb-3.5 font-mono text-[11px]">
+            <span class="tracking-[0.24em] font-bold text-grimoire-parchment">✥ ÍNDICE</span>
             <span class="opacity-60">[XVII]</span>
         </div>
 
-        <!-- SECTION A: DESPLAZAMIENTO DE INICIO -->
-        <div class="mb-4">
-            <div class="font-mono text-[9px] tracking-[0.22em] uppercase text-grimoire-gold/75 mb-1.5 px-1">
-                I. SECCIONES DE INICIO
+        <!-- SECTION I: ACCESO A SUBPÁGINAS (MÁS GRANDE Y PRIORITARIO) -->
+        <div class="mb-5">
+            <div class="font-mono text-[10px] tracking-[0.22em] uppercase text-grimoire-gold font-bold mb-2 px-1">
+                I. SUBPÁGINAS (ARCHIVOS)
             </div>
-            <div class="space-y-0.5">
-                <button onclick="scrollToHomeAnchor('hero')" class="index-nav-link">
-                    <span>01. PÓSTER CENTRAL</span>
-                    <span>✦</span>
-                </button>
-                <button onclick="scrollToHomeAnchor('aligned-crests-bar')" class="index-nav-link">
-                    <span>02. EMBLEMAS</span>
-                    <span>✦</span>
-                </button>
-                <button onclick="scrollToHomeAnchor('black-abyss-anchor')" class="index-nav-link">
-                    <span>03. MONOLITO NEGRO</span>
-                    <span>✦</span>
-                </button>
-                <button onclick="scrollToHomeAnchor('home-rosters-sanctuary')" class="index-nav-link">
-                    <span>04. ESCUADRAS &amp; SUBS</span>
-                    <span>✦</span>
-                </button>
-                <button onclick="scrollToHomeAnchor('noticias-avisos')" class="index-nav-link">
-                    <span>05. NOVEDADES</span>
-                    <span>✦</span>
-                </button>
-            </div>
-        </div>
-
-        <!-- SECTION B: ACCESO A SUBPÁGINAS -->
-        <div class="pt-3 border-t border-grimoire-parchment/20">
-            <div class="font-mono text-[9px] tracking-[0.22em] uppercase text-grimoire-gold/75 mb-1.5 px-1">
-                II. SUBPÁGINAS (ARCHIVOS)
-            </div>
-            <div class="space-y-0.5">
-                <button onclick="switchTab('inicio')" id="side-nav-inicio" class="index-nav-link active">
+            <div class="space-y-1.5">
+                <button onclick="switchTab('inicio')" id="side-nav-inicio" class="index-nav-link active !text-[12px] !py-2 !px-2.5 font-bold">
                     <span>✦ INICIO</span>
                     <span>→</span>
                 </button>
-                <button onclick="switchTab('rosters')" id="side-nav-rosters" class="index-nav-link">
+                <button onclick="switchTab('rosters')" id="side-nav-rosters" class="index-nav-link !text-[12px] !py-2 !px-2.5 font-bold">
                     <span>ROSTERS DETALLE</span>
                     <span>→</span>
                 </button>
-                <button onclick="switchTab('vacancies')" id="side-nav-vacancies" class="index-nav-link">
+                <button onclick="switchTab('vacancies')" id="side-nav-vacancies" class="index-nav-link !text-[12px] !py-2 !px-2.5 font-bold">
                     <span>VACANTES MAIN</span>
                     <span>→</span>
                 </button>
-                <button onclick="switchTab('tryouts')" id="side-nav-tryouts" class="index-nav-link">
-                    <span>TRYOUTS (DISCORD)</span>
-                    <span>→</span>
-                </button>
-                <button onclick="switchTab('gallery')" id="side-nav-gallery" class="index-nav-link">
+                <button onclick="switchTab('gallery')" id="side-nav-gallery" class="index-nav-link !text-[12px] !py-2 !px-2.5 font-bold">
                     <span>GALERÍA CLIPS</span>
                     <span>→</span>
                 </button>
-                <button onclick="switchTab('ranking')" id="side-nav-ranking" class="index-nav-link">
+                <button onclick="switchTab('ranking')" id="side-nav-ranking" class="index-nav-link !text-[12px] !py-2 !px-2.5 font-bold">
                     <span>LIVE RANKING</span>
                     <span>→</span>
                 </button>
             </div>
         </div>
 
+        <!-- SECTION II: DESPLAZAMIENTO DE INICIO -->
+        <div class="pt-3.5 border-t border-grimoire-parchment/20">
+            <div class="font-mono text-[10px] tracking-[0.22em] uppercase text-grimoire-gold/80 mb-2 px-1">
+                II. SECCIONES DE INICIO
+            </div>
+            <div class="space-y-1">
+                <button onclick="scrollToHomeAnchor('hero')" class="index-nav-link !text-[11px] !py-1.5 !px-2">
+                    <span>01. PÓSTER CENTRAL</span>
+                    <span>✦</span>
+                </button>
+                <button onclick="scrollToHomeAnchor('aligned-crests-bar')" class="index-nav-link !text-[11px] !py-1.5 !px-2">
+                    <span>02. EMBLEMAS</span>
+                    <span>✦</span>
+                </button>
+                <button onclick="scrollToHomeAnchor('black-abyss-anchor')" class="index-nav-link !text-[11px] !py-1.5 !px-2">
+                    <span>03. MONOLITO NEGRO</span>
+                    <span>✦</span>
+                </button>
+                <button onclick="scrollToHomeAnchor('home-rosters-sanctuary')" class="index-nav-link !text-[11px] !py-1.5 !px-2">
+                    <span>04. ESCUADRAS &amp; SUBS</span>
+                    <span>✦</span>
+                </button>
+                <button onclick="scrollToHomeAnchor('noticias-avisos')" class="index-nav-link !text-[11px] !py-1.5 !px-2">
+                    <span>05. NOVEDADES</span>
+                    <span>✦</span>
+                </button>
+            </div>
+        </div>
+
         <!-- Bottom Barcode Detail from Reference -->
-        <div class="mt-4 pt-2.5 border-t border-grimoire-parchment/20 flex items-center justify-between opacity-75">
+        <div class="mt-5 pt-3 border-t border-grimoire-parchment/20 flex items-center justify-between opacity-75">
             <div class="h-3.5 w-20 bg-[repeating-linear-gradient(90deg,#f2ece4,#f2ece4_2px,transparent_2px,transparent_4px,#f2ece4_4px,#f2ece4_5px,transparent_5px,transparent_8px)]"></div>
             <span class="font-mono text-[8px] tracking-widest">EST. FIRE</span>
         </div>
@@ -987,38 +1003,17 @@
                 <button onclick="switchTab('inicio')" id="nav-inicio" class="tab-nav-btn active px-3 py-1.5 font-bold uppercase flex items-center space-x-1.5">
                     <span>✦ Inicio</span>
                 </button>
-                <button onclick="switchTab('rosters')" id="nav-rosters" class="tab-nav-btn px-3 py-1.5 font-bold uppercase flex items-center space-x-1.5">
-                    <span>Rosters</span>
-                </button>
-                <button onclick="switchTab('vacancies')" id="nav-vacancies" class="tab-nav-btn px-3 py-1.5 font-bold uppercase flex items-center space-x-1.5">
-                    <span>Vacantes</span>
-                </button>
-                <button onclick="switchTab('tryouts')" id="nav-tryouts" class="tab-nav-btn px-3 py-1.5 font-bold uppercase flex items-center space-x-1.5">
-                    <span>Tryouts</span>
-                </button>
-                <button onclick="switchTab('gallery')" id="nav-gallery" class="tab-nav-btn px-3 py-1.5 font-bold uppercase flex items-center space-x-1.5">
-                    <span>Galería</span>
-                </button>
-                <button onclick="switchTab('ranking')" id="nav-ranking" class="tab-nav-btn px-3 py-1.5 font-bold uppercase flex items-center space-x-1.5">
-                    <span>Ranking</span>
-                </button>
-            </nav>
 
             <!-- WALLPAPER CONFIG, INTRO REPLAY, FONT & THEME TOGGLE -->
             <div class="flex items-center space-x-2 text-[10px] uppercase font-bold">
-                <button onclick="toggleWallpaperModal(true)" title="Cambiar Wallpaper o Configurar Imagen en GitHub" class="px-2.5 py-1.5 border border-grimoire-parchment/50 hover:bg-grimoire-parchment hover:text-black transition-all flex items-center space-x-1.5">
-                    <i class="fa-regular fa-image"></i>
-                    <span class="hidden md:inline">FONDO</span>
-                </button>
-
                 <button onclick="replayIntroModal()" title="Reproducir Intro" class="px-2.5 py-1.5 border border-grimoire-parchment/50 hover:bg-grimoire-parchment hover:text-black transition-all">
                     <i class="fa-solid fa-film"></i>
                 </button>
 
                 <button onclick="cycleTitleFont()" id="fontToggleBtn" title="Cambiar Tipografía" class="px-2.5 py-1.5 border border-grimoire-parchment/50 hover:bg-grimoire-parchment hover:text-black transition-all flex items-center space-x-1.5">
                     <i class="fa-solid fa-font"></i>
-                    <span id="fontModeLabel" class="hidden sm:inline">BODONI</span>
-                </button>
+                    <span id="fontModeLabel" class="hidden sm:inline">SYNE</span>
+                
 
                 <button onclick="toggleTheme()" id="themeToggleBtn" title="Alternar Modo Oscuro / Pergamino" class="px-2.5 py-1.5 border border-grimoire-parchment/50 hover:bg-grimoire-parchment hover:text-black transition-all flex items-center space-x-1.5">
                     <i id="themeIcon" class="fa-solid fa-sun"></i>
