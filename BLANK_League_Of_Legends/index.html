@@ -1434,10 +1434,10 @@
                                     </div>
                                     <div class="space-y-1.5 text-xs">
                                         <div class="flex justify-between py-1 border-b border-white/10"><span class="opacity-70">COACH:</span><span class="font-bold text-grimoire-gold">KASE (CHALL)</span></div>
-                                        <div class="flex justify-between py-1 border-b border-white/10"><span class="opacity-70">TOP:</span><span class="font-bold text-white">UCHIHA <span class="text-[10px] text-grimoire-gold">(DIAMANTE)</span></span></div>
-                                        <div class="flex justify-between py-1 border-b border-white/10"><span class="opacity-70">JGL:</span><span class="font-bold text-white">MIFULAFU <span class="text-[10px] text-grimoire-gold">(DIAMANTE)</span></span></div>
+                                        <div class="flex justify-between py-1 border-b border-white/10"><span class="opacity-70">TOP:</span><span class="font-bold text-white">ASHER <span class="text-[10px] text-grimoire-gold">(DIAMANTE)</span></span></div>
+                                        <div class="flex justify-between py-1 border-b border-white/10"><span class="opacity-70">JGL:</span><span class="font-bold text-white">KEMEZ <span class="text-[10px] text-grimoire-gold">(GRANDMASTER)</span></span></div>
                                         <div class="flex justify-between py-1 border-b border-white/10"><span class="opacity-70">MID:</span><span class="font-bold text-white">VÁNDR <span class="text-[10px] text-grimoire-gold">(MASTER)</span></span></div>
-                                        <div class="flex justify-between py-1 border-b border-white/10"><span class="opacity-70">ADC:</span><span class="font-bold text-white">KORO <span class="text-[10px] text-grimoire-gold">(MASTER)</span></span></div>
+                                        <div class="flex justify-between py-1 border-b border-white/10"><span class="opacity-70">ADC:</span><span class="font-bold text-white">ALEX <span class="text-[10px] text-grimoire-gold">(CHALLENGER)</span></span></div>
                                         <div class="flex justify-between py-1"><span class="opacity-70">SUPP:</span><span class="font-bold text-white">MANZANITA <span class="text-[10px] text-grimoire-gold">(DIAMANTE)</span></span></div>
                                     </div>
                                 </div>
@@ -1448,8 +1448,10 @@
                                         ✥ GUARDIA DE RESERVA (SUPLENTES)
                                     </div>
                                     <div class="flex flex-wrap gap-1.5 text-[11px]">
-                                        <span class="px-2 py-0.5 border border-white/30">Kemez (JGL)</span>
+                                        <span class="px-2 py-0.5 border border-white/30">Koro (ADC)</span>
                                         <span class="px-2 py-0.5 border border-white/30">Nyfer (SUPP/MID)</span>
+                                        <span class="px-2 py-0.5 border border-white/30">Mifulafu (JGL)</span>
+                                        <span class="px-2 py-0.5 border border-white/30">Uchiha (TOP)</span>
                                     </div>
                                 </div>
                             </div>
@@ -1476,117 +1478,61 @@
                 </div>
             </div>
 
-            <!-- ========================================================= -->
-            <!-- 5. EXPANDING NEWS BOARD AT THE BOTTOM OF HOME PAGE        -->
-            <!-- ========================================================= -->
-            <section id="noticias-avisos" class="pb-28 pt-4 relative px-2 sm:px-6">
-                <div id="newsExpandablePanel" class="news-expandable-wrapper px-4 sm:px-8">
-                    
-                    <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 pb-4 border-b border-white/35">
-                        <div>
-                            <div class="flex flex-wrap items-center gap-2 mb-2">
-                                <span class="crimson-tag">[BOLETÍN OFICIAL // SILENT AUTHORITY]</span>
-                                <span class="text-xs font-mono text-grimoire-gold tracking-widest">// CRÓNICAS DE LA ORDEN</span>
-                                <span class="obsidian-tag text-[9px]">✦ SE DESPLIEGA AL LLEGAR AL FONDO</span>
-                            </div>
-                            <h2 class="silent-authority-title text-3xl sm:text-5xl font-bold uppercase tracking-tight">
-                                TABLÓN DE NOVEDADES
-                            </h2>
-                        </div>
-                        <div class="mt-4 md:mt-0 flex items-center space-x-3 font-mono text-xs">
-                            <span class="opacity-75">[EDICIÓN RENACENTISTA // 2026]</span>
-                            <button onclick="toggleNewsExpansionManual()" class="px-3 py-1.5 border border-white/50 hover:bg-white hover:text-black transition-all text-[10px] uppercase font-bold">
-                                <span id="newsManualBtnText">EXTENDER TABLÓN ↘</span>
-                            </button>
-                        </div>
-                    </div>
+            <!-- NOVEDADES // BOLETÍN DE MOVIMIENTOS (22 NOV 2026) -->
+<div class="space-y-4">
 
-                    <!-- NEWS TAROT CARDS GRID -->
-                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                        
-                        <!-- NOTICIA 1: CAMBIOS OFICIALES EN LAST KNIGHTS -->
-                        <article class="tarot-card p-7 flex flex-col justify-between">
-                            <div>
-                                <div class="flex justify-between items-center mb-5 font-mono text-[10px]">
-                                    <span class="grimoire-tag">[DECRETO I // ROSTER]</span>
-                                    <span class="text-grimoire-gold">✦ NOV 2026</span>
-                                </div>
-                                <h3 class="font-serifDisplay text-xl sm:text-2xl font-bold uppercase leading-snug mb-3">
-                                    ASCENSO DE UCHIHA Y DEBUT DE MIFULAFU EN LAST KNIGHTS
-                                </h3>
-                                <p class="font-editorial text-lg leading-relaxed opacity-90 mb-5">
-                                    La cámara táctica de <strong>Last Knights Academy</strong> oficializa su nueva alineación titular: <strong>Uchiha</strong> asciende de suplente a <strong>Toplaner Titular</strong> (Diamante) e incorporamos a <strong>Mifulafu</strong> como nuevo <strong>Jungla Titular</strong> (Diamante).
-                                </p>
-                                <div class="p-3.5 bg-black/50 border border-white/25 font-mono text-[11px] space-y-1.5 mb-6">
-                                    <div><span class="text-white font-bold">✦ TOP TITULAR:</span> Uchiha (Diamante)</div>
-                                    <div><span class="text-white font-bold">✦ JGL TITULAR:</span> Mifulafu (Diamante)</div>
-                                    <div><span class="text-grimoire-crimsonBright font-bold">✦ SUPLENTES:</span> Kemez pasa a reserva junto a Nyfer</div>
-                                </div>
-                            </div>
-                            <button onclick="openRosterSection('academy')" class="w-full py-3 border border-white/50 hover:bg-white hover:text-black transition-all font-mono text-xs font-bold uppercase">
-                                INSPECCIONAR LAST KNIGHTS ↗
-                            </button>
-                        </article>
+    <!-- 1. INCORPORACIÓN DE DIVINE SORROW -->
+    <article class="p-5 bg-[#0a0a0e]/95 border border-[#c8b38a]/55 relative">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">
+            <span class="font-mono text-[9px] tracking-[0.25em] uppercase px-2.5 py-1 bg-[#c8b38a]/15 text-[#c8b38a] border border-[#c8b38a]/40 font-bold">
+                ✦ EXPANSIÓN DE ORGANIZACIÓN
+            </span>
+            <span class="font-mono text-[10px] tracking-[0.2em] text-white/45 uppercase">22 NOV 2026</span>
+        </div>
+        <h4 class="font-display font-extrabold text-lg uppercase tracking-wider text-white">
+            BIENVENIDA OFICIAL A DIVINE SORROW
+        </h4>
+        <p class="mt-2 font-mono text-xs text-white/70 leading-relaxed">
+            La estructura competitiva de <strong class="text-white">BLANK</strong> continúa expandiéndose. Damos la bienvenida oficial a <strong class="text-[#c8b38a]">Divine Sorrow</strong>, nueva escuadra que se integra a nuestra división de League of Legends bajo los estándares de excelencia de la organización.
+        </p>
+    </article>
 
-                        <!-- NOTICIA 2: VACANTES MAIN ROSTER & SECRETARIA DISCORD -->
-                        <article class="tarot-card-crimson p-7 flex flex-col justify-between">
-                            <div>
-                                <div class="flex justify-between items-center mb-5 font-mono text-[10px]">
-                                    <span class="crimson-tag">[DECRETO II // DISCORD DIRECTO]</span>
-                                    <span class="text-white">✴ PRIORIDAD</span>
-                                </div>
-                                <h3 class="font-serifDisplay text-xl sm:text-2xl font-bold uppercase leading-snug mb-3">
-                                    SECRETARÍA EJECUTIVA ACTIVA EN TRYOUTS (WEBHOOK)
-                                </h3>
-                                <p class="font-editorial text-lg leading-relaxed opacity-90 mb-5">
-                                    Todas las postulaciones enviadas en <strong>Tryouts</strong> son recibidas y notificadas en tiempo real en nuestro servidor de Discord con protocolo personalizado según la escuadra a la que aspires.
-                                </p>
-                                <div class="p-3.5 bg-black/50 border border-white/25 font-mono text-[11px] space-y-1.5 mb-6">
-                                    <div><span class="text-white font-bold">✦ ESCUADRAS:</span> Main, Eclipsed, Kore, Last Knights</div>
-                                    <div><span class="text-white font-bold">✦ NOTIFICACIÓN:</span> Despacho inmediato a Discord</div>
-                                    <div><span class="text-white font-bold">✦ ESTADO:</span> Reclutamiento Abierto 2026</div>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-2 gap-3 font-mono text-xs">
-                                <button onclick="switchTab('vacancies')" class="py-3 border border-white/50 hover:bg-white hover:text-black transition-all font-bold uppercase">
-                                    VACANTES
-                                </button>
-                                <button onclick="switchTab('tryouts')" class="py-3 bg-grimoire-parchment text-black hover:bg-white transition-all font-bold uppercase">
-                                    POSTULAR ↘
-                                </button>
-                            </div>
-                        </article>
+    <!-- 2. REESTRUCTURACIÓN DE LAST KNIGHTS -->
+    <article class="p-5 bg-[#0a0a0e]/90 border border-white/15">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">
+            <span class="font-mono text-[9px] tracking-[0.25em] uppercase px-2.5 py-1 bg-white/5 text-white/80 border border-white/20">
+                REESTRUCTURACIÓN // LAST KNIGHTS
+            </span>
+            <span class="font-mono text-[10px] tracking-[0.2em] text-white/45 uppercase">22 NOV 2026</span>
+        </div>
+        <h4 class="font-display font-bold text-base uppercase tracking-wider text-white">
+            NUEVO QUINTETO TITULAR Y RESERVA ACTIVA EN LAST KNIGHTS
+        </h4>
+        <ul class="mt-2.5 space-y-1.5 font-mono text-xs text-white/70 list-disc list-inside">
+            <li><strong class="text-white">Alex</strong> se incorpora a la escuadra y toma el puesto de <strong class="text-[#c8b38a]">ADC titular</strong>.</li>
+            <li><strong class="text-white">Asher</strong> (Top) y <strong class="text-white">Kemez</strong> (Jungla) asumen oficialmente la <strong class="text-[#c8b38a]">titularidad</strong>.</li>
+            <li><strong class="text-white">Uchiha</strong> (Top), <strong class="text-white">Mifulafu</strong> (Jungla) y <strong class="text-white">Koro</strong> (ADC) pasan a conformar la línea de <strong class="text-white">suplentes</strong>.</li>
+        </ul>
+    </article>
 
-                        <!-- NOTICIA 3: LIVE RIOT API RANKING & GITHUB ACTIONS -->
-                        <article class="tarot-card p-7 flex flex-col justify-between">
-                            <div>
-                                <div class="flex justify-between items-center mb-5 font-mono text-[10px]">
-                                    <span class="obsidian-tag">[DECRETO III // RIOT API]</span>
-                                    <span class="text-grimoire-gold">✦ AUTO-SYNC 6H</span>
-                                </div>
-                                <h3 class="font-serifDisplay text-xl sm:text-2xl font-bold uppercase leading-snug mb-3">
-                                    LEADERBOARD CON RIOT API Y SYNC EN TIEMPO REAL
-                                </h3>
-                                <p class="font-editorial text-lg leading-relaxed opacity-90 mb-5">
-                                    El módulo de <strong>Ranking</strong> muestra campeones jugados recientemente, rachas activas, historial de partidas y sincronización directa con GitHub Actions cada 6 horas.
-                                </p>
-                                <div class="p-3.5 bg-black/50 border border-white/25 font-mono text-[11px] space-y-1.5 mb-6">
-                                    <div><span class="text-white font-bold">✦ TELEMETRÍA:</span> ELO, LP, Rachas y Top 3 Champs</div>
-                                    <div><span class="text-white font-bold">✦ CRON:</span> Actualización automática cada 6 horas</div>
-                                    <div><span class="text-white font-bold">✦ LIVE SYNC:</span> Botón de consulta en tiempo real</div>
-                                </div>
-                            </div>
-                            <div class="grid grid-cols-2 gap-3 font-mono text-xs">
-                                <button onclick="switchTab('ranking')" class="py-3 border border-white/50 hover:bg-white hover:text-black transition-all font-bold uppercase">
-                                    VER RANKING
-                                </button>
-                                <button onclick="switchTab('ranking'); setTimeout(() => toggleGithubSetupModal(true), 250);" class="py-3 bg-grimoire-crimson text-grimoire-parchment border border-white/40 hover:bg-white hover:text-black transition-all font-bold uppercase">
-                                    GITHUB SETUP
-                                </button>
-                            </div>
-                        </article>
+    <!-- 3. HITO DE SUA Y AJUSTES EN ECLIPSED & KORE -->
+    <article class="p-5 bg-[#0a0a0e]/90 border border-white/15">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">
+            <span class="font-mono text-[9px] tracking-[0.25em] uppercase px-2.5 py-1 bg-cyan-500/10 text-cyan-300 border border-cyan-400/35">
+                ACTUALIZACIÓN // ECLIPSED & KORE
+            </span>
+            <span class="font-mono text-[10px] tracking-[0.2em] text-white/45 uppercase">22 NOV 2026</span>
+        </div>
+        <h4 class="font-display font-bold text-base uppercase tracking-wider text-white">
+            SUA ALCANZA CHALLENGER Y CIERRE DE SUPLENCIAS
+        </h4>
+        <ul class="mt-2.5 space-y-1.5 font-mono text-xs text-white/70 list-disc list-inside">
+            <li><strong class="text-white">BLANK Eclipsed:</strong> Felicitamos a <strong class="text-cyan-300">Sua</strong> por su ascenso oficial a <strong class="text-cyan-300">Challenger</strong>. La escuadra consolida su bloque principal y operará sin suplentes.</li>
+            <li><strong class="text-white">BLANK Kore:</strong> <strong class="text-white">Migaja</strong> y <strong class="text-white">UNKNOWN</strong> dejan de formar parte de la lista de suplentes. Les agradecemos su paso por la división.</li>
+        </ul>
+    </article>
 
-                    </div>
+</div>
 
                     <!-- EXTENDED NEWS DRAWER (REVEALED AUTOMATICALLY WHEN SCROLLING TO BOTTOM) -->
                     <div class="news-drawer-extra">
@@ -1599,7 +1545,7 @@
                                         <span class="text-white text-[10px]">✦ EXPANSIÓN ACTIVA</span>
                                     </div>
                                     <h4 class="font-serifDisplay text-xl font-bold uppercase mb-3 text-white">
-                                        PROTOCOLO RENACENTISTA DE ENTRENAMIENTO &amp; MEDIA
+                                        PROTOCOLO DE ENTRENAMIENTO
                                     </h4>
                                     <div class="space-y-2.5 text-[11px]">
                                         <div class="flex flex-col sm:flex-row sm:items-center justify-between p-2.5 bg-black/60 border border-white/20">
@@ -1619,10 +1565,10 @@
                                         <span class="text-white">✥ SILENT AUTHORITY</span>
                                     </div>
                                     <h4 class="font-serifDisplay text-xl font-bold uppercase mb-2 text-white">
-                                        ACCESO RÁPIDO A LA BÓVEDA Y POSTULACIONES
+                                        ACCESO RÁPIDO A LA BÓVEDA
                                     </h4>
                                     <p class="font-editorial text-base opacity-90 leading-relaxed mb-4">
-                                        Sube repeticiones desde cualquier plataforma en la Galería o envía tu expediente directamente a nuestra secretaria en Discord.
+                                        Sube repeticiones desde cualquier plataforma en la Galería o envía tu expediente directamente a Tryouts.
                                     </p>
                                 </div>
                                 <div class="grid grid-cols-2 gap-3">
@@ -1630,7 +1576,7 @@
                                         ABRIR GALERÍA ↗
                                     </button>
                                     <button onclick="switchTab('tryouts')" class="py-3 border border-white/60 hover:bg-white hover:text-black font-bold uppercase transition-all">
-                                        IR A TRYOUTS ↘
+                                        POSTULARTE A UN EQUIPO ↘
                                     </button>
                                 </div>
                             </div>
@@ -1726,8 +1672,8 @@
                                 <span class="text-white">◇ 01 ◇</span>
                             </div>
                             <div>
-                                <h3 class="font-serifDisplay text-3xl font-bold">UCHIHA</h3>
-                                <p class="font-mono text-xs uppercase mt-1 opacity-75">SOLOLANE COMMANDER</p>
+                                <h3 class="font-serifDisplay text-3xl font-bold">ASHER</h3>
+                                <p class="font-mono text-xs uppercase mt-1 opacity-75">TOPLANE KING</p>
                             </div>
                             <div class="mt-8 pt-4 border-t border-white/20 flex justify-between items-center font-mono text-xs">
                                 <span class="opacity-75">RANK ELO:</span>
@@ -1741,12 +1687,12 @@
                                 <span class="text-white">◇ 02 ◇</span>
                             </div>
                             <div>
-                                <h3 class="font-serifDisplay text-3xl font-bold">MIFULAFU</h3>
-                                <p class="font-mono text-xs uppercase mt-1 opacity-75">JUNGLE COMMANDER</p>
+                                <h3 class="font-serifDisplay text-3xl font-bold">KEMEZ</h3>
+                                <p class="font-mono text-xs uppercase mt-1 opacity-75">JUNGLE PLAYMAKER</p>
                             </div>
                             <div class="mt-8 pt-4 border-t border-white/20 flex justify-between items-center font-mono text-xs">
                                 <span class="opacity-75">RANK ELO:</span>
-                                <span class="obsidian-tag font-bold">DIAMANTE</span>
+                                <span class="obsidian-tag font-bold">GRAND MASTER</span>
                             </div>
                         </div>
 
@@ -1771,12 +1717,12 @@
                                 <span class="text-white">◇ 04 ◇</span>
                             </div>
                             <div>
-                                <h3 class="font-serifDisplay text-3xl font-bold">KORO</h3>
+                                <h3 class="font-serifDisplay text-3xl font-bold">ALEX</h3>
                                 <p class="font-mono text-xs uppercase mt-1 opacity-75">BOTLANE CARRY</p>
                             </div>
                             <div class="mt-8 pt-4 border-t border-white/20 flex justify-between items-center font-mono text-xs">
                                 <span class="opacity-75">RANK ELO:</span>
-                                <span class="crimson-tag">MASTER</span>
+                                <span class="crimson-tag">CHALLENGER</span>
                             </div>
                         </div>
 
@@ -1802,7 +1748,7 @@
                 <div class="hairline-double"></div>
                 <div class="center-medallion font-mono text-xs tracking-[0.3em]">
                     <span>✦</span>
-                    <span class="text-[10px] uppercase">SOLARIS // ECLIPSED</span>
+                    <span class="text-[10px] uppercase">RULERS // ECLIPSED</span>
                     <span>✥</span>
                     <span class="text-[10px] uppercase">ARCANA II</span>
                     <span>✦</span>
@@ -1834,10 +1780,10 @@
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 font-mono">
-                        <div class="tarot-card p-6">
+                        <div class="tarot-card-crimson p-6">
                             <div class="flex justify-between items-center text-xs mb-6">
                                 <span class="text-white font-bold">[SLOT 01]</span>
-                                <span class="obsidian-tag">TOPLANER</span>
+                                <span class="grimoire-tag">TOPLANER</span>
                             </div>
                             <div class="mb-8">
                                 <h3 class="font-serifDisplay text-3xl font-bold">NIGHT</h3>
@@ -1845,22 +1791,22 @@
                             </div>
                             <div class="flex justify-between items-center text-xs border-t border-white/20 pt-4">
                                 <span class="opacity-70">RATING:</span>
-                                <span class="crimson-tag">GRAND MASTER</span>
+                                <span class="grimoire-tag">GRAND MASTER</span>
                             </div>
                         </div>
 
-                        <div class="tarot-card p-6">
+                        <div class="tarot-card-crimson p-6">
                             <div class="flex justify-between items-center text-xs mb-6">
                                 <span class="text-white font-bold">[SLOT 02]</span>
-                                <span class="obsidian-tag">JUNGLA</span>
+                                <span class="grimoire-tag">JUNGLA</span>
                             </div>
                             <div class="mb-8">
                                 <h3 class="font-serifDisplay text-3xl font-bold">SUA</h3>
                                 <p class="text-xs opacity-70 uppercase mt-1">MAP PATHING &amp; TEMPO</p>
                             </div>
                             <div class="flex justify-between items-center text-xs border-t border-white/20 pt-4">
-                                <span class="opacity-70">RATING:</span>
-                                <span class="crimson-tag">GRAND MASTER</span>
+                                <span class="opacity-75">RATING:</span>
+                                <span class="grimoire-tag">CHALLENGER</span>
                             </div>
                         </div>
 
@@ -1984,12 +1930,12 @@
                                 <span class="obsidian-tag">MID</span>
                             </div>
                             <div class="mb-8">
-                                <h3 class="font-serifDisplay text-3xl font-bold opacity-60">OPEN SLOT</h3>
+                                <h3 class="font-serifDisplay text-3xl font-bold">Mawuf</h3>
                                 <p class="text-xs opacity-70 uppercase mt-1">MIDLANE KORE</p>
                             </div>
                             <div class="space-y-2 text-xs border-t border-white/20 pt-4">
-                                <div class="flex justify-between"><span class="opacity-70">MAIN:</span><span>-- / --</span></div>
-                                <div class="flex justify-between"><span class="opacity-70">PEAK:</span><span class="text-white font-bold">TBD</span></div>
+                                <div class="flex justify-between"><span class="opacity-70">MAIN:</span><span>-- Zilean --</span></div>
+                                <div class="flex justify-between"><span class="opacity-70">PEAK:</span><span class="text-white font-bold">GrandMaster</span></div>
                             </div>
                         </div>
 
@@ -2040,6 +1986,38 @@
                     </div>
                 </div>
             </section>
+            <!-- NUEVA ESCUADRA: DIVINE SORROW -->
+<div class="blank-monolith corner-mark p-6 border border-[#c8b38a]/35 bg-[#0a0a0e]/95">
+    <div class="flex items-center justify-between border-b border-white/15 pb-4 mb-5">
+        <div>
+            <span class="font-mono text-[10px] tracking-[0.28em] uppercase text-[#c8b38a] block">NUEVA DIVISIÓN // BLANK</span>
+            <h3 class="font-display font-extrabold text-2xl tracking-[0.1em] uppercase text-white mt-1">
+                DIVINE SORROW
+            </h3>
+        </div>
+        <span class="font-mono text-[9px] tracking-[0.22em] uppercase px-2.5 py-1 border border-[#c8b38a]/50 bg-[#c8b38a]/10 text-[#c8b38a]">
+            INCORPORACIÓN OFICIAL
+        </span>
+    </div>
+
+    <div class="space-y-2.5 font-mono text-xs text-white/75">
+        <div class="flex justify-between py-1.5 border-b border-white/5">
+            <span class="text-[#c8b38a]/80">TOP</span><span>[ Por anunciar ]</span>
+        </div>
+        <div class="flex justify-between py-1.5 border-b border-white/5">
+            <span class="text-[#c8b38a]/80">JUNGLE</span><span>[ Por anunciar ]</span>
+        </div>
+        <div class="flex justify-between py-1.5 border-b border-white/5">
+            <span class="text-[#c8b38a]/80">MID</span><span>[ Por anunciar ]</span>
+        </div>
+        <div class="flex justify-between py-1.5 border-b border-white/5">
+            <span class="text-[#c8b38a]/80">ADC</span><span>[ Por anunciar ]</span>
+        </div>
+        <div class="flex justify-between py-1.5">
+            <span class="text-[#c8b38a]/80">SUPPORT</span><span>[ Por anunciar ]</span>
+        </div>
+    </div>
+</div>
 
             <div class="celestial-divider max-w-6xl mx-auto px-4 sm:px-8">
                 <div class="hairline-double"></div>
@@ -2075,9 +2053,6 @@
                                 <span class="opacity-75 uppercase text-[11px]">SUPLENTES OFICIALES:</span>
                             </div>
                             <div class="flex flex-wrap items-center gap-3">
-                                <span class="px-3 py-1.5 border border-white/35 font-bold">Lilo // <span class="text-grimoire-gold">TOP</span></span>
-                                <span class="px-3 py-1.5 border border-white/35 font-bold">Petricor // <span class="text-grimoire-gold">JGL</span></span>
-                                <span class="px-3 py-1.5 border border-white/35 font-bold">Rouge Carmine // <span class="text-grimoire-gold">SUPP</span></span>
                             </div>
                         </div>
 
@@ -2088,8 +2063,6 @@
                                 <span class="opacity-75 uppercase text-[11px]">SUPLENTES OFICIALES:</span>
                             </div>
                             <div class="flex flex-wrap items-center gap-3">
-                                <span class="px-3 py-1.5 border border-white/35 font-bold">-UNKNOWN- // <span class="text-grimoire-gold">TOP</span></span>
-                                <span class="px-3 py-1.5 border border-white/35 font-bold">MIGAJA // <span class="text-grimoire-gold">MID</span></span>
                                 <span class="px-3 py-1.5 border border-white/35 font-bold">KAEL // <span class="text-grimoire-gold">ADC</span></span>
                             </div>
                         </div>
@@ -2101,8 +2074,10 @@
                                 <span class="opacity-75 uppercase text-[11px]">SUPLENTES OFICIALES:</span>
                             </div>
                             <div class="flex flex-wrap items-center gap-3">
-                                <span class="px-3 py-1.5 border border-white/35 font-bold">Kemez // <span class="text-grimoire-gold">JGL</span></span>
+                                <span class="px-3 py-1.5 border border-white/35 font-bold">Mifulafu // <span class="text-grimoire-gold">JGL</span></span>
                                 <span class="px-3 py-1.5 border border-white/35 font-bold">Nyfer // <span class="text-grimoire-gold">SUPP/MID</span></span>
+                                <span class="px-3 py-1.5 border border-white/35 font-bold">Koro // <span class="text-grimoire-gold">ADC</span></span>
+                                <span class="px-3 py-1.5 border border-white/35 font-bold">Uchiha // <span class="text-grimoire-gold">TOP</span></span>
                             </div>
                         </div>
                     </div>
@@ -2119,11 +2094,11 @@
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-white/35 pb-6 mb-10">
                     <div>
                         <div class="flex items-center space-x-2 mb-2">
-                            <span class="crimson-tag">[RECRUITMENT ACTIVE]</span>
+                            <span class="crimson-tag">[RECRUITMENT INACTIVE]</span>
                             <span class="text-xs font-mono text-grimoire-gold tracking-widest">// FIRST TEAM RECRUITMENT</span>
                         </div>
                         <h1 class="silent-authority-title text-3xl sm:text-5xl font-bold uppercase tracking-tight">
-                            BLANK: MAIN ROSTER (VACANTES)
+                            BLANK [Roster Insignia]
                         </h1>
                     </div>
                     <div class="mt-4 md:mt-0 font-mono text-right">
