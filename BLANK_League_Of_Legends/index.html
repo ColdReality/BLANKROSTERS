@@ -34,7 +34,9 @@
                         }
                     },
                     fontFamily: {
-                        serifDisplay: ['var(--font-title)', 'serif'],
+                        sans: ['Syne', 'sans-serif'],
+                        display: ['Syne', 'sans-serif'],
+                        serifDisplay: ['Syne', 'sans-serif'],
                         renaissance: ['Cinzel', 'Bodoni Moda', 'serif'],
                         tenor: ['Tenor Sans', 'sans-serif'],
                         editorial: ['Cormorant Garamond', 'serif'],
@@ -50,7 +52,7 @@
         /* =========================================================
            DARK RENAISSANCE / SILENT AUTHORITY POSTER SYSTEM
            ========================================================= */
-        :root {
+       :root {
             --bg-primary: #050507;
             --bg-secondary: #0c0a09;
             --bg-card: rgba(12, 11, 11, 0.86);
@@ -60,19 +62,9 @@
             --border-strong: #f2ece4;
             --accent-crimson: #5e141b;
             --accent-gold: #dcd2c0;
-            --font-title: 'Bodoni Moda', serif;
-            --title-tracking: 0.04em;
-            --wallpaper-url: url('https://i.pinimg.com/736x/6d/80/57/6d8057160fe56904b6daba4b35b36eec.jpg');
-        }
-
-        body.font-mode-tenor {
-            --font-title: 'Cinzel', serif;
-            --title-tracking: 0.08em;
-        }
-
-        body.font-mode-syne {
             --font-title: 'Syne', sans-serif;
             --title-tracking: -0.02em;
+            --wallpaper-url: url('https://i.pinimg.com/736x/6d/80/57/6d8057160fe56904b6daba4b35b36eec.jpg');
         }
 
         .font-serifDisplay {
@@ -96,12 +88,11 @@
         body {
             background-color: var(--bg-primary);
             color: var(--text-main);
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Syne', sans-serif;
             overflow-x: hidden;
             position: relative;
             transition: background-color 0.4s ease, color 0.4s ease;
         }
-
         /* =========================================================
            DYNAMIC WALLPAPER LAYER + HALFTONE DOT & GRAIN TEXTURE
            ========================================================= */
@@ -1072,12 +1063,7 @@
                 <button onclick="replayIntroModal()" title="Reproducir Intro" class="px-2.5 py-1.5 border border-grimoire-parchment/50 hover:bg-grimoire-parchment hover:text-black transition-all">
                     <i class="fa-solid fa-film"></i>
                 </button>
-
-                <button onclick="cycleTitleFont()" id="fontToggleBtn" title="Cambiar Tipografía" class="px-2.5 py-1.5 border border-grimoire-parchment/50 hover:bg-grimoire-parchment hover:text-black transition-all flex items-center space-x-1.5">
-                    <i class="fa-solid fa-font"></i>
-                    <span id="fontModeLabel" class="hidden sm:inline">SYNE</span>
                 
-
                 <button onclick="toggleTheme()" id="themeToggleBtn" title="Alternar Modo Oscuro / Pergamino" class="px-2.5 py-1.5 border border-grimoire-parchment/50 hover:bg-grimoire-parchment hover:text-black transition-all flex items-center space-x-1.5">
                     <i id="themeIcon" class="fa-solid fa-sun"></i>
                     <span id="themeText" class="hidden lg:inline">PERGAMINO</span>
