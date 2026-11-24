@@ -3221,7 +3221,7 @@
         let manualNewsExpanded = false;
 
         // Default Demo Wallpaper Provided by User
-        const DEFAULT_DEMO_WALLPAPER = 'https://i.pinimg.com/736x/7a/29/b1/7a29b1330b07f985b330a1a2d89449bc.jpg';
+        const DEFAULT_DEMO_WALLPAPER = 'https://i.pinimg.com/736x/6d/80/57/6d8057160fe56904b6daba4b35b36eec.jpg';
 
         // Official Discord Webhook for Tryouts Secretary
         const DISCORD_TRYOUTS_WEBHOOK_URL = "https://discord.com/api/webhooks/1565143360660840562/rpCcEEw2284HucOGU2_osZsnYa3QgBPCurfmNGF6oqcIPJLFz2cgTjhEh3PYa9Wz5VA9";
@@ -3280,13 +3280,13 @@
             if (savedCustomWp) {
                 setWallpaperCssUrl(savedCustomWp);
             } else {
-                probeImageExists('../wallpaper.jpg?v=' + Date.now(), (existsJpg) => {
+                probeImageExists('./wallpaper.jpg?v=' + Date.now(), (existsJpg) => {
                     if (existsJpg) {
-                        setWallpaperCssUrl('../wallpaper.jpg?v=' + Date.now());
+                        setWallpaperCssUrl('./wallpaper.jpg?v=' + Date.now());
                     } else {
-                        probeImageExists('../wallpaper.png?v=' + Date.now(), (existsPng) => {
+                        probeImageExists('./wallpaper.png?v=' + Date.now(), (existsPng) => {
                             if (existsPng) {
-                                setWallpaperCssUrl('../wallpaper.png?v=' + Date.now());
+                                setWallpaperCssUrl('./wallpaper.png?v=' + Date.now());
                             } else {
                                 setWallpaperCssUrl(DEFAULT_DEMO_WALLPAPER);
                             }
