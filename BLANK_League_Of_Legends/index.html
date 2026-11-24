@@ -5070,5 +5070,197 @@ async function processPlayer(p) {
             loadGithubRankingData();
         };
     </script>
+    <!-- =========================================================
+         REPRODUCTOR AMBIENTAL REMOTO // BLANK AUDIO LIBRARY
+         ========================================================= -->
+    <div id="blankAudioWidget"
+         class="fixed bottom-20 right-6 xl:bottom-6 xl:right-6 z-50 flex items-center gap-2 px-3 py-2 border shadow-2xl select-none"
+         style="background-color: rgba(7, 7, 10, 0.96); border-color: rgba(242, 236, 228, 0.28); color: #f2ece4;">
+
+        <!-- Pista anterior -->
+        <button type="button" onclick="stepBlankTrack(-1, event)" title="Pista anterior"
+                class="font-mono text-[11px] px-0.5 cursor-pointer hover:opacity-75 transition-opacity"
+                style="color: #c8b38a;">
+            «
+        </button>
+
+        <!-- Play / Pausa + Nombre de canción -->
+        <button id="bgmToggleBtn" type="button" onclick="toggleBlankPlaylist(event)"
+                class="flex items-center gap-2 font-mono text-[10px] tracking-[0.16em] uppercase cursor-pointer hover:opacity-85 transition-opacity"
+                style="color: #f2ece4;">
+            <span id="bgmPulseDot" class="w-1.5 h-1.5 rounded-full shrink-0" style="background-color: rgba(242, 236, 228, 0.35);"></span>
+            <span id="bgmTrackLabel" class="max-w-[140px] truncate">AUDIO: OFF</span>
+        </button>
+
+        <!-- Pista siguiente -->
+        <button type="button" onclick="stepBlankTrack(1, event)" title="Siguiente pista"
+                class="font-mono text-[11px] px-0.5 cursor-pointer hover:opacity-75 transition-opacity"
+                style="color: #c8b38a;">
+            »
+        </button>
+    </div>
+
+    <script>
+        // =========================================================
+        // MOTOR DE PLAYLIST REMOTA (SEGUNDO REPOSITORIO GITHUB)
+        // =========================================================
+        // Reemplaza por la URL exacta que te dio GitHub Pages en tu repo blank-audio
+        const RAW_LIBRARY_URL = 'https://coldreality.github.io/blank-audio/';
+        const AUDIO_LIBRARY_URL = RAW_LIBRARY_URL.endsWith('/') ? RAW_LIBRARY_URL : RAW_LIBRARY_URL + '/';
+
+        const BGM_TARGET_VOLUME = 0.14; // Volumen final suave (14%)
+        const BGM_SHUFFLE_ORDER = true; // Mezcla el orden de la playlist al cargar
+
+        const blankAudio = new Audio();
+        blankAudio.preload = 'metadata';
+
+        let blankPlaylist = [];
+        let currentTrackIndex = 0;
+        let isBgmPlaying = false;
+        let userManuallyPaused = false;
+        let fadeInterval = null;
+
+        function shuffleArray(list) {
+            const arr = [...list];
+            for (let i = arr.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [arr[i], arr[j]] = [arr[j], arr[i]];
+            }
+            return arr;
+        }
+
+        function buildTrackUrl(filePath) {
+            // Codifica cada segmento por si algún mp3 tiene espacios o símbolos
+            const safePath = filePath.split('/').map(encodeURIComponent).join('/');
+            return AUDIO_LIBRARY_URL + safePath;
+        }
+
+        function loadBlankTrack(index) {
+            if (!blankPlaylist.length) return;
+            currentTrackIndex = (index + blankPlaylist.length) % blankPlaylist.length;
+            blankAudio.src = buildTrackUrl(blankPlaylist[currentTrackIndex].file);
+        }
+
+        function updateBgmUI() {
+            const label = document.getElementById('bgmTrackLabel');
+            const dot = document.getElementById('bgmPulseDot');
+            if (!label || !dot) return;
+
+            if (isBgmPlaying && blankPlaylist[currentTrackIndex]) {
+                label.textContent = '♪ ' + blankPlaylist[currentTrackIndex].title;
+                dot.style.backgroundColor = '#c8b38a';
+                dot.classList.add('animate-pulse');
+            } else {
+                label.textContent = 'AUDIO: OFF';
+                dot.style.backgroundColor = 'rgba(242, 236, 228, 0.35)';
+                dot.classList.remove('animate-pulse');
+            }
+        }
+
+        function playWithFadeIn() {
+            if (!blankPlaylist.length) return;
+            if (!blankAudio.src) loadBlankTrack(currentTrackIndex);
+
+            clearInterval(fadeInterval);
+            blankAudio.volume = 0.01;
+
+            blankAudio.play().then(() => {
+                isBgmPlaying = true;
+                updateBgmUI();
+
+                fadeInterval = setInterval(() => {
+                    if (blankAudio.volume + 0.01 < BGM_TARGET_VOLUME) {
+                        blankAudio.volume = Number((blankAudio.volume + 0.01).toFixed(3));
+                    } else {
+                        blankAudio.volume = BGM_TARGET_VOLUME;
+                        clearInterval(fadeInterval);
+                    }
+                }, 120);
+            }).catch(() => {
+                isBgmPlaying = false;
+                updateBgmUI();
+            });
+        }
+
+        function toggleBlankPlaylist(e) {
+            if (e) e.stopPropagation();
+            if (!blankPlaylist.length) return;
+
+            if (isBgmPlaying) {
+                clearInterval(fadeInterval);
+                blankAudio.pause();
+                isBgmPlaying = false;
+                userManuallyPaused = true;
+                updateBgmUI();
+            } else {
+                userManuallyPaused = false;
+                playWithFadeIn();
+            }
+        }
+
+        function stepBlankTrack(delta, e) {
+            if (e) e.stopPropagation();
+            if (!blankPlaylist.length) return;
+
+            userManuallyPaused = false;
+            loadBlankTrack(currentTrackIndex + delta);
+            playWithFadeIn();
+        }
+
+        // Salta automáticamente a la siguiente canción al terminar o si falla un archivo
+        blankAudio.addEventListener('ended', () => {
+            if (!blankPlaylist.length) return;
+            loadBlankTrack(currentTrackIndex + 1);
+            blankAudio.volume = BGM_TARGET_VOLUME;
+            blankAudio.play().then(() => {
+                isBgmPlaying = true;
+                updateBgmUI();
+            }).catch(() => {});
+        });
+
+        blankAudio.addEventListener('error', () => {
+            if (blankPlaylist.length > 1 && isBgmPlaying) {
+                loadBlankTrack(currentTrackIndex + 1);
+                blankAudio.play().catch(() => {});
+            }
+        });
+
+        async function initRemoteBlankAudio() {
+            try {
+                const res = await fetch(AUDIO_LIBRARY_URL + 'playlist.json', { cache: 'no-cache' });
+                if (!res.ok) throw new Error('No se pudo cargar playlist.json');
+                const data = await res.json();
+                if (!Array.isArray(data) || !data.length) return;
+
+                blankPlaylist = BGM_SHUFFLE_ORDER ? shuffleArray(data) : data;
+                loadBlankTrack(0);
+
+                // Detectar si la página tiene video de intro (ej. LoL)
+                const introVideo = document.querySelector('video');
+                const tryAutoStart = () => {
+                    if (!isBgmPlaying && !userManuallyPaused) {
+                        playWithFadeIn();
+                    }
+                };
+
+                if (introVideo) {
+                    introVideo.addEventListener('ended', tryAutoStart, { once: true });
+                    document.addEventListener('click', () => {
+                        if (introVideo.paused || introVideo.ended || introVideo.offsetParent === null) {
+                            tryAutoStart();
+                        }
+                    });
+                } else {
+                    document.addEventListener('click', tryAutoStart, { once: true });
+                }
+            } catch (err) {
+                console.warn('BLANK Audio Library:', err);
+                const widget = document.getElementById('blankAudioWidget');
+                if (widget) widget.style.display = 'none';
+            }
+        }
+
+        initRemoteBlankAudio();
+    </script>
 </body>
 </html>
