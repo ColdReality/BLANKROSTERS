@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-25T01:45:22.494Z",
+  "updatedAt": "2026-11-25T16:28:36.641Z",
   "players": [
     {
       "id": "lft-näde",
@@ -8,9 +8,9 @@
       "division": "Eclipsed",
       "role": "ADC",
       "region": "NA1",
-      "tier": "GRANDMASTER",
+      "tier": "MASTER",
       "rankNumber": "I",
-      "lp": 1386,
+      "lp": 1311,
       "wins": 241,
       "losses": 197,
       "winrate": 55,
@@ -47,33 +47,33 @@
       "region": "LA1",
       "tier": "MASTER",
       "rankNumber": "I",
-      "lp": 649,
-      "wins": 315,
-      "losses": 276,
-      "winrate": 53.3,
-      "streak": "L1",
+      "lp": 616,
+      "wins": 316,
+      "losses": 278,
+      "winrate": 53.2,
+      "streak": "W1",
       "recentMatches": [
-        "L",
         "W",
         "L",
         "L",
-        "L"
+        "L",
+        "W"
       ],
       "recentChamps": [
         {
-          "name": "Lulu",
+          "name": "Janna",
           "kda": ""
         },
         {
-          "name": "Milio",
+          "name": "Nami",
           "kda": ""
         },
         {
-          "name": "Soraka",
+          "name": "Taric",
           "kda": ""
         }
       ],
-      "avatar": "https://ddragon.leagueoflegends.com/cdn/14.21.1/img/profileicon/6771.png"
+      "avatar": "https://ddragon.leagueoflegends.com/cdn/14.21.1/img/profileicon/29.png"
     },
     {
       "id": "kemez",
@@ -113,43 +113,6 @@
       "avatar": "https://ddragon.leagueoflegends.com/cdn/14.21.1/img/profileicon/6236.png"
     },
     {
-      "id": "lk-koro",
-      "name": "LK Koro",
-      "tag": "#0612S",
-      "division": "Last Knights",
-      "role": "ADC",
-      "region": "LA1",
-      "tier": "DIAMOND",
-      "rankNumber": "II",
-      "lp": 35,
-      "wins": 532,
-      "losses": 506,
-      "winrate": 51.3,
-      "streak": "L5",
-      "recentMatches": [
-        "L",
-        "L",
-        "L",
-        "L",
-        "L"
-      ],
-      "recentChamps": [
-        {
-          "name": "KogMaw",
-          "kda": ""
-        },
-        {
-          "name": "Aphelios",
-          "kda": ""
-        },
-        {
-          "name": "Zyra",
-          "kda": ""
-        }
-      ],
-      "avatar": "https://ddragon.leagueoflegends.com/cdn/14.21.1/img/profileicon/1636.png"
-    },
-    {
       "id": "manzanita",
       "name": "Manzanita",
       "tag": "#FDG",
@@ -162,15 +125,19 @@
       "wins": 134,
       "losses": 130,
       "winrate": 50.8,
-      "streak": "L1",
+      "streak": "L2",
       "recentMatches": [
+        "L",
         "L",
         "W",
         "W",
-        "W",
-        "L"
+        "W"
       ],
       "recentChamps": [
+        {
+          "name": "Soraka",
+          "kda": ""
+        },
         {
           "name": "Bard",
           "kda": ""
@@ -178,13 +145,46 @@
         {
           "name": "Azir",
           "kda": ""
-        },
-        {
-          "name": "TwistedFate",
-          "kda": ""
         }
       ],
       "avatar": "https://ddragon.leagueoflegends.com/cdn/14.21.1/img/profileicon/5874.png"
+    },
+    {
+      "id": "lk-koro",
+      "name": "LK Koro",
+      "tag": "#0612S",
+      "division": "Last Knights",
+      "role": "ADC",
+      "region": "LA1",
+      "tier": "DIAMOND",
+      "rankNumber": "II",
+      "lp": 31,
+      "wins": 534,
+      "losses": 508,
+      "winrate": 51.2,
+      "streak": "L1",
+      "recentMatches": [
+        "L",
+        "W",
+        "L",
+        "W",
+        "L"
+      ],
+      "recentChamps": [
+        {
+          "name": "Xayah",
+          "kda": ""
+        },
+        {
+          "name": "Ezreal",
+          "kda": ""
+        },
+        {
+          "name": "Shyvana",
+          "kda": ""
+        }
+      ],
+      "avatar": "https://ddragon.leagueoflegends.com/cdn/14.21.1/img/profileicon/1636.png"
     },
     {
       "id": "oda-mifulafu",
@@ -199,12 +199,12 @@
       "wins": 132,
       "losses": 120,
       "winrate": 52.4,
-      "streak": "W2",
+      "streak": "L1",
       "recentMatches": [
+        "L",
         "W",
         "W",
         "L",
-        "W",
         "W"
       ],
       "recentChamps": [
@@ -213,11 +213,11 @@
           "kda": ""
         },
         {
-          "name": "Seraphine",
+          "name": "Jhin",
           "kda": ""
         },
         {
-          "name": "Diana",
+          "name": "Seraphine",
           "kda": ""
         }
       ],
