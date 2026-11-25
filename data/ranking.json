@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-24T18:14:22.516Z",
+  "updatedAt": "2026-11-25T01:45:22.494Z",
   "players": [
     {
       "id": "lft-näde",
@@ -47,29 +47,29 @@
       "region": "LA1",
       "tier": "MASTER",
       "rankNumber": "I",
-      "lp": 620,
-      "wins": 314,
+      "lp": 649,
+      "wins": 315,
       "losses": 276,
-      "winrate": 53.2,
-      "streak": "L4",
+      "winrate": 53.3,
+      "streak": "L1",
       "recentMatches": [
         "L",
+        "W",
         "L",
         "L",
-        "L",
-        "W"
+        "L"
       ],
       "recentChamps": [
         {
+          "name": "Lulu",
+          "kda": ""
+        },
+        {
+          "name": "Milio",
+          "kda": ""
+        },
+        {
           "name": "Soraka",
-          "kda": ""
-        },
-        {
-          "name": "Morgana",
-          "kda": ""
-        },
-        {
-          "name": "Janna",
           "kda": ""
         }
       ],
@@ -121,29 +121,29 @@
       "region": "LA1",
       "tier": "DIAMOND",
       "rankNumber": "II",
-      "lp": 56,
+      "lp": 35,
       "wins": 532,
-      "losses": 505,
+      "losses": 506,
       "winrate": 51.3,
-      "streak": "L4",
+      "streak": "L5",
       "recentMatches": [
         "L",
         "L",
         "L",
         "L",
-        "W"
+        "L"
       ],
       "recentChamps": [
+        {
+          "name": "KogMaw",
+          "kda": ""
+        },
         {
           "name": "Aphelios",
           "kda": ""
         },
         {
           "name": "Zyra",
-          "kda": ""
-        },
-        {
-          "name": "Briar",
           "kda": ""
         }
       ],
